@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 
+/* Global, custom styles */
+
 * {
     margin: 0;
     padding: 0;
