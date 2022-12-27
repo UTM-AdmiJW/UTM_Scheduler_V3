@@ -1,12 +1,17 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+
+import { TestPage } from '../views/TestPage';
 
 
 
 export default function Router() {
-    return <HashRouter>
+    return <BrowserRouter>
         <Routes>
-            <Route path="/" element={ <div>Hello World</div> } />
+            <Route path="/" element={ <div>Helo</div> } />
+            <Route path='user' element={ <div>User</div> } />
+            <Route path='test' element={ <TestPage /> } />
             <Route path="*" element={ <div>404</div>} />
         </Routes>
-    </HashRouter>
+    </BrowserRouter>
 }
