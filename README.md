@@ -14,3 +14,4 @@
 5. [React Query](https://react-query.tanstack.com/)
 6. [Material UI](https://material-ui.com/)
 7. [Redux Toolkit](https://redux-toolkit.js.org/)
+8. [Notistack](https://notistack.com/)
