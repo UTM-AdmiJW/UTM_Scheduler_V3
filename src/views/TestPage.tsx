@@ -1,5 +1,5 @@
 
-export function TestPage() {
+export default function TestPage() {
 
     return <>
     </>
