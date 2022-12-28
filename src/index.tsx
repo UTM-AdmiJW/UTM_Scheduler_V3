@@ -10,6 +10,7 @@ import { store } from './redux/store';
 import Router from './routes/Router';
 import './style/index.css';
 import { muiThemeOptions } from './style/MUITheme';
+import { DialogContextProvider } from './context/DialogContext';
 
 
 const queryClient = new QueryClient();
@@ -22,13 +23,16 @@ function Application() {
         <Provider store={store}>
         {/* React Query client provider */}
         <QueryClientProvider client={queryClient}>
-        {/* Notistack Snackbar provider */}
-        <SnackbarProvider anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}>
         {/* Material UI Custom Theme Provider */}
         <ThemeProvider theme={muiThemeOptions}>
+        {/* Notistack Snackbar provider */}
+        <SnackbarProvider anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}>
+        {/* Dialog Context Provider */}
+        <DialogContextProvider>
             <Router />
-        </ThemeProvider>
+        </DialogContextProvider>
         </SnackbarProvider>
+        </ThemeProvider>
         </QueryClientProvider>
         </Provider>
     </>
