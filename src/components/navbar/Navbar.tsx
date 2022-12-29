@@ -1,13 +1,14 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-
 import NavbarMenu from "./NavbarMenu";
+
 import NavbarMobileMenu from "./NavbarMobileMenu";
 
 export default function Navbar() {
 
     return <AppBar position='sticky'>
+        <Container>
         <Toolbar>
             {/* Logo and Name of application */}
             <Link to='/' className='flex items-center'>
@@ -27,5 +28,6 @@ export default function Navbar() {
             {/* Large screen menu */}
             <NavbarMenu />
         </Toolbar>
+        </Container>
     </AppBar>
 }

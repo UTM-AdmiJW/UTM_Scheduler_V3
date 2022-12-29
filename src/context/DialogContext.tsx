@@ -54,6 +54,10 @@ export function DialogContextProvider({ children }: { children: React.ReactNode 
             aria-labelledby="responsive-dialog"
             scroll="paper"
         >
+            {/* To force minimum width */}
+            <div style={{ minWidth: '300px' }} />
+
+
             {
                 content.title &&
                 <DialogTitle>{ content.title }</DialogTitle>

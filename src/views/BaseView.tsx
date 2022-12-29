@@ -3,6 +3,7 @@ import Navbar from "../components/navbar/Navbar";
 import RouterOutlet from "../routes/RouterOutlet";
 
 
+
 // The base view that act as the template for all routes.
 
 
