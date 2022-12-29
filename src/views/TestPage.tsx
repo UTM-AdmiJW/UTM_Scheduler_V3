@@ -20,11 +20,9 @@ export default function TestPage() {
 
         {/* Test Dialog */}
         <div className='flex gap-2 mt-4'>
-            <Button variant="contained" color='primary' onClick={() => openDialog({
-                title: 'Title',
-                content: 'Content',
-                actions: <Button variant="contained" color='primary' onClick={closeDialog}>Close</Button>
-            })}>Open Dialog</Button>
+            <Button variant="contained" color='primary' onClick={() => openDialog(<>Hello There!</>)}>
+                Open Dialog
+            </Button>
         </div>
 
     </Container>

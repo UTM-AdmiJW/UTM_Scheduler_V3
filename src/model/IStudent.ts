@@ -1,6 +1,6 @@
 
 
 export interface IStudent {
-    username: string;
+    name: string;
     matricNo: string;
 }

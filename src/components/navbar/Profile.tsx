@@ -1,12 +1,22 @@
-import { Button, Container, Divider } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 
 import { AiOutlineLogin, AiOutlineLogout } from 'react-icons/ai';
 import { FaUserGraduate } from 'react-icons/fa';
 
+import { useDialog } from "../../hooks/useDialog";
+
+import LoginDialog from "../login/LoginDialog";
+
 
 export default function Profile() {
+    const { openDialog } = useDialog();
 
-    return <Container className='my-2'>
+
+    const onLoginButtonClick = () => openDialog(<LoginDialog />);
+
+
+
+    return <div className='px-5 my-2'>
         
         {/* Info */}
         <div className='flex gap-3 items-center mb-3'>
@@ -30,11 +40,16 @@ export default function Profile() {
             Logout
         </Button>
 
-        <Button variant='contained' size='small' fullWidth>
+        <Button 
+            variant='contained' 
+            size='small' 
+            fullWidth
+            onClick={onLoginButtonClick}
+        >
             <AiOutlineLogin className='mr-2' fontSize='large' />
             Login
         </Button>
 
-    </Container>
+    </div>
 
 }

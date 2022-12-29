@@ -1,5 +1,5 @@
 
-import { useMediaQuery, useTheme, Dialog, DialogContent, DialogTitle, DialogActions } from "@mui/material";
+import { useMediaQuery, useTheme, Dialog } from "@mui/material";
 import { createContext } from "react";
 import { useState } from "react";
 
@@ -8,35 +8,30 @@ import { useState } from "react";
 // See Dialog documentation here: https://mui.com/components/dialogs/
 
 
-interface IDialogContextContent {
-    title?: React.ReactNode,
-    content?: React.ReactNode,
-    actions?: React.ReactNode,
-}
 
 export interface IDialogContextValue {
-    openDialog: (content: IDialogContextContent) => void;
+    openDialog: (content: React.ReactNode) => void;
     closeDialog: () => void;
 }
 
 
 export const DialogContext = createContext<IDialogContextValue>({ 
     openDialog: () => {}, 
-    closeDialog: () => {} 
+    closeDialog: () => {},
 });
 
 
 
 export function DialogContextProvider({ children }: { children: React.ReactNode }) {
     const [ isOpen, setIsOpen ] = useState(false);
-    const [ content, setContent ] = useState<IDialogContextContent>({});
+    const [ content, setContent ] = useState<React.ReactNode>(null);
 
     const theme = useTheme();
     const isFullScreen = useMediaQuery( theme.breakpoints.down('sm'));
 
 
     // Exported function as context value
-    const openDialog = (content: IDialogContextContent) => {
+    const openDialog = (content: React.ReactNode) => {
         setIsOpen(true);
         setContent(content);
     }
@@ -57,21 +52,7 @@ export function DialogContextProvider({ children }: { children: React.ReactNode 
             {/* To force minimum width */}
             <div style={{ minWidth: '300px' }} />
 
-
-            {
-                content.title &&
-                <DialogTitle>{ content.title }</DialogTitle>
-            }
-
-            {
-                content.content &&
-                <DialogContent>{ content.content }</DialogContent>
-            }
-            
-            {
-                content.actions &&
-                <DialogActions>{ content.actions }</DialogActions>
-            }
+            { content }
         </Dialog>
 
         { children }
