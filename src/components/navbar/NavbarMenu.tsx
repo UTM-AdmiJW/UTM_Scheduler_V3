@@ -2,9 +2,11 @@ import { useState } from "react";
 import { IconButton, Tooltip, Menu } from "@mui/material";
 
 
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import HelpIcon from '@mui/icons-material/Help';
-import FaceIcon from '@mui/icons-material/Face';
+import { AiFillNotification } from 'react-icons/ai';
+import { MdHelpCenter } from 'react-icons/md';
+import { FaUserCircle } from 'react-icons/fa';
+
+
 import Profile from "./Profile";
 
 
@@ -32,7 +34,7 @@ export default function NavbarMenu() {
                     color="inherit"
                     aria-label="tutorial"
                 >
-                    <HelpIcon />
+                    <MdHelpCenter fontSize='x-large' />
                 </IconButton>
             </Tooltip>
 
@@ -43,7 +45,7 @@ export default function NavbarMenu() {
                     color="inherit"
                     aria-label="announcements"
                 >
-                    <NotificationsIcon />
+                    <AiFillNotification fontSize='x-large' />
                 </IconButton>
             </Tooltip>
 
@@ -55,7 +57,7 @@ export default function NavbarMenu() {
                     aria-label="profile"
                     onClick={ onOpenProfile }
                 >
-                    <FaceIcon />
+                    <FaUserCircle fontSize='x-large' />
                 </IconButton>
             </Tooltip>
 

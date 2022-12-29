@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { ListItemIcon, MenuItem, Menu, ListItemText, Divider, IconButton } from "@mui/material";
 
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import HelpIcon from '@mui/icons-material/Help';
+import { AiOutlineMenu, AiOutlineClose, AiFillNotification } from 'react-icons/ai';
+import { MdHelpCenter } from 'react-icons/md';
 
 import Profile from "./Profile";
 
@@ -27,7 +26,6 @@ export default function NavbarMobileMenu() {
 
         {/* Open Menu Button */}
         <IconButton
-            size="large"
             aria-label="open menu"
             aria-controls="menu-appbar"
             aria-haspopup="true"
@@ -35,7 +33,11 @@ export default function NavbarMobileMenu() {
             onClick={onOpenMenu}
             className='sm:hidden'
         >
-            <MoreVertIcon />
+            {
+                anchorElem !== null?
+                <AiOutlineClose />:
+                <AiOutlineMenu />
+            }
         </IconButton>
 
 
@@ -50,14 +52,14 @@ export default function NavbarMobileMenu() {
 
             <MenuItem>
                 <ListItemIcon>
-                    <NotificationsIcon fontSize="small" />
+                    <AiFillNotification fontSize="large" />
                 </ListItemIcon>
                 <ListItemText>Announcements</ListItemText>
             </MenuItem>
 
             <MenuItem>
                 <ListItemIcon>
-                    <HelpIcon fontSize="small" />
+                    <MdHelpCenter fontSize="large" />
                 </ListItemIcon>
                 <ListItemText>Tutorial</ListItemText>
             </MenuItem>

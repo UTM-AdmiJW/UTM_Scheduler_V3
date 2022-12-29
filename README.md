@@ -15,3 +15,4 @@
 6. [Material UI](https://material-ui.com/)
 7. [Redux Toolkit](https://redux-toolkit.js.org/)
 8. [Notistack](https://notistack.com/)
+9. [React-Icons](https://react-icons.github.io/react-icons/)

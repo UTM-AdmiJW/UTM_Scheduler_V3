@@ -1,9 +1,7 @@
-import { Button, Container } from "@mui/material";
+import { Button, Container, Divider } from "@mui/material";
 
-
-import Face6Icon from '@mui/icons-material/Face6';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { AiOutlineLogin, AiOutlineLogout } from 'react-icons/ai';
+import { FaUserGraduate } from 'react-icons/fa';
 
 
 export default function Profile() {
@@ -12,7 +10,7 @@ export default function Profile() {
         
         {/* Info */}
         <div className='flex gap-3 items-center mb-3'>
-            <Face6Icon className='mr-1' fontSize="large" />
+            <FaUserGraduate className='mr-1' fontSize="xx-large" />
 
             <div className='flex flex-col'>
                 <p className='font-bold'>Muhammad Ahmad bin Zamizi</p>
@@ -24,14 +22,16 @@ export default function Profile() {
             </div>
         </div>
 
+        <Divider className='my-4' />
+
         {/* Login/Logout */}
         <Button variant='contained' size='small' fullWidth className='mb-2'>
-            <LogoutIcon fontSize='small' className='mr-2' />
+            <AiOutlineLogout className='mr-2' fontSize='large' />
             Logout
         </Button>
 
         <Button variant='contained' size='small' fullWidth>
-            <LoginIcon fontSize='small' className='mr-2' />
+            <AiOutlineLogin className='mr-2' fontSize='large' />
             Login
         </Button>
 
