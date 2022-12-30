@@ -58,6 +58,7 @@ export default function TimetableCard({ timetable }: ITimetableCardProps) {
                     size='small'
                     onClick={ onDelete }
                     onMouseDown={ (e)=> e.stopPropagation() }
+                    onTouchStart={ (e)=> e.stopPropagation() }
                 >
                     <BsFillTrashFill className='mr-2' />
                     Delete
