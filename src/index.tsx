@@ -29,7 +29,7 @@ function UTMSchedulerV3() {
         {/* Material UI Custom Theme Provider */}
         <ThemeProvider theme={muiThemeOptions}>
         {/* Notistack Snackbar provider */}
-        <SnackbarProvider anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}>
+        <SnackbarProvider maxSnack={5} anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}>
         {/* Dialog Context Provider */}
         <DialogContextProvider>
         {/* Browser Router from React Router DOM */}

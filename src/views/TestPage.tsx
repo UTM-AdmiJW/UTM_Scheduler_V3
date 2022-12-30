@@ -6,7 +6,7 @@ import { useDialog } from "../hooks/useDialog";
 export default function TestPage() {
 
     const { alertError, alertSuccess, alertWarning, alertInfo } = useAlert();
-    const { openDialog, closeDialog } = useDialog();
+    const { openDialog } = useDialog();
 
     return <Container className='my-4'>
         
@@ -20,7 +20,9 @@ export default function TestPage() {
 
         {/* Test Dialog */}
         <div className='flex gap-2 mt-4'>
-            <Button variant="contained" color='primary' onClick={() => openDialog(<>Hello There!</>)}>
+            <Button variant="contained" color='primary' onClick={() => openDialog(
+                <div className='p-5'>Hello There!</div>
+            )}>
                 Open Dialog
             </Button>
         </div>
