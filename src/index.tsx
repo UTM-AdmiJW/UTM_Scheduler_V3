@@ -5,8 +5,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { store } from './redux/store';
+import { store, persistor } from './redux/store';
 import { muiThemeOptions } from './style/MUITheme';
 import BaseView from './views/BaseView';
 import { DialogContextProvider } from './context/DialogContext';
@@ -24,6 +25,8 @@ function UTMSchedulerV3() {
     return <>
         {/* Redux store provider */}
         <Provider store={store}>
+        {/* Redux Persist Gate */}
+        <PersistGate loading={null} persistor={persistor}>
         {/* React Query client provider */}
         <QueryClientProvider client={queryClient}>
         {/* Material UI Custom Theme Provider */}
@@ -42,6 +45,7 @@ function UTMSchedulerV3() {
         </SnackbarProvider>
         </ThemeProvider>
         </QueryClientProvider>
+        </PersistGate>
         </Provider>
     </>
 }

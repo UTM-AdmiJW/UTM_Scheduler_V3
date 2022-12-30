@@ -54,6 +54,7 @@ export default function TimetableCard({ timetable }: ITimetableCardProps) {
             <CardActions className="justify-end">
                 <Button 
                     variant="contained" 
+                    component='span'
                     color='error' 
                     size='small'
                     onClick={ onDelete }

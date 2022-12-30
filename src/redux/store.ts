@@ -1,15 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
 
 import studentReducer from './studentSlice';
 
 
+
 export const store = configureStore({
     reducer: {
-        student: studentReducer,
+        student: persistReducer({ key: 'student', storage }, studentReducer),
     },
     devTools: process.env.NODE_ENV !== 'production',
+    middleware: [thunk],
 });
 
+export const persistor = persistStore(store);
 
 
 export type RootState = ReturnType<typeof store.getState>;
