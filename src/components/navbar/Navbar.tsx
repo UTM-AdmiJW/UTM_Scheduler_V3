@@ -9,7 +9,7 @@ export default function Navbar() {
 
     return <AppBar position='sticky'>
         <Container>
-        <Toolbar>
+        <Toolbar className='px-0'>
             {/* Logo and Name of application */}
             <Link to='/' className='flex items-center'>
                 <img src="/img/utm logo.png" alt="UTM Logo" className='mr-2 h-9 w-9' />

@@ -14,7 +14,7 @@ export interface IStudentSliceState {
 const initialState: IStudentSliceState = {
     isLoggedIn: false,
     student: {
-        name: '',
+        name: 'Guest',
         matricNo: '',
     },
 };
