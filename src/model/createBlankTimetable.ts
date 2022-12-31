@@ -6,12 +6,12 @@ import { TimetableWeekendType } from "../enums/TimetableWeekendType";
 import { TimetableOrientation } from "../enums/TimetableOrientation";
 
 
-// This is the default timetable that is used when a new timetable is created
-const blankTimetable: ITimetable = {
+// This is the default timetable template that is used when a new timetable is created
+const blankTimetableTemplate: ITimetable = {
     id: uuidv4(),
     timetableName: "Untitled Timetable",
-    createdDate: new Date(),
-    lastModifiedDate: new Date(),
+    createdDate: new Date().toLocaleString(),
+    lastModifiedDate: new Date().toLocaleString(),
     description: "",
     editableCourses: [],
     createdBy: {
@@ -35,15 +35,18 @@ const blankTimetable: ITimetable = {
     }
 };
 
-export default (): ITimetable => {
+const createBlankTimetable = (): ITimetable => {
     return {
-        ...blankTimetable,
+        ...blankTimetableTemplate,
         id: uuidv4(),
         createdBy: {
-            ...blankTimetable.createdBy,
+            ...blankTimetableTemplate.createdBy,
         },
         exportConfig: {
-            ...blankTimetable.exportConfig,
+            ...blankTimetableTemplate.exportConfig,
         }
     };
 };
+
+
+export default createBlankTimetable;

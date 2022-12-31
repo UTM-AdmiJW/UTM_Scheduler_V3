@@ -1,8 +1,14 @@
+import { useDispatch } from "react-redux";
 import { Button, Card, CardActionArea, CardActions, CardContent } from "@mui/material";
 
 import { BsFillTrashFill, BsTable } from 'react-icons/bs';
 
 import type { ITimetable } from "../../model/ITimetable";
+
+import { useAlert } from "../../hooks/useAlert";
+import { useDialog } from "../../hooks/useDialog";
+
+import { deleteTimetable } from "../../redux/timetableSlice";
 
 
 
@@ -12,17 +18,29 @@ interface ITimetableCardProps {
 
 
 export default function TimetableCard({ timetable }: ITimetableCardProps) {
-
+    const { alertSuccess } = useAlert();
+    const { openConfirmDialog } = useDialog();
+    const dispatch = useDispatch();
     
+
     const onDelete = ( e: React.MouseEvent<HTMLButtonElement, MouseEvent> )=> {
         e.stopPropagation();
+
+        openConfirmDialog(
+            `Delete Timetable`,
+            `Are you sure you want to delete '${timetable.timetableName}'?`, 
+            ()=> {
+                dispatch( deleteTimetable(timetable.id) );
+                alertSuccess('Timetable deleted');
+            }
+        );
     }
 
 
 
     return <>
         <Card variant='outlined'>
-        <CardActionArea>
+        <CardActionArea className='p-1'>
             <CardContent>
                 <div className='flex items-center'>
                     <BsTable className='mr-4 text-2xl min-w-max' />
@@ -33,11 +51,11 @@ export default function TimetableCard({ timetable }: ITimetableCardProps) {
                 <tbody>
                     <tr>
                         <td className='pr-3 font-medium align-top'>Created: </td>
-                        <td>{ timetable.createdDate.toDateString() }</td>
+                        <td>{ timetable.createdDate }</td>
                     </tr>
                     <tr>
                         <td className='pr-3 font-medium align-top'>Modified: </td>
-                        <td>{ timetable.lastModifiedDate.toDateString() }</td>
+                        <td>{ timetable.lastModifiedDate }</td>
                     </tr>
                     <tr>
                         <td className='pr-3 font-medium align-top'>By: </td>

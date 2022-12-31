@@ -11,7 +11,12 @@ export const useDialog = () => {
     const context = useContext(DialogContext);
 
     // Opens a ConfirmDialog
-    const openConfirmDialog = (title: string, message: string, onConfirm: () => void, onCancel: () => void) => {
+    const openConfirmDialog = (
+        title: string, 
+        message: string, 
+        onConfirm: ()=> void, 
+        onCancel: ()=> void = () => {},
+    ) => {
         const props: IConfirmDialogProps = {
             title, message, onConfirm, onCancel
         };

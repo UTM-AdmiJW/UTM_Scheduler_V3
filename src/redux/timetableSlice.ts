@@ -30,12 +30,19 @@ export const timetableSlice = createSlice({
         addBlankTimetable: (state, action: PayloadAction<IStudent>) => {
             const blankTimetable = createBlankTimetable();
             blankTimetable.createdBy = action.payload;
-            state.timetables[blankTimetable.id!] = blankTimetable;
+            state.timetables[blankTimetable.id] = blankTimetable;
+        },
+        deleteTimetable(state, action: PayloadAction<string>) {
+            delete state.timetables[action.payload];
         }
     }
 });
 
 
 // Export actions and reducers
-export const { addBlankTimetable } = timetableSlice.actions;
 export default timetableSlice.reducer;
+
+export const { 
+    addBlankTimetable,
+    deleteTimetable,
+} = timetableSlice.actions;

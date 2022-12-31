@@ -4,7 +4,7 @@ import { Button, Container, Paper, TextField, Tooltip, Typography } from "@mui/m
 
 
 import { AiOutlinePlus } from 'react-icons/ai';
-import { MdTableView } from 'react-icons/md';
+import { MdTableView, MdSearchOff } from 'react-icons/md';
 import { TbMoodEmpty } from "react-icons/tb";
 
 import TimetableCard from "../../components/timetable/TimetableCard";
@@ -26,12 +26,16 @@ export default function TimetablePage() {
     const [ search, setSearch ] = useState<string>('');
 
 
+    const filteredTimetables = Object.values(timetables).filter((timetable)=> {
+        return timetable.timetableName.toLowerCase().includes(search.toLowerCase());
+    });
+
+
+
     const addBlankTimeTable = ()=> {
         dispatch( addBlankTimetable(student) );
         alertSuccess('New timetable created');
     }
-
-
     
     return <>
         <Container className='py-7'>
@@ -40,7 +44,8 @@ export default function TimetablePage() {
                 My Timetables
             </Typography>
 
-            {/* Controls */}
+
+            {/* Controls and Search bar */}
             <Paper className='p-4 mb-5 flex flex-col justify-between sm:flex-row'>
                 <div className='mb-4 sm:mb-0'>
                     <Tooltip title='Create a new timetable'>
@@ -54,22 +59,35 @@ export default function TimetablePage() {
             </Paper>
 
 
-
             {
                 // If no timetable, display empty state
-                false?
-                <Paper className='p-5 mb-5'>
+                Object.keys(timetables).length === 0?
+                <Paper className='py-9 mb-5'>
                     <div className='text-gray-500 text-center'>
-                        <TbMoodEmpty className='text-5xl m-auto' />
-                        <p className='text-xl font-medium'>You have no timetables yet</p>
+                        <TbMoodEmpty className='text-5xl m-auto mb-3' />
+                        <p className='text-xl'>You have no timetables yet</p>
+                    </div>
+                </Paper>
+                :
+                // If no timetables match the search, display empty state
+                filteredTimetables.length === 0?
+                <Paper className='py-9 mb-5'>
+                    <div className='text-gray-500 text-center'>
+                        <MdSearchOff className='text-5xl m-auto mb-3' />
+                        <p className='text-xl'>No timetables found matching "{ search }"</p>
                     </div>
                 </Paper>
                 :
                 // Otherwise display the timetables
                 <Paper 
-                    className='p-4 mb-5 grid gap-5' 
+                    className='p-5 mb-5 grid gap-5' 
                     sx={{ gridTemplateColumns: 'repeat( auto-fill, minmax(275px, 1fr) )' }}
                 >
+                    {
+                        filteredTimetables.map((timetable)=> {
+                            return <TimetableCard key={timetable.id} timetable={timetable} />
+                        })
+                    }
                 </Paper>
             }
         </Container>
