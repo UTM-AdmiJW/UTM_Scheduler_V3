@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, Container, Paper, TextField, Tooltip, Typography } from "@mui/material";
 
 
@@ -6,16 +7,29 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { MdTableView } from 'react-icons/md';
 import { TbMoodEmpty } from "react-icons/tb";
 
-
 import TimetableCard from "../../components/timetable/TimetableCard";
 
+import { RootState } from "../../redux/store";
+import { addBlankTimetable } from "../../redux/timetableSlice";
 
-import testTimetable from "../../test/TestTimetable";
+import { useAlert } from "../../hooks/useAlert";
+
+
 
 
 export default function TimetablePage() {
+    const { alertSuccess } = useAlert();
+    const { student } = useSelector((state: RootState) => state.student);
+    const { timetables } = useSelector((state: RootState) => state.timetable);
+    const dispatch = useDispatch();
 
     const [ search, setSearch ] = useState<string>('');
+
+
+    const addBlankTimeTable = ()=> {
+        dispatch( addBlankTimetable(student) );
+        alertSuccess('New timetable created');
+    }
 
 
     
@@ -30,7 +44,7 @@ export default function TimetablePage() {
             <Paper className='p-4 mb-5 flex flex-col justify-between sm:flex-row'>
                 <div className='mb-4 sm:mb-0'>
                     <Tooltip title='Create a new timetable'>
-                        <Button variant='outlined'>
+                        <Button variant='outlined' onClick={ addBlankTimeTable }>
                             <AiOutlinePlus className='mr-2' /> New
                         </Button>
                     </Tooltip>
@@ -56,10 +70,6 @@ export default function TimetablePage() {
                     className='p-4 mb-5 grid gap-5' 
                     sx={{ gridTemplateColumns: 'repeat( auto-fill, minmax(275px, 1fr) )' }}
                 >
-                    <TimetableCard timetable={testTimetable} />
-                    <TimetableCard timetable={testTimetable} />
-                    <TimetableCard timetable={testTimetable} />
-                    <TimetableCard timetable={testTimetable} />
                 </Paper>
             }
         </Container>

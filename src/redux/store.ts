@@ -4,12 +4,14 @@ import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
 import studentReducer from './studentSlice';
+import timetableReducer from './timetableSlice';
 
 
 
 export const store = configureStore({
     reducer: {
         student: persistReducer({ key: 'student', storage }, studentReducer),
+        timetable: persistReducer({ key: 'timetable', storage }, timetableReducer),
     },
     devTools: process.env.NODE_ENV !== 'production',
     middleware: [thunk],

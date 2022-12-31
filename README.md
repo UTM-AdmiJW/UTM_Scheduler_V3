@@ -17,3 +17,4 @@
 8. [Notistack](https://notistack.com/)
 9. [React-Icons](https://react-icons.github.io/react-icons/)
 10. [Redux-Persist](https://www.npmjs.com/package/redux-persist)
+11. [UUID](https://www.npmjs.com/package/uuid)
