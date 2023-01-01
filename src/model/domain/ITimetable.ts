@@ -14,5 +14,5 @@ export interface ITimetable {
     description: string;
 
     exportConfig: ITimetableExportConfig;
-    editableCourses: IEditableCourse[];
+    editableCourses: { [id: string]: IEditableCourse };
 }

@@ -1,4 +1,5 @@
 
+import { Box } from "@mui/material";
 import Navbar from "../components/navbar/Navbar";
 import RouterOutlet from "../routes/RouterOutlet";
 
@@ -9,7 +10,11 @@ import RouterOutlet from "../routes/RouterOutlet";
 
 export default function BaseView() {
     return <>
-        <Navbar />
-        <RouterOutlet />
+        <Box className='min-h-screen'>
+            <Navbar />
+            <RouterOutlet />
+        </Box>
+        
+        {/* Footer Here */}
     </>
 }

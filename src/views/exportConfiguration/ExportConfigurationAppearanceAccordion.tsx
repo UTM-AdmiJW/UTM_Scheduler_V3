@@ -33,7 +33,7 @@ export default function ExportConfigurationAppearanceAccordion({
             </h4>
         </AccordionSummary>
 
-        <AccordionDetails className='grid gap-3' sx={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 300px))' }}>
+        <AccordionDetails className='grid gap-3' sx={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 300px))' }}>
             {/* Theme */}
             <ExportConfigurationCard
                 title="Theme"

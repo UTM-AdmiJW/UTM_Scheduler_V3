@@ -7,13 +7,17 @@ import { TimetableOrientation } from "../../enums/TimetableOrientation";
 
 
 // This is the default timetable template that is used when a new timetable is created
+//
+// Please note that the below fields are not initialized and would need to be set by external data:
+//      1. createdBy
+//
 const blankTimetableTemplate: ITimetable = {
     id: uuidv4(),
     timetableName: "Untitled Timetable",
     createdDate: new Date().toLocaleString(),
     lastModifiedDate: new Date().toLocaleString(),
     description: "A new timetable",
-    editableCourses: [],
+    editableCourses: {},
     createdBy: {
         name: "",
         matricNo: "",

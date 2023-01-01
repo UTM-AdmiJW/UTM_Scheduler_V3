@@ -5,8 +5,6 @@ import HookFormTextField from "../../components/form/HookFormTextField";
 import type { Control } from "react-hook-form";
 import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
 
-import { TimetableWeekendType } from "../../enums/TimetableWeekendType";
-
 import { MdExpandMore, MdOutlinePhotoSizeSelectSmall } from "react-icons/md";
 
 
@@ -31,7 +29,7 @@ export default function ExportConfigurationSizingAccordion({
             </h4>
         </AccordionSummary>
 
-        <AccordionDetails className='grid gap-3' sx={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 300px))' }}>
+        <AccordionDetails className='grid gap-3' sx={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 300px))' }}>
             
             {/* Grid Width */}
             <ExportConfigurationCard

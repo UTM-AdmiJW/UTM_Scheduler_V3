@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { Container, Tabs, Tab,  Paper, Box } from "@mui/material";
@@ -7,6 +7,7 @@ import TimetableNotFound from "./TimetableNotFound";
 import TimetableNameEdit from "./TimetableNameEdit";
 import TimetableDescriptionEdit from "./TimetableDescriptionEdit";
 import ExportConfigurationPanel from "../exportConfiguration/ExportConfigurationPanel";
+import EditableCourseListPanel from "../editableCourseList/EditableCourseListPanel";
 
 import type { RootState } from "../../redux/store";
 
@@ -17,7 +18,6 @@ import { MdClass, MdSettings } from "react-icons/md";
 
 export default function TimetablePage() {
     const { id } = useParams();
-    const dispatch = useDispatch();
     const [ tab, setTab ] = useState(0);
     const { timetables } = useSelector( (state: RootState) => state.timetable );
 
@@ -55,7 +55,7 @@ export default function TimetablePage() {
                 <Box className='px-4 py-6 bg-gray-100'>
                     {
                         tab === 0?
-                        <div>Tab 1</div>
+                        <EditableCourseListPanel timetable={timetable} />
                         :
                         tab === 1?
                         <ExportConfigurationPanel timetable={timetable} />

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, CardActionArea, CardActions, CardContent } from "@mui/material";
+import { Box, Button, Card, CardActionArea, CardActions, CardContent } from "@mui/material";
 
 import { BsFillTrashFill, BsTable } from 'react-icons/bs';
 
@@ -13,12 +13,12 @@ import { deleteTimetable } from "../../redux/timetableSlice";
 
 
 
-interface ITimetableCardProps {
+interface ITimetableListCardProps {
     timetable: ITimetable;
 };
 
 
-export default function TimetableCard({ timetable }: ITimetableCardProps) {
+export default function TimetableListCard({ timetable }: ITimetableListCardProps) {
     const { alertSuccess } = useAlert();
     const { openConfirmDialog } = useDialog();
     const dispatch = useDispatch();
@@ -51,10 +51,10 @@ export default function TimetableCard({ timetable }: ITimetableCardProps) {
 
             {/* Timetable details */}
             <CardContent>
-                <div className='flex items-center mb-6'>
+                <Box className='flex items-center mb-6'>
                     <BsTable className='mr-4 text-2xl min-w-max' />
                     <p className='text-2xl font-medium'>{timetable.timetableName}</p>
-                </div>
+                </Box>
 
                 <table className="table-auto my-3 text-gray-400">
                 <tbody>
