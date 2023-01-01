@@ -4,7 +4,7 @@ import { Button, Card, CardActionArea, CardActions, CardContent } from "@mui/mat
 
 import { BsFillTrashFill, BsTable } from 'react-icons/bs';
 
-import type { ITimetable } from "../../model/ITimetable";
+import type { ITimetable } from "../../model/domain/ITimetable";
 
 import { useAlert } from "../../hooks/useAlert";
 import { useDialog } from "../../hooks/useDialog";

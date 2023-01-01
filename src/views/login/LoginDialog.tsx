@@ -11,7 +11,7 @@ import { login } from "../../redux/studentSlice";
 import { AiOutlineLogin } from 'react-icons/ai';
 
 import type { SubmitHandler } from "react-hook-form/dist/types";
-import type { IStudent } from "../../model/IStudent";
+import type { IStudent } from "../../model/domain/IStudent";
 
 
 

@@ -1,6 +1,6 @@
-import { TimetableOrientation } from "../enums/TimetableOrientation";
-import { TimetableTheme } from "../enums/TimetableTheme";
-import { TimetableWeekendType } from "../enums/TimetableWeekendType";
+import { TimetableOrientation } from "../../enums/TimetableOrientation";
+import { TimetableTheme } from "../../enums/TimetableTheme";
+import { TimetableWeekendType } from "../../enums/TimetableWeekendType";
 
 
 export interface ITimetableExportConfig {
@@ -8,7 +8,7 @@ export interface ITimetableExportConfig {
     theme: TimetableTheme;
     orientation: TimetableOrientation;
     
-    // Slots
+    // Grid
     weekendType: TimetableWeekendType;
     includeWeekends: boolean;
     visibleTimeRangeStart: number;

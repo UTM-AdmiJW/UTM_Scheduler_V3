@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useAlert } from "../../hooks/useAlert";
 
 import type { SubmitHandler } from "react-hook-form/dist/types";
-import type { ITimetable } from "../../model/ITimetable";
+import type { ITimetable } from "../../model/domain/ITimetable";
 
 import { Button } from "@mui/material";
 import HookFormTextField from "../../components/form/HookFormTextField";

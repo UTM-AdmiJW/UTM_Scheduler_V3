@@ -1,4 +1,4 @@
-import { MenuItem, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { FieldValues, useController } from "react-hook-form";
 
 
@@ -10,18 +10,10 @@ import type { IHookFormTextFieldProps } from "./HookFormTextField";
 
 
 export interface IHookFormSelectProps<T extends FieldValues> extends IHookFormTextFieldProps<T> {
-    menuItems: { value: any, label: string }[];
+    // Should be a list of <MenuItem> 
+    menuItems: React.ReactElement[];
 }
 
-
-
-
-// Converts { value: any, label: string }[] to MenuItem[]
-function labelValuesToMenuItem(labelValues: { value: any, label: string }[]) {
-    return labelValues.map(({ value, label }) => {
-        return <MenuItem key={value} value={value}>{ label }</MenuItem>
-    });
-}
 
 
 export default function HookFormSelect<T extends FieldValues>({
@@ -40,7 +32,7 @@ export default function HookFormSelect<T extends FieldValues>({
             error={ Boolean(error) }
             helperText={error?.message}
         >
-            { labelValuesToMenuItem(menuItems) }
+            { menuItems }
         </TextField>
     </>
 }

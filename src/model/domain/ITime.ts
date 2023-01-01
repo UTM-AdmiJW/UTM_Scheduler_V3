@@ -1,5 +1,5 @@
 
-import { DayOfWeek } from "../enums/DayOfWeek";
+import { DayOfWeek } from "../../enums/DayOfWeek";
 
 
 export interface ITime {

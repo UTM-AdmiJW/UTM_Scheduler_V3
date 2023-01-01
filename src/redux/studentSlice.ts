@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IStudent } from "../model/IStudent";
+import { IStudent } from "../model/domain/IStudent";
 
 
 
