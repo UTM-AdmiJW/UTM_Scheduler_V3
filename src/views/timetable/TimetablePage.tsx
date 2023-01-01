@@ -1,95 +1,71 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Container, Paper, TextField, Tooltip, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
 
+import { Container, Tabs, Tab,  Paper, Box } from "@mui/material";
+import TimetableNotFound from "./TimetableNotFound";
+import TimetableNameEdit from "./TimetableNameEdit";
+import TimetableDescriptionEdit from "./TimetableDescriptionEdit";
+import ExportConfigurationPanel from "../exportConfiguration/ExportConfigurationPanel";
 
-import { AiOutlinePlus } from 'react-icons/ai';
-import { MdTableView, MdSearchOff } from 'react-icons/md';
-import { TbMoodEmpty } from "react-icons/tb";
+import type { RootState } from "../../redux/store";
 
-import TimetableCard from "../../components/timetable/TimetableCard";
-
-import { RootState } from "../../redux/store";
-import { addBlankTimetable } from "../../redux/timetableSlice";
-
-import { useAlert } from "../../hooks/useAlert";
+import { MdClass, MdSettings } from "react-icons/md";
 
 
 
 
 export default function TimetablePage() {
-    const { alertSuccess } = useAlert();
-    const { student } = useSelector((state: RootState) => state.student);
-    const { timetables } = useSelector((state: RootState) => state.timetable);
+    const { id } = useParams();
     const dispatch = useDispatch();
-
-    const [ search, setSearch ] = useState<string>('');
-
-
-    const filteredTimetables = Object.values(timetables).filter((timetable)=> {
-        return timetable.timetableName.toLowerCase().includes(search.toLowerCase());
-    });
+    const [ tab, setTab ] = useState(0);
+    const { timetables } = useSelector( (state: RootState) => state.timetable );
 
 
 
-    const addBlankTimeTable = ()=> {
-        dispatch( addBlankTimetable(student) );
-        alertSuccess('New timetable created');
-    }
-    
+    const handleTabChange = (e: React.SyntheticEvent, newValue: number) => {
+        setTab(newValue);
+    };
+
+
+
+    // If timetable does not exist, show error message and link to timetable list page
+    if (!timetables[id!]) return <TimetableNotFound />;
+    const timetable = timetables[id!];
+
     return <>
         <Container className='py-7'>
-            <Typography className='mb-8 flex items-center font-medium text-3xl sm:text-4xl'>
-                <MdTableView className='mr-2 inline' />
-                My Timetables
-            </Typography>
 
+            <TimetableNameEdit timetable={timetable} />
+            <div className='mb-5' />
+            <TimetableDescriptionEdit timetable={timetable} />
+            <div className='my-6' />
 
-            {/* Controls and Search bar */}
-            <Paper className='p-4 mb-5 flex flex-col justify-between sm:flex-row'>
-                <div className='mb-4 sm:mb-0'>
-                    <Tooltip title='Create a new timetable'>
-                        <Button variant='outlined' onClick={ addBlankTimeTable }>
-                            <AiOutlinePlus className='mr-2' /> New
-                        </Button>
-                    </Tooltip>
-                </div>
+            <Paper elevation={2}>
+                <Tabs 
+                    value={tab} 
+                    onChange={handleTabChange}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                >
+                    <Tab icon={ <MdClass /> } iconPosition="start" label='Courses' />
+                    <Tab icon={ <MdSettings /> } iconPosition="start" label='Export Configuration' />
+                </Tabs>
 
-                <TextField label='Search...' size='small' onChange={(e)=> setSearch(e.target.value)} />
+                <Box className='px-4 py-6 bg-gray-100'>
+                    {
+                        tab === 0?
+                        <div>Tab 1</div>
+                        :
+                        tab === 1?
+                        <ExportConfigurationPanel timetable={timetable} />
+                        :
+                        <div>Tab 3</div>
+                    }
+                </Box>
+                
             </Paper>
 
-
-            {
-                // If no timetable, display empty state
-                Object.keys(timetables).length === 0?
-                <Paper className='py-9 mb-5'>
-                    <div className='text-gray-500 text-center'>
-                        <TbMoodEmpty className='text-5xl m-auto mb-3' />
-                        <p className='text-xl'>You have no timetables yet</p>
-                    </div>
-                </Paper>
-                :
-                // If no timetables match the search, display empty state
-                filteredTimetables.length === 0?
-                <Paper className='py-9 mb-5'>
-                    <div className='text-gray-500 text-center'>
-                        <MdSearchOff className='text-5xl m-auto mb-3' />
-                        <p className='text-xl'>No timetables found matching "{ search }"</p>
-                    </div>
-                </Paper>
-                :
-                // Otherwise display the timetables
-                <Paper 
-                    className='p-5 mb-5 grid gap-5' 
-                    sx={{ gridTemplateColumns: 'repeat( auto-fill, minmax(275px, 1fr) )' }}
-                >
-                    {
-                        filteredTimetables.map((timetable)=> {
-                            return <TimetableCard key={timetable.id} timetable={timetable} />
-                        })
-                    }
-                </Paper>
-            }
         </Container>
     </>
 }

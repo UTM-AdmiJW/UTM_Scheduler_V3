@@ -1,4 +1,4 @@
-import { DialogTitle, DialogContent, DialogActions, Button, Typography, Divider } from "@mui/material";
+import { DialogTitle, DialogContent, DialogActions, Button, Typography } from "@mui/material";
 
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
@@ -43,10 +43,10 @@ export default function ConfirmDialog({ title, message, onConfirm, onCancel }: I
         </DialogContent>
 
         <DialogActions>
-            <Button variant="outlined" color='success' type='submit' onClick={ handleConfirm }>
+            <Button variant="contained" color='success' type='submit' onClick={ handleConfirm }>
                 Confirm
             </Button>
-            <Button variant="outlined" color='warning' onClick={ handleCancel }>
+            <Button variant="contained" color='warning' onClick={ handleCancel }>
                 Cancel
             </Button>
         </DialogActions>

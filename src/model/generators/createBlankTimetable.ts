@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
-import type { ITimetable } from "./ITimetable";
+import type { ITimetable } from "../ITimetable";
 
-import { TimetableTheme } from "../enums/TimetableTheme";
-import { TimetableWeekendType } from "../enums/TimetableWeekendType";
-import { TimetableOrientation } from "../enums/TimetableOrientation";
+import { TimetableTheme } from "../../enums/TimetableTheme";
+import { TimetableWeekendType } from "../../enums/TimetableWeekendType";
+import { TimetableOrientation } from "../../enums/TimetableOrientation";
 
 
 // This is the default timetable template that is used when a new timetable is created
@@ -12,7 +12,7 @@ const blankTimetableTemplate: ITimetable = {
     timetableName: "Untitled Timetable",
     createdDate: new Date().toLocaleString(),
     lastModifiedDate: new Date().toLocaleString(),
-    description: "",
+    description: "A new timetable",
     editableCourses: [],
     createdBy: {
         name: "",

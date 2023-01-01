@@ -1,5 +1,5 @@
 
 export enum TimetableWeekendType {
-    SATSUN = "SATSUN",
-    FRISAT = "FRISAT",
+    SATSUN = "Sat/Sun",
+    FRISAT = "Fri/Sat",
 }

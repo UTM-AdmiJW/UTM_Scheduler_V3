@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Button, Card, CardActionArea, CardActions, CardContent } from "@mui/material";
 
 import { BsFillTrashFill, BsTable } from 'react-icons/bs';
@@ -21,6 +22,12 @@ export default function TimetableCard({ timetable }: ITimetableCardProps) {
     const { alertSuccess } = useAlert();
     const { openConfirmDialog } = useDialog();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+    const onClick = ()=> {
+        navigate(`/timetable/${timetable.id}`);
+    }
     
 
     const onDelete = ( e: React.MouseEvent<HTMLButtonElement, MouseEvent> )=> {
@@ -40,9 +47,11 @@ export default function TimetableCard({ timetable }: ITimetableCardProps) {
 
     return <>
         <Card variant='outlined'>
-        <CardActionArea className='p-1'>
+        <CardActionArea className='p-1' onClick={onClick}>
+
+            {/* Timetable details */}
             <CardContent>
-                <div className='flex items-center'>
+                <div className='flex items-center mb-6'>
                     <BsTable className='mr-4 text-2xl min-w-max' />
                     <p className='text-2xl font-medium'>{timetable.timetableName}</p>
                 </div>
@@ -69,6 +78,7 @@ export default function TimetableCard({ timetable }: ITimetableCardProps) {
                 </p>
             </CardContent>
 
+            {/* Delete Button */}
             <CardActions className="justify-end">
                 <Button 
                     variant="contained" 

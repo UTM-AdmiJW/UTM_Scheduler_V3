@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { ITimetable } from "../model/ITimetable";
 import { IStudent } from '../model/IStudent';
-import createBlankTimetable from "../model/createBlankTimetable";
+import createBlankTimetable from "../model/generators/createBlankTimetable";
 
 
 
@@ -34,7 +34,18 @@ export const timetableSlice = createSlice({
         },
         deleteTimetable(state, action: PayloadAction<string>) {
             delete state.timetables[action.payload];
-        }
+        },
+        updateTimetableName(state, action: PayloadAction<{ id: string, timetableName: string }>) {
+            const { id, timetableName } = action.payload;
+            state.timetables[id].timetableName = timetableName;
+            state.timetables[id].lastModifiedDate = new Date().toLocaleDateString();
+        },
+        updateTimetableDescription(state, action: PayloadAction<{ id: string, description: string }>) {
+            const { id, description } = action.payload;
+            state.timetables[id].description = description;
+            state.timetables[id].lastModifiedDate = new Date().toLocaleDateString();
+        },
+
     }
 });
 
@@ -45,4 +56,6 @@ export default timetableSlice.reducer;
 export const { 
     addBlankTimetable,
     deleteTimetable,
+    updateTimetableName,
+    updateTimetableDescription,
 } = timetableSlice.actions;

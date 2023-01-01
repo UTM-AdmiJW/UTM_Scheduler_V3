@@ -1,5 +1,5 @@
 
 
 export enum TimetableTheme {
-    DEFAULT = "DEFAULT",
+    DEFAULT = "Default",
 }

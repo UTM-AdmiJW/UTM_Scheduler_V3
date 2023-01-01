@@ -1,5 +1,5 @@
 
 export enum TimetableOrientation {
-    HORIZONTAL = "HORIZONTAL",
-    VERTICAL = "VERTICAL",
+    HORIZONTAL = "Horizontal",
+    VERTICAL = "Vertical",
 }
