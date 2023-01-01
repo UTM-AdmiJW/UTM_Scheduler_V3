@@ -23,8 +23,8 @@ export default function ExportConfigurationSizingAccordion({
     <Accordion className="mb-3">
         
         <AccordionSummary expandIcon={ <MdExpandMore className='text-2xl' /> }>
-            <h4 className='text-2xl font-medium'>
-                <MdOutlinePhotoSizeSelectSmall className='inline-block mr-2' />
+            <h4 className='text-xl font-light'>
+                <MdOutlinePhotoSizeSelectSmall className='inline-block mr-3' />
                 Sizing
             </h4>
         </AccordionSummary>

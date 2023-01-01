@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { Container, Tabs, Tab,  Paper, Box } from "@mui/material";
+import { Container, Tabs, Tab,  Paper, Box, Button } from "@mui/material";
 import TimetableNotFound from "./TimetableNotFound";
 import TimetableNameEdit from "./TimetableNameEdit";
 import TimetableDescriptionEdit from "./TimetableDescriptionEdit";
@@ -11,12 +12,13 @@ import EditableCourseListPanel from "../editableCourseList/EditableCourseListPan
 
 import type { RootState } from "../../redux/store";
 
-import { MdClass, MdSettings } from "react-icons/md";
+import { MdClass, MdSettings, MdArrowBack } from "react-icons/md";
 
 
 
 
 export default function TimetablePage() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [ tab, setTab ] = useState(0);
     const { timetables } = useSelector( (state: RootState) => state.timetable );
@@ -63,8 +65,12 @@ export default function TimetablePage() {
                         <div>Tab 3</div>
                     }
                 </Box>
-                
             </Paper>
+
+            <Button variant='contained' className='mt-5' onClick={()=> navigate('/')} >
+                <MdArrowBack className='mr-2' />
+                Back to timetables
+            </Button>
 
         </Container>
     </>

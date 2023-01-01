@@ -21,7 +21,7 @@ export default function ExportConfigurationCard ({
 
     return <>
         <Paper variant='outlined' className='p-3 flex flex-col justify-between'>
-            <p className='text-lg font-medium mb-5'>
+            <p className='text-md font-medium mb-5'>
                 { title }
                 {
                     tooltip && 
