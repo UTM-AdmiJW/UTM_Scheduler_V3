@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { DialogContent, DialogTitle, Divider, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { DialogTitle, Typography } from "@mui/material";
+import { CourseCatalogContextProvider } from "../../context/CourseCatalogContext";
+import CourseCatalogStepper from "./CourseCatalogStepper";
+import SelectSessionSemesterView from "./selectSessionSemester/SelectSessionSemesterView";
 
 import { AiFillDatabase } from "react-icons/ai";
 
+import { useCourseCatalog } from "../../hooks/useCourseCatalog";
+
 import { CourseCatalogProgress } from "../../enums/CourseCatalogProgress";
-import type { ICourseCatalogState } from "../../model/domain/ICourseCatalogState";
 
 
 export default function CourseCatalogDialog() {
-
-    const [catalogState, setCatalogState] = useState<ICourseCatalogState>({
-        progress: CourseCatalogProgress.SELECT_SESSION_SEMESTER,
-    });
-
-
     return <>
+    <CourseCatalogContextProvider>
+
+        {/* Title */}
         <DialogTitle>
             <Typography className='text-2xl font-light flex items-center'>
                 <AiFillDatabase className='mr-2 inline' fontSize='x-large' />
@@ -22,35 +22,28 @@ export default function CourseCatalogDialog() {
             </Typography>
         </DialogTitle>
 
-        <DialogContent className='py-4'>
-            <Stepper activeStep={catalogState.progress}>
-                <Step key={CourseCatalogProgress.SELECT_SESSION_SEMESTER} >
-                    <StepLabel>Select Session & Semester</StepLabel>
-                </Step>
+        {/* Stepper */}
+        <CourseCatalogStepper />
 
-                <Step key={CourseCatalogProgress.SELECT_SUBJECT} >
-                    <StepLabel>Select Course</StepLabel>
-                </Step>
+        {/* Show different view based on progress */}
+        <CourseCatalogProgressView />
+        
+    </CourseCatalogContextProvider>
+    </>
+}
 
-                <Step key={CourseCatalogProgress.SELECT_SECTION} >
-                    <StepLabel>Select Section</StepLabel>
-                </Step>
 
-                <Step key={CourseCatalogProgress.CONFIRMATION} >
-                    <StepLabel>Confirmation</StepLabel>
-                </Step>
-            </Stepper>
-        </DialogContent>
 
-        {/* <Divider className='m-4' />
+// Different views based on progress. Eg: Select Session Semester, Select Subject, Select Section, Confirmation
+function CourseCatalogProgressView() {
+    const { courseCatalog } = useCourseCatalog();
 
-        <DialogActions>
-            <Button variant="contained" color='primary' type='submit'>
-                Login
-            </Button>
-            <Button variant="outlined" color='primary' onClick={closeDialog}>
-                Close
-            </Button>
-        </DialogActions> */}
+    return <>
+        {
+            courseCatalog.progress === CourseCatalogProgress.SELECT_SESSION_SEMESTER?
+            <SelectSessionSemesterView />
+            :
+            <></>
+        }
     </>
 }

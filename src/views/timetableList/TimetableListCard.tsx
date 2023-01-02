@@ -33,14 +33,14 @@ export default function TimetableListCard({ timetable }: ITimetableListCardProps
     const onDelete = ( e: React.MouseEvent<HTMLButtonElement, MouseEvent> )=> {
         e.stopPropagation();
 
-        openConfirmDialog(
-            `Delete Timetable`,
-            `Are you sure you want to delete '${timetable.timetableName}'?`, 
-            ()=> {
+        openConfirmDialog({
+            title: `Delete Timetable`,
+            message: `Are you sure you want to delete '${timetable.timetableName}'?`,
+            onConfirm: ()=> {
                 dispatch( deleteTimetable(timetable.id) );
                 alertSuccess('Timetable deleted');
             }
-        );
+        });
     }
 
 

@@ -10,7 +10,7 @@ export interface IConfirmDialogProps {
     title: string;
     message: string;
     onConfirm: () => void;
-    onCancel: () => void;
+    onCancel?: () => void;
 }
 
 
@@ -25,7 +25,7 @@ export default function ConfirmDialog({ title, message, onConfirm, onCancel }: I
     };
 
     const handleCancel = () => {
-        onCancel();
+        if (onCancel) onCancel();
         closeDialog();
     };
 
@@ -43,7 +43,7 @@ export default function ConfirmDialog({ title, message, onConfirm, onCancel }: I
         </DialogContent>
 
         <DialogActions>
-            <Button variant="outlined" color='success' type='submit' onClick={ handleConfirm }>
+            <Button variant="contained" type='submit' onClick={ handleConfirm }>
                 Confirm
             </Button>
             <Button variant="outlined" color='warning' onClick={ handleCancel }>

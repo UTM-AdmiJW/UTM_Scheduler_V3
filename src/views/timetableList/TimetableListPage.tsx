@@ -75,7 +75,7 @@ export default function TimetableListPage() {
                 :
                 // Otherwise display the timetables
                 <Paper 
-                    className='p-5 mb-5 grid gap-5' 
+                    className='p-5 mb-5 grid gap-5 bg-gray-50' 
                     variant='outlined' 
                     sx={{ gridTemplateColumns: 'repeat( auto-fit, minmax(200px, 325px) )' }}
                 >

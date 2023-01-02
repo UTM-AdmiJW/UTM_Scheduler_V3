@@ -23,7 +23,12 @@ export default function TestPage() {
         {/* Test Dialog */}
         <div className='flex gap-2 mt-4'>
             <Button variant="contained" color='primary' onClick={()=> {
-                openConfirmDialog('Confirm', 'Are you sure?', () => alertSuccess('Confirmed'), () => alertError('Cancelled'));
+                openConfirmDialog({
+                    title: 'Confirm',
+                    message: 'Are you sure?',
+                    onConfirm: () => alertSuccess('Confirmed'),
+                    onCancel: () => alertError('Cancelled')
+                })
             }}>
                 Open Confirm Dialog
             </Button>

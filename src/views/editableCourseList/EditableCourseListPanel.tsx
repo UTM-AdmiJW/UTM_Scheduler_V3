@@ -1,7 +1,7 @@
 import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
 import EditableCourseListEmpty from "./EditableCourseListEmpty";
 import EditableCourseListCard from "./EditableCourseListCard";
-import CourseCatalogDialog from "../courseCatalog/courseCatalogDialog";
+import CourseCatalogDialog from "../courseCatalog/CourseCatalogDialog";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -10,7 +10,7 @@ import { useDialog } from "../../hooks/useDialog";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
 
-import { AiOutlinePlus, AiOutlineCloudServer, AiOutlineCloudDownload } from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
 import EditableCourseListSearchEmpty from "./EditableCourseListSearchEmpty";
 
 import { addBlankCourse } from "../../redux/timetableSlice";
@@ -58,13 +58,13 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
 
                 <Tooltip title='Browse courses provided by the faculty'>
                     <Button color='secondary' variant='outlined' onClick={ onOpenCourseCatalog }>
-                        <AiOutlineCloudServer className='mr-2' /> Course Catalog
+                        <AiOutlinePlus className='mr-2' /> Browse
                     </Button>
                 </Tooltip>
 
                 <Tooltip title='Download registered courses based on your matric number'>
                     <Button color='secondary' variant='outlined' onClick={ ()=> {} }>
-                        <AiOutlineCloudDownload className='mr-2' /> Auto Download
+                        <AiOutlinePlus className='mr-2' /> My Registered Courses
                     </Button>
                 </Tooltip>
             </Box>

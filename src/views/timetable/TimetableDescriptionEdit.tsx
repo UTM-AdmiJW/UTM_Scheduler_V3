@@ -59,7 +59,7 @@ export default function TimetableDescriptionEdit({ timetable }: { timetable: ITi
                 }}
             />
             :
-            <p className='text-gray-400 font-light'>
+            <p className='text-gray-500 font-light'>
                 { timetable.description }
                 
                 <Button

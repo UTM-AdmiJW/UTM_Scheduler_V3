@@ -9,16 +9,13 @@ import { useState } from "react";
 
 
 
-export interface IDialogContextValue {
+export interface IDialogContextType {
     openDialog: (content: React.ReactNode) => void;
     closeDialog: () => void;
 }
 
 
-export const DialogContext = createContext<IDialogContextValue>({ 
-    openDialog: () => {}, 
-    closeDialog: () => {},
-});
+export const DialogContext = createContext<IDialogContextType | null>(null);
 
 
 
@@ -35,27 +32,30 @@ export function DialogContextProvider({ children }: { children: React.ReactNode 
         setIsOpen(true);
         setContent(content);
     }
+    
     const closeDialog = () => {
         setIsOpen(false);
     };
 
     
-    return <DialogContext.Provider value={{ openDialog, closeDialog }}>
-        <Dialog
-            fullScreen={ isFullScreen }
-            open={ isOpen }
-            onClose={ closeDialog }
-            className='p-4'
-            aria-labelledby="responsive-dialog"
-            scroll="paper"
-        >
-            {/* To force minimum width */}
-            <div style={{ minWidth: '300px' }} />
+    return <>
+        <DialogContext.Provider value={{ openDialog, closeDialog }}>
+            <Dialog
+                fullScreen={ isFullScreen }
+                open={ isOpen }
+                onClose={ closeDialog }
+                className='p-4'
+                aria-labelledby="responsive-dialog"
+                scroll="paper"
+            >
+                {/* To force minimum width of 300px in dialog */}
+                <div style={{ minWidth: '300px' }} />
 
-            { content }
-        </Dialog>
+                { content }
+            </Dialog>
 
-        { children }
-    </DialogContext.Provider>
+            { children }
+        </DialogContext.Provider>
+    </>
 };
 

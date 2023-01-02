@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent } from "@mui/material";
 
-import { BsFillTrashFill, BsBookFill } from 'react-icons/bs';
+import { BsFillTrashFill, BsBook } from 'react-icons/bs';
 
 import { useAlert } from "../../hooks/useAlert";
 import { useDialog } from "../../hooks/useDialog";
@@ -34,14 +34,14 @@ export default function EditableCourseListCard({ timetableId, course }: IEditabl
     const onDelete = ( e: React.MouseEvent<HTMLButtonElement, MouseEvent> )=> {
         e.stopPropagation();
 
-        openConfirmDialog(
-            `Delete Course`,
-            `Are you sure you want to delete '${course.courseName}'?`, 
-            ()=> {
+        openConfirmDialog({
+            title: `Delete Course`,
+            message: `Are you sure you want to delete '${course.courseName}'?`,
+            onConfirm: ()=> {
                 dispatch( deleteCourse({ timetableId: timetableId, courseId: course.id }) );
                 alertSuccess('Course deleted');
             }
-        );
+        });
     }
 
 
@@ -53,13 +53,19 @@ export default function EditableCourseListCard({ timetableId, course }: IEditabl
             {/* Timetable details */}
             <CardContent>
                 <Box className='flex items-center mb-2'>
-                    <BsBookFill className='mr-4 text-2xl min-w-max' />
+                    <BsBook className='mr-4 text-2xl min-w-max' />
                     <p className='text-2xl font-medium'>{course.courseName}</p>
                 </Box>
 
-                <p className='text-lg text-gray-400 font-medium'>{course.courseCode}</p>
-                <p className='text-md text-gray-400'>Section {course.sectionNo}</p>
-                <p className='mt-4 text-sm text-gray-400 font-extralight'>{course.lecturer}</p>
+                <p className='text-lg text-gray-400 font-medium'>
+                    {course.courseCode || 'No course code' }
+                </p>
+                <p className='text-md text-gray-400'>
+                    {course.sectionNo? `Section ${course.sectionNo}` : 'No section'}
+                </p>
+                <p className='mt-4 text-sm text-gray-400 font-extralight'>
+                    {course.lecturer || 'No lecturer'}
+                </p>
 
 
             </CardContent>

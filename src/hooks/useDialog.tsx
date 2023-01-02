@@ -7,21 +7,26 @@ import ConfirmDialog, { IConfirmDialogProps } from "../components/dialog/Confirm
 // A custom hook that helps you to useContext on DialogContext and return whatever is returned from the context
 export const useDialog = () => {
 
+    
     // The context consisting of openDialog and closeDialog
-    const context = useContext(DialogContext);
+    const context = useContext(DialogContext)!;
+
 
     // Opens a ConfirmDialog
-    const openConfirmDialog = (
-        title: string, 
-        message: string, 
-        onConfirm: ()=> void, 
-        onCancel: ()=> void = () => {},
-    ) => {
-        const props: IConfirmDialogProps = {
-            title, message, onConfirm, onCancel
-        };
-
-        context.openDialog(<ConfirmDialog {...props} />);
+    const openConfirmDialog = ({
+        title, 
+        message, 
+        onConfirm, 
+        onCancel
+    }: IConfirmDialogProps) => {
+        context.openDialog(
+            <ConfirmDialog 
+                title={ title } 
+                message={ message } 
+                onConfirm={ onConfirm } 
+                onCancel={ onCancel } 
+            />
+        );
     }
 
     return { ...context, openConfirmDialog };

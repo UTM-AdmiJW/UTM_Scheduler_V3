@@ -21,11 +21,11 @@ export default function EditableCourseListEmpty({
                 <TbMoodEmpty className='text-5xl m-auto mb-3' />
                 <p className='text-xl'>This timetable has no courses yet</p>
 
-                <Button variant='outlined' onClick={ addBlankEditableCourse } className='mt-3'>
+                <Button variant='outlined' size='small' onClick={ addBlankEditableCourse } className='mt-3'>
                     <AiOutlinePlus className='mr-2' /> Add a blank course now
                 </Button>
                 <br/>
-                <Button variant='outlined' onClick={ openCourseCatalog } className='mt-3'>
+                <Button variant='outlined' size='small' onClick={ openCourseCatalog } className='mt-3'>
                     <AiOutlineCloudServer className='mr-2' /> Browse course catalog
                 </Button>
             </Box>

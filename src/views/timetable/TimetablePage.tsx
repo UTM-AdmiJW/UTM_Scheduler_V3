@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { Container, Tabs, Tab,  Paper, Box, Button } from "@mui/material";
+import { Container, Tabs, Tab,  Paper, Box, Button, Typography } from "@mui/material";
 import TimetableNotFound from "./TimetableNotFound";
 import TimetableNameEdit from "./TimetableNameEdit";
 import TimetableDescriptionEdit from "./TimetableDescriptionEdit";
@@ -12,7 +12,8 @@ import EditableCourseListPanel from "../editableCourseList/EditableCourseListPan
 
 import type { RootState } from "../../redux/store";
 
-import { MdClass, MdSettings, MdArrowBack } from "react-icons/md";
+import { MdClass, MdArrowBack } from "react-icons/md";
+import { FaFileExport } from "react-icons/fa";
 
 
 
@@ -38,10 +39,13 @@ export default function TimetablePage() {
     return <>
         <Container className='py-7'>
 
+            <Typography className='mb-3 text-xs text-gray-400'>
+                ID: {timetable.id}
+            </Typography>
             <TimetableNameEdit timetable={timetable} />
-            <div className='mb-5' />
+            <Box className='mb-4' />
             <TimetableDescriptionEdit timetable={timetable} />
-            <div className='my-6' />
+            <Box className='my-5' />
 
             <Paper elevation={2}>
                 <Tabs 
@@ -51,18 +55,15 @@ export default function TimetablePage() {
                     scrollButtons="auto"
                 >
                     <Tab icon={ <MdClass /> } iconPosition="start" label='Courses' />
-                    <Tab icon={ <MdSettings /> } iconPosition="start" label='Export Configuration' />
+                    <Tab icon={ <FaFileExport /> } iconPosition="start" label='Export' />
                 </Tabs>
 
-                <Box className='px-4 py-6 bg-gray-100'>
+                <Box className='p-3 bg-gray-100'>
                     {
                         tab === 0?
                         <EditableCourseListPanel timetable={timetable} />
                         :
-                        tab === 1?
                         <ExportConfigurationPanel timetable={timetable} />
-                        :
-                        <div>Tab 3</div>
                     }
                 </Box>
             </Paper>
