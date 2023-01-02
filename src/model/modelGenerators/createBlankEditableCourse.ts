@@ -3,11 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 import type { IEditableCourse } from "../domain/IEditableCourse";
 
 
-// This is the default timetable template that is used when a new timetable is created
+// This is the default blank course template. It is used to create a new blank course.
+// More caution must be practiced:
 //
-// Please note that the below fields are not initialized and would need to be set by external data:
-//      1. createdBy
-//
+//   - Upon function call, give a new id
 const blankEditableCourseTemplate: IEditableCourse = {
     id: uuidv4(),
 

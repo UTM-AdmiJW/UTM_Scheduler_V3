@@ -50,7 +50,7 @@ export default function TimetableListPage() {
 
 
             {/* Buttons and Search bar */}
-            <Paper variant="outlined" className='p-4 mb-5 flex flex-col justify-between sm:flex-row'>
+            <Paper variant="outlined" className='p-4 mb-2 flex flex-col justify-between sm:flex-row'>
                 <Box className='mb-4 sm:mb-0 flex gap-1 flex-wrap'>
                     <Tooltip title='Create a new timetable'>
                         <Button variant='outlined' onClick={ onAddBlankTimetable }>

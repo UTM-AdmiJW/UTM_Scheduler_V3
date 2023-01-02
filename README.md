@@ -1,9 +1,28 @@
-# UTM Timetable Generator V3
+# UTM Scheduler V3
+
+
+## What is it?
+
+UTM Scheduler V3, a sequel to the previous [UTM Timetable Generator V2](https://github.com/AdmiJW/UTM-Timetable-Generator-V2). The reason for creating the project:
+
+1. Rewrite the entire project with a better architecture and code quality, especially with the use of Typescript.
+2. New functionality to integrate with the backend API provided by [Dr Mohd Razak Bin Samingan](https://www.utm.my/directory/staff/mrazak)
+3. More intuitive, standardized and friendly UI/UX with the use of Material UI + Tailwind CSS pair.
 
 ---
 <br>
 
-> **This project uses `yarn` for package management. Please don't mix with using `npm`**
+## Installation:
+
+> This project uses **`yarn`** for package management. Please don't mix with using **`npm`**
+
+1. Clone the repository
+2. Open up the terminal inside the root directory, install the dependencies with `yarn`. Remember to install yarn first if you don't have it.
+3. Run the project with `yarn start`
+
+---
+<br>
+
 
 ## Libraries and Frameworks:
 
@@ -18,3 +37,7 @@
 9. [React-Icons](https://react-icons.github.io/react-icons/)
 10. [Redux-Persist](https://www.npmjs.com/package/redux-persist)
 11. [UUID](https://www.npmjs.com/package/uuid)
+
+## Project Structure:
+
+1. 

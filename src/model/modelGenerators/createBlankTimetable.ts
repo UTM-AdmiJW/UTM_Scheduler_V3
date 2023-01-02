@@ -7,9 +7,11 @@ import { TimetableOrientation } from "../../enums/TimetableOrientation";
 
 
 // This is the default timetable template that is used when a new timetable is created
+// More caution must be practiced:
 //
-// Please note that the below fields are not initialized and would need to be set by external data:
-//      1. createdBy
+//   - Upon function call, give a new id
+//   - createdBy must be externally set
+//   - createdDate and lastModifiedDate must be set using the current date
 //
 const blankTimetableTemplate: ITimetable = {
     id: uuidv4(),
@@ -43,6 +45,8 @@ const createBlankTimetable = (): ITimetable => {
     return {
         ...blankTimetableTemplate,
         id: uuidv4(),
+        createdDate: new Date().toLocaleString(),
+        lastModifiedDate: new Date().toLocaleString(),
         createdBy: {
             ...blankTimetableTemplate.createdBy,
         },

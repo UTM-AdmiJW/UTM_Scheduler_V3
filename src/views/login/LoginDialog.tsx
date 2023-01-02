@@ -36,7 +36,7 @@ export default function LoginDialog() {
     <form onSubmit={ handleSubmit(onSubmit) }>
         
         <DialogTitle>
-        <Typography className='text-2xl font-bold flex items-center'>
+        <Typography className='text-2xl font-light flex items-center'>
             <AiOutlineLogin className='mr-2 inline' fontSize='x-large' /> 
             Login
         </Typography>

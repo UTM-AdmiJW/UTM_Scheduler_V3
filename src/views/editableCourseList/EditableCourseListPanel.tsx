@@ -1,9 +1,12 @@
 import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
 import EditableCourseListEmpty from "./EditableCourseListEmpty";
+import EditableCourseListCard from "./EditableCourseListCard";
+import CourseCatalogDialog from "../courseCatalog/courseCatalogDialog";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAlert } from "../../hooks/useAlert";
+import { useDialog } from "../../hooks/useDialog";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
 
@@ -11,12 +14,12 @@ import { AiOutlinePlus, AiOutlineCloudServer, AiOutlineCloudDownload } from 'rea
 import EditableCourseListSearchEmpty from "./EditableCourseListSearchEmpty";
 
 import { addBlankCourse } from "../../redux/timetableSlice";
-import EditableCourseListCard from "./EditableCourseListCard";
 
 
 export default function EditableCourseListPanel({ timetable }: { timetable: ITimetable }) {
 
     const { alertSuccess } = useAlert();
+    const { openDialog } = useDialog();
     const dispatch = useDispatch();
 
     const [search, setSearch] = useState<string>('');
@@ -36,11 +39,16 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
     }
 
 
+    const onOpenCourseCatalog = ()=> {
+        openDialog(<CourseCatalogDialog />);
+    }
+
+
 
     return <>
 
         {/* Controls and Search bars */}
-        <Paper variant="outlined" className='p-4 mb-5 flex flex-col justify-between sm:flex-row'>
+        <Paper variant="outlined" className='p-4 mb-2 flex flex-col justify-between sm:flex-row'>
             <Box className='mb-4 sm:mb-0 flex gap-1 flex-wrap'>
                 <Tooltip title='Add a blank editable course'>
                     <Button color='secondary' variant='outlined' onClick={ onAddBlankCourse }>
@@ -49,7 +57,7 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
                 </Tooltip>
 
                 <Tooltip title='Browse courses provided by the faculty'>
-                    <Button color='secondary' variant='outlined' onClick={ ()=> {} }>
+                    <Button color='secondary' variant='outlined' onClick={ onOpenCourseCatalog }>
                         <AiOutlineCloudServer className='mr-2' /> Course Catalog
                     </Button>
                 </Tooltip>
@@ -70,7 +78,7 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
             Object.values(timetable.editableCourses).length === 0?
             <EditableCourseListEmpty 
                 addBlankEditableCourse={ onAddBlankCourse } 
-                openCourseCatalog={ ()=> {} }
+                openCourseCatalog={ onOpenCourseCatalog }
             />
             :
             filteredCourses.length === 0?
