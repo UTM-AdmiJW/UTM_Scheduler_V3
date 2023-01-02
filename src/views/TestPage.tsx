@@ -3,6 +3,8 @@ import { Button, Container } from "@mui/material";
 import { useAlert } from "../hooks/useAlert";
 import { useDialog } from "../hooks/useDialog";
 
+import Loading from "../components/loading/Loading";
+
 export default function TestPage() {
 
     const { alertError, alertSuccess, alertWarning, alertInfo } = useAlert();
@@ -26,6 +28,8 @@ export default function TestPage() {
                 Open Confirm Dialog
             </Button>
         </div>
+
+        <Loading />
 
     </Container>
 }

@@ -1,0 +1,57 @@
+
+.loader-left {
+    -webkit-animation: loader-left 2s linear infinite;
+    animation: loader-left 2s linear infinite;
+}
+
+.loader-center {
+    -webkit-animation: loader-spin 2s linear infinite;
+    animation: loader-spin 2s linear infinite;
+}
+
+.loader-right {
+    -webkit-animation: loader-right 2s linear infinite;
+    animation: loader-right 2s linear infinite;
+}
+
+
+
+/* The keyframes are derived by first having 25%, 50%, 75% and 100%. Then from these values, minus 10% */
+@keyframes loader-spin {
+    0% { transform: rotate(45deg); }
+    15% { transform: rotate(45deg); }
+    25% { transform: rotate(135deg); }   
+
+    40% { transform: rotate(135deg); }
+    50% { transform: rotate(225deg); }
+
+    65% { transform: rotate(225deg); }
+    75% { transform: rotate(315deg); }
+
+    90% { transform: rotate(315deg); }
+    100% { transform: rotate(405deg); }
+}
+
+@keyframes loader-left {
+    0% { transform: translateX(25%) }
+    15% { transform: translateX(25%); }
+    25% { transform: translateX(0%); }   
+    40% { transform: translateX(0%); }
+    50% { transform: translateX(25%); }
+    65% { transform: translateX(25%); }
+    75% { transform: translateX(0%); }
+    90% { transform: translateX(0%); }
+    100% { transform: translateX(25%); }
+}
+
+@keyframes loader-right {
+    0% { transform: translateX(-25%) }
+    15% { transform: translateX(-25%); }
+    25% { transform: translateX(0%); }   
+    40% { transform: translateX(0%); }
+    50% { transform: translateX(-25%); }
+    65% { transform: translateX(-25%); }
+    75% { transform: translateX(0%); }
+    90% { transform: translateX(0%); }
+    100% { transform: translateX(-25%); }
+}
