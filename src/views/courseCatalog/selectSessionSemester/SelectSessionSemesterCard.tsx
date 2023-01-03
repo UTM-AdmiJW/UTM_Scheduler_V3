@@ -31,7 +31,7 @@ export default function SelectSessionSemesterCard({ sessionSemester }: { session
 
     return <>
         <Card variant="outlined">
-        <CardActionArea onClick={handleSelectSessionSemester}>
+        <CardActionArea className='h-full flex flex-col justify-start items-stretch' onClick={handleSelectSessionSemester}>
 
             <Box className='bg-blue-500 rounded p-3 text-white flex items-center'>
                 <Typography className='font-extralight'>

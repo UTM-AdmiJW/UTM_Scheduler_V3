@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Box, Button, Container, Paper, TextField, Tooltip, Typography } from "@mui/material";
+import Empty from "../../components/empty/Empty";
+import SearchEmpty from "../../components/searchEmpty/SearchEmpty";
 
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdTableView } from 'react-icons/md';
@@ -11,8 +13,7 @@ import { RootState } from "../../redux/store";
 import { addBlankTimetable } from "../../redux/timetableSlice";
 
 import { useAlert } from "../../hooks/useAlert";
-import TimetableListEmpty from "./TimetableListEmpty";
-import TimetableListSearchEmpty from "./TimetableListSearchEmpty";
+
 
 
 
@@ -67,11 +68,17 @@ export default function TimetableListPage() {
             {
                 // If no timetable, display empty state
                 Object.keys(timetables).length === 0?
-                <TimetableListEmpty addBlankTimeTable={ onAddBlankTimetable } />
+                <Empty message='You have no timetables yet'>
+                    <Box className='text-center mt-3'>
+                        <Button variant='outlined' onClick={ onAddBlankTimetable } className='mt-3'>
+                            <AiOutlinePlus className='mr-2' /> Create a new timetable now
+                        </Button>
+                    </Box>
+                </Empty>
                 :
                 // If no timetables match the search, display empty state
                 filteredTimetables.length === 0?
-                <TimetableListSearchEmpty search={ search } />
+                <SearchEmpty message={`No timetable match the search "${ search }"`} />
                 :
                 // Otherwise display the timetables
                 <Paper 

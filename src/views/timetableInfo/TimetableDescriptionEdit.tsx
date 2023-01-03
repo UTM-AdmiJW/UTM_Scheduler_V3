@@ -52,8 +52,6 @@ export default function TimetableDescriptionEdit({ timetable }: { timetable: ITi
                     label: 'Description',
                     variant: 'outlined',
                     size: 'small',
-                    multiline: true,
-                    rows: 3,
                     fullWidth: true,
                     InputProps: { endAdornment: <SubmitEndAdornmentButton /> },
                 }}

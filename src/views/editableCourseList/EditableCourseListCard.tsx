@@ -48,7 +48,7 @@ export default function EditableCourseListCard({ timetableId, course }: IEditabl
 
     return <>
         <Card variant='outlined'>
-        <CardActionArea className='p-1' onClick={onClick}>
+        <CardActionArea className='h-full flex flex-col justify-start items-stretch' onClick={onClick}>
 
             <Box className='bg-blue-500 rounded p-4 text-white flex items-center'>
                 <BsBookHalf className='mr-3 min-w-max text-xl' />

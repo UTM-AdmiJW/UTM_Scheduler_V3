@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { Container, Tabs, Tab,  Paper, Box, Button, Typography } from "@mui/material";
+import { Container, Tabs, Tab,  Paper, Box, Button } from "@mui/material";
 import TimetableNotFound from "./TimetableNotFound";
 import TimetableInfoPanel from "../timetableInfo/TimetableInfoPanel";
 import ExportConfigurationPanel from "../exportConfiguration/ExportConfigurationPanel";

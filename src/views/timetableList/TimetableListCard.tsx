@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Typography } from "@mui/material";
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, Typography } from "@mui/material";
 
 import { BsFillTrashFill, BsTable } from 'react-icons/bs';
 
@@ -47,7 +47,7 @@ export default function TimetableListCard({ timetable }: ITimetableListCardProps
 
     return <>
         <Card variant='outlined'>
-        <CardActionArea className='p-1' onClick={onClick}>
+        <CardActionArea className='h-full flex flex-col justify-start items-stretch' onClick={onClick}>
             
             <Box className='bg-blue-500 rounded p-4 text-white flex items-center'>
                 <BsTable className='mr-3 min-w-max text-xl' />

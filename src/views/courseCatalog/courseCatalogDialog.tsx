@@ -2,6 +2,7 @@ import { DialogTitle, Typography } from "@mui/material";
 import { CourseCatalogContextProvider } from "../../context/CourseCatalogContext";
 import CourseCatalogStepper from "./CourseCatalogStepper";
 import SelectSessionSemesterView from "./selectSessionSemester/SelectSessionSemesterView";
+import SelectCourseView from "./selectCourse/SelectCourseView";
 
 import { AiFillDatabase } from "react-icons/ai";
 
@@ -42,6 +43,9 @@ function CourseCatalogProgressView() {
         {
             courseCatalog.progress === CourseCatalogProgress.SELECT_SESSION_SEMESTER?
             <SelectSessionSemesterView />
+            :
+            courseCatalog.progress === CourseCatalogProgress.SELECT_SUBJECT?
+            <SelectCourseView />
             :
             <></>
         }
