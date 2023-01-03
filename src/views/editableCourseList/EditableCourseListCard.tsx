@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Card, CardActionArea, CardActions, CardContent } from "@mui/material";
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, Typography } from "@mui/material";
 
-import { BsFillTrashFill, BsBook } from 'react-icons/bs';
+import { BsFillTrashFill, BsBookHalf, BsCode, BsDoorOpenFill, BsPersonSquare } from 'react-icons/bs';
 
 import { useAlert } from "../../hooks/useAlert";
 import { useDialog } from "../../hooks/useDialog";
@@ -50,30 +50,35 @@ export default function EditableCourseListCard({ timetableId, course }: IEditabl
         <Card variant='outlined'>
         <CardActionArea className='p-1' onClick={onClick}>
 
+            <Box className='bg-blue-500 rounded p-4 text-white flex items-center'>
+                <BsBookHalf className='mr-3 min-w-max text-xl' />
+                <Typography className='font-extralight text-xl'>{course.courseName}</Typography>
+            </Box>
+
             {/* Timetable details */}
             <CardContent>
-                <Box className='flex items-center mb-2'>
-                    <BsBook className='mr-4 text-2xl min-w-max' />
-                    <p className='text-2xl font-medium'>{course.courseName}</p>
-                </Box>
 
-                <p className='text-lg text-gray-400 font-medium'>
+                <Typography className='flex items-center mb-1'>
+                    <BsCode className='mr-3' />
                     {course.courseCode || 'No course code' }
-                </p>
-                <p className='text-md text-gray-400'>
-                    {course.sectionNo? `Section ${course.sectionNo}` : 'No section'}
-                </p>
-                <p className='mt-4 text-sm text-gray-400 font-extralight'>
-                    {course.lecturer || 'No lecturer'}
-                </p>
+                </Typography>
 
+                <Typography className='flex items-center mb-1'>
+                    <BsDoorOpenFill className='mr-3' />
+                    {course.sectionNo? `Section ${course.sectionNo}` : 'No section'}
+                </Typography>
+
+                <Typography className='flex items-center'>
+                    <BsPersonSquare className='mr-3' />
+                    {course.lecturer || 'No lecturer'}
+                </Typography>
 
             </CardContent>
 
             {/* Delete Button */}
             <CardActions className="justify-end">
                 <Button 
-                    variant="contained" 
+                    variant="outlined" 
                     component='span'
                     color='error' 
                     size='small'
