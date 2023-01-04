@@ -1,7 +1,7 @@
 import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
 import EditableCourseListEmpty from "./EditableCourseListEmpty";
 import EditableCourseListCard from "./EditableCourseListCard";
-import CourseCatalogDialog from "../courseCatalog/CourseCatalogDialog";
+import CourseCatalogDialog from "../courseCatalog/courseCatalogDialog";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
