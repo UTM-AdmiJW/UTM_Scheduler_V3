@@ -92,7 +92,7 @@ function SelectCourseCardContainer({ data }: { data: ISubjekDTO[] }) {
     // Filter out null values
     data = data.filter((course) => course);
 
-    const filteredData = data
+    const filteredSortedData = data
         .filter((course) => {
             return course && (
                 course.nama_subjek.toLowerCase().includes(search.toLowerCase()) ||
@@ -146,10 +146,10 @@ function SelectCourseCardContainer({ data }: { data: ISubjekDTO[] }) {
                 data.length === 0?
                 <Empty message={`No data`} />
                 :
-                filteredData.length === 0?
+                filteredSortedData.length === 0?
                 <SearchEmpty message={`No course found for "${search}"`} />
                 :
-                filteredData.map((course) => {
+                filteredSortedData.map((course) => {
                     return <SelectCourseCard 
                         key={course.kod_subjek} 
                         course={course} 
