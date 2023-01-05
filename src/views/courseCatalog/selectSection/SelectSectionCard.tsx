@@ -5,25 +5,26 @@ import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
 import { useAlert } from "../../../hooks/useAlert";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
-import type { ISeksyenJadualDTO } from "../../../model/DTO/ISeksyenJadualDTO";
+import type { IJadualSubjek_SeksyenJadual } from "../../../model/DTO/JadualSubjek/IJadualSubjek_SeksyenJadual";
 
 import { combineIJadualDTO } from "../../../util/timetableUtils";
 
 
 
-export default function SelectSectionCard({ seksyen, jadual }: ISeksyenJadualDTO) {
+export default function SelectSectionCard({ seksyen, jadual }: IJadualSubjek_SeksyenJadual) {
     
     const { setCourseCatalog } = useCourseCatalog();
     const { alertSuccess } = useAlert();
 
+    // From a list of IJadualSubjek, combine them into IJadualSubjek_Combine that includes time start and end
     const combinedSchedules = combineIJadualDTO(jadual);
 
     const handleSelectSection = () => {
         setCourseCatalog(prev => {
             return {
                 ...prev,
-                section: seksyen,
-                times: combinedSchedules,
+                seksyen: seksyen,
+                jadualSubjek: combinedSchedules,
                 progress: CourseCatalogProgress.CONFIRMATION
             };
         });

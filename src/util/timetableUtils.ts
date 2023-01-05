@@ -2,8 +2,8 @@ import { v4 as uuidv4 } from "uuid";
 
 // Utilities for working with timetable data
 
-import type { IJadualDTO } from "../model/DTO/IJadualDTO";
-import type { ICombinedJadualDTO } from "../model/DTO/ICombinedJadualDTO";
+import type { IJadualSubjekDTO } from "../model/DTO/JadualSubjek/IJadualSubjekDTO";
+import type { IJadualSubjek_Combine } from "../model/DTO/JadualSubjek/IJadualSubjek_Combine";
 import type { ITime } from "../model/domain/ITime";
 import type { IEditableCourse } from "../model/domain/IEditableCourse";
 import type { ICourseCatalogState } from "../model/domain/ICourseCatalogState";
@@ -58,8 +58,8 @@ export function mapDayOfWeekToString(day: DayOfWeek): string {
 // The API returns a list of IJadualDTO, each representing time slot even though the time slot is continuous.
 // This function combines the time slots into a list of ICombinedJadualDTO, where each ICombinedJadualDTO 
 // represents a continuous time slot that can span multiple time slots.
-export function combineIJadualDTO(jadual: IJadualDTO[]): ICombinedJadualDTO[] {
-    const result: ICombinedJadualDTO[] = [];
+export function combineIJadualDTO(jadual: IJadualSubjekDTO[]): IJadualSubjek_Combine[] {
+    const result: IJadualSubjek_Combine[] = [];
     if (jadual.length === 0) return result;
 
     // Sort jadual first by day, then by start time
@@ -108,7 +108,7 @@ export function combineIJadualDTO(jadual: IJadualDTO[]): ICombinedJadualDTO[] {
 
 
 // Convert ICombinedJadualDTO to ITime
-export function convertICombinedJadualDTOToITime(jadual: ICombinedJadualDTO): ITime {
+export function convertICombinedJadualDTOToITime(jadual: IJadualSubjek_Combine): ITime {
     return {
         id: jadual.id_jws,
         dayOfWeek: mapDayCodeToDayOfWeek(jadual.hari),
@@ -123,10 +123,10 @@ export function convertICombinedJadualDTOToITime(jadual: ICombinedJadualDTO): IT
 export function convertICourseCatalogStateToIEditableCourse(catalog: ICourseCatalogState): IEditableCourse {
     return {
         id: uuidv4(),
-        courseCode: catalog.course?.kod_subjek || 'N/A',
-        courseName: catalog.course?.nama_subjek || 'N/A',
-        sectionNo: catalog.section?.seksyen || 0,
-        lecturer: catalog.section?.pensyarah || 'N/A',
-        timeList: catalog.times?.map(convertICombinedJadualDTOToITime) || [],
+        courseCode: catalog.subjekSeksyen?.kod_subjek || 'N/A',
+        courseName: catalog.subjekSeksyen?.nama_subjek || 'N/A',
+        sectionNo: catalog.seksyen?.seksyen || 0,
+        lecturer: catalog.seksyen?.pensyarah || 'N/A',
+        timeList: catalog.jadualSubjek?.map(convertICombinedJadualDTOToITime) || [],
     }
 }

@@ -1,4 +1,4 @@
-import { ISeksyenDTO } from "./ISeksyenDTO";
+import type { ISubjekSeksyen_SeksyenDTO } from "./ISubjekSeksyen_SeksyenDTO";
 
 
 export interface ISubjekSeksyenDTO {
@@ -7,5 +7,5 @@ export interface ISubjekSeksyenDTO {
     bil_pensyarah: number;
     bil_seksyen: number;
     kod_subjek: string;
-    seksyen_list: ISeksyenDTO[];
+    seksyen_list: ISubjekSeksyen_SeksyenDTO[];
 }

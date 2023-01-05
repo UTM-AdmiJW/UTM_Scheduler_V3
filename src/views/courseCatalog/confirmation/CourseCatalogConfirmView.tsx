@@ -20,7 +20,7 @@ import { convertICourseCatalogStateToIEditableCourse } from "../../../util/timet
 export default function CourseCatalogConfirmView({ timetable }: { timetable: ITimetable }) {
 
     const { courseCatalog, setCourseCatalog } = useCourseCatalog();
-    const { course, section, times } = courseCatalog;
+    const { subjekSeksyen: course, seksyen: section, jadualSubjek: times } = courseCatalog;
 
     const { alertSuccess } = useAlert();
     const { closeDialog } = useDialog();

@@ -4,7 +4,7 @@ import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
 import { useAlert } from "../../../hooks/useAlert";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
-import type { ISubjekSeksyenDTO } from "../../../model/DTO/ISubjekSeksyenDTO";
+import type { ISubjekSeksyenDTO } from "../../../model/DTO/SubjekSeksyen/ISubjekSeksyenDTO";
 
 import { BsCode } from 'react-icons/bs';
 
@@ -24,7 +24,7 @@ export default function SelectCourseCard({ course }: { course: ISubjekSeksyenDTO
         setCourseCatalog(prev => {
             return {
                 ...prev,
-                course: course,
+                subjekSeksyen: course,
                 progress: CourseCatalogProgress.SELECT_SECTION
             };
         });

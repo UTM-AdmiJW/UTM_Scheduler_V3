@@ -5,7 +5,7 @@ import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
 import { useAlert } from "../../../hooks/useAlert";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
-import type { ISesiSemesterDTO } from "../../../model/DTO/ISesiSemesterDTO";
+import type { ISesiSemesterDTO } from "../../../model/DTO/SesiSemester/ISesiSemesterDTO";
 
 import { AiTwotoneCalendar } from "react-icons/ai";
 
@@ -21,7 +21,7 @@ export default function SelectSessionSemesterCard({ sessionSemester }: { session
         setCourseCatalog(prev => {
             return {
                 ...prev,
-                sessionSemester: sessionSemester,
+                sesiSemester: sessionSemester,
                 progress: CourseCatalogProgress.SELECT_SUBJECT
             };
         });
