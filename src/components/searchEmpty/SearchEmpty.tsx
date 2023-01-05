@@ -1,15 +1,20 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 
 import { MdSearchOff } from "react-icons/md";
 
 
-export default function EditableCourseListSearchEmpty({ search }: { search: string }) {
+export interface ISearchEmptyProps {
+    message: string;
+}
+
+
+export default function SearchEmpty({ message }: ISearchEmptyProps) {
 
     return <>
         <Paper variant='outlined' className='py-9 mb-5'>
             <Box className='text-gray-500 text-center'>
                 <MdSearchOff className='text-5xl m-auto mb-3' />
-                <p className='text-xl'>No course found matching "{ search }"</p>
+                <Typography className='text-xl'>{ message }"</Typography>
             </Box>
         </Paper>
     </>

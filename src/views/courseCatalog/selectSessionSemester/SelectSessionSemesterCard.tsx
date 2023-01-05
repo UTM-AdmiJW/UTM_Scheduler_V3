@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardContent, Typography } from "@mui/material";
 
 
 import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
@@ -30,18 +30,17 @@ export default function SelectSessionSemesterCard({ sessionSemester }: { session
 
 
     return <>
-        <Card>
-        <CardActionArea onClick={handleSelectSessionSemester}>
+        <Card variant="outlined">
+        <CardActionArea className='h-full flex flex-col justify-start items-stretch' onClick={handleSelectSessionSemester}>
+
+            <Box className='bg-blue-500 rounded p-3 text-white flex items-center'>
+                <Typography className='font-extralight'>
+                    {sessionSemester.sesi} Semester {sessionSemester.semester}
+                </Typography>
+            </Box>
+
             <CardContent>
-                <Typography className='font-medium text-lg'>
-                    {sessionSemester.sesi}
-                </Typography>
-
-                <Typography className='text-gray-400 font-light text-sm mb-3'>
-                    Semester {sessionSemester.semester}
-                </Typography>
-
-                <Typography className='text-gray-400 font-light text-xs flex items-center'>
+                <Typography className='text-gray-500 font-light text-xs flex items-center'>
                     <AiTwotoneCalendar className='inline mr-2' fontSize='small' />
                     {sessionSemester.tarikh_mula} to {sessionSemester.tarikh_tamat}
                 </Typography>

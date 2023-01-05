@@ -6,7 +6,7 @@ import { useAlert } from "../../hooks/useAlert";
 import type { SubmitHandler } from "react-hook-form/dist/types";
 import type { ITimetable } from "../../model/domain/ITimetable";
 
-import { Button } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import HookFormTextField from "../../components/form/HookFormTextField";
 import SubmitEndAdornmentButton from "../../components/form/SubmitEndAdornmentButton";
 
@@ -52,23 +52,23 @@ export default function TimetableDescriptionEdit({ timetable }: { timetable: ITi
                     label: 'Description',
                     variant: 'outlined',
                     size: 'small',
-                    multiline: true,
-                    rows: 3,
                     fullWidth: true,
                     InputProps: { endAdornment: <SubmitEndAdornmentButton /> },
                 }}
             />
             :
-            <p className='text-gray-500 font-light'>
+            <p className='text-gray-500'>
                 { timetable.description }
                 
-                <Button
-                    color='secondary'
-                    className='ml-2 align-top min-w-fit'
-                    onClick={()=> setIsEditing(true)}
-                >
-                    <AiFillEdit />
-                </Button>
+                <Tooltip title='Edit description'>
+                    <Button
+                        color='secondary'
+                        className='ml-2 align-top min-w-fit'
+                        onClick={()=> setIsEditing(true)}
+                    >
+                        <AiFillEdit />
+                    </Button>
+                </Tooltip>
             </p>
         }
     </form>

@@ -10,6 +10,8 @@ import { useDialog } from "../../../hooks/useDialog";
 
 import type { ISesiSemesterDTO } from "../../../model/DTO/ISesiSemesterDTO";
 
+import { enumToOptions } from "../../../util/utils";
+
 
 
 
@@ -76,7 +78,7 @@ function SelectSessionSemesterCardContainer({ data }: { data: ISesiSemesterDTO[]
 
 
     return <>
-        <Typography className='text-2xl font-light my-2'>
+        <Typography className='text-2xl font-light mt-2 mb-5'>
             Select Session + Semester
         </Typography>
     
@@ -90,12 +92,7 @@ function SelectSessionSemesterCardContainer({ data }: { data: ISesiSemesterDTO[]
                 variant='outlined'
                 size='small'
             >
-                <option value={SelectSessionSemesteSortOrder.DATE_START_DESCENDING}>
-                    {SelectSessionSemesteSortOrder.DATE_START_DESCENDING}
-                </option>
-                <option value={SelectSessionSemesteSortOrder.DATE_START_ASCENDING}>
-                    {SelectSessionSemesteSortOrder.DATE_START_ASCENDING}
-                </option>
+                { enumToOptions(SelectSessionSemesteSortOrder) }
             </TextField>
         </Box>
 

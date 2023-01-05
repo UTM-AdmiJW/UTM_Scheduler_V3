@@ -1,7 +1,8 @@
 import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
-import EditableCourseListEmpty from "./EditableCourseListEmpty";
 import EditableCourseListCard from "./EditableCourseListCard";
-import CourseCatalogDialog from "../courseCatalog/courseCatalogDialog";
+import CourseCatalogDialog from "../courseCatalog/CourseCatalogDialog";
+import Empty from "../../components/empty/Empty";
+import SearchEmpty from "../../components/searchEmpty/SearchEmpty";
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -10,10 +11,21 @@ import { useDialog } from "../../hooks/useDialog";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
 
-import { AiOutlinePlus } from 'react-icons/ai';
-import EditableCourseListSearchEmpty from "./EditableCourseListSearchEmpty";
+import { AiOutlineCloudServer, AiOutlinePlus } from 'react-icons/ai';
 
 import { addBlankCourse } from "../../redux/timetableSlice";
+import { enumToOptions } from "../../util/utils";
+
+
+
+
+enum EditableCourseListSortOrder {
+    NAME_ASC = 'Name (A-Z)',
+    NAME_DESC = 'Name (Z-A)',
+    CODE_ASC = 'Code (A-Z)',
+    CODE_DESC = 'Code (Z-A)',
+}
+
 
 
 export default function EditableCourseListPanel({ timetable }: { timetable: ITimetable }) {
@@ -22,15 +34,25 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
     const { openDialog } = useDialog();
     const dispatch = useDispatch();
 
+    const [sortOrder, setSortOrder] = useState<EditableCourseListSortOrder>(EditableCourseListSortOrder.NAME_ASC);
     const [search, setSearch] = useState<string>('');
     
 
     // Search & Filter
-    const lowerCaseSearch = search.toLowerCase();
-    const filteredCourses = Object.values(timetable.editableCourses).filter(course => {
-        return course.courseName.toLowerCase().includes(lowerCaseSearch) ||
-            course.courseCode.toLowerCase().includes(lowerCaseSearch);
-    });
+    const filteredCourses = Object.values(timetable.editableCourses)
+        .filter(course => {
+            return course.courseName.toLowerCase().includes( search.toLowerCase() ) ||
+                course.courseCode.toLowerCase().includes( search.toLowerCase() );
+        })
+        .sort((a, b) => {
+            if (sortOrder === EditableCourseListSortOrder.NAME_ASC)
+                return a.courseName.localeCompare(b.courseName);
+            if (sortOrder === EditableCourseListSortOrder.NAME_DESC)
+                return b.courseName.localeCompare(a.courseName);
+            if (sortOrder === EditableCourseListSortOrder.CODE_ASC)
+                return a.courseCode.localeCompare(b.courseCode);
+            return b.courseCode.localeCompare(a.courseCode);
+        });
 
 
     const onAddBlankCourse = ()=> {
@@ -47,42 +69,69 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
 
     return <>
 
-        {/* Controls and Search bars */}
-        <Paper variant="outlined" className='p-4 mb-2 flex flex-col justify-between sm:flex-row'>
-            <Box className='mb-4 sm:mb-0 flex gap-1 flex-wrap'>
+        {/* Controls */}
+        <Paper variant="outlined" className='p-3 mb-2 flex flex-wrap gap-3'>
+            {/* Button controls */}
+            <Box className='flex gap-y-2 gap-x-1 flex-wrap'>
                 <Tooltip title='Add a blank editable course'>
-                    <Button color='secondary' variant='outlined' onClick={ onAddBlankCourse }>
-                        <AiOutlinePlus className='mr-2' /> Blank Course
-                    </Button>
+                <Button size='small' color='secondary' variant='outlined' onClick={ onAddBlankCourse }>
+                    <AiOutlinePlus className='mr-2' /> Blank Course
+                </Button>
                 </Tooltip>
 
                 <Tooltip title='Browse courses provided by the faculty'>
-                    <Button color='secondary' variant='outlined' onClick={ onOpenCourseCatalog }>
-                        <AiOutlinePlus className='mr-2' /> Browse
-                    </Button>
+                <Button size='small' color='secondary' variant='outlined' onClick={ onOpenCourseCatalog }>
+                    <AiOutlinePlus className='mr-2' /> Browse
+                </Button>
                 </Tooltip>
 
                 <Tooltip title='Download registered courses based on your matric number'>
-                    <Button color='secondary' variant='outlined' onClick={ ()=> {} }>
-                        <AiOutlinePlus className='mr-2' /> My Registered Courses
-                    </Button>
+                <Button size='small' color='secondary' variant='outlined' onClick={ ()=> {} }>
+                    <AiOutlinePlus className='mr-2' /> My Registered Courses
+                </Button>
                 </Tooltip>
             </Box>
 
-            <TextField label='Search...' size='small' onChange={(e)=> setSearch(e.target.value)} />
+            <Box className='flex-grow' />
+
+            <Box className='flex gap-2 flex-wrap'>
+                {/* Sort Order */}
+                <TextField
+                    select
+                    size='small'
+                    label='Sort Order'
+                    SelectProps={{ native: true }}
+                    value={ sortOrder }
+                    onChange={(e)=> setSortOrder(e.target.value as EditableCourseListSortOrder)}
+                    className='flex-grow'
+                >
+                    { enumToOptions(EditableCourseListSortOrder) }
+                </TextField>
+
+                {/* Search */}
+                <TextField className='flex-grow' label='Search...' size='small' onChange={(e)=> setSearch(e.target.value)} />
+            </Box>
+
         </Paper>
 
 
         {/* Editable Course Cards */}
         {
             Object.values(timetable.editableCourses).length === 0?
-            <EditableCourseListEmpty 
-                addBlankEditableCourse={ onAddBlankCourse } 
-                openCourseCatalog={ onOpenCourseCatalog }
-            />
+            <Empty message='This timetable has no courses yet'>
+                <Box className='text-center mt-3'>
+                    <Button variant='outlined' size='small' onClick={ onAddBlankCourse } className='mt-3'>
+                        <AiOutlinePlus className='mr-2' /> Add a blank course now
+                    </Button>
+                    <br/>
+                    <Button variant='outlined' size='small' onClick={ onOpenCourseCatalog } className='mt-3'>
+                        <AiOutlineCloudServer className='mr-2' /> Browse course catalog
+                    </Button>
+                </Box>
+            </Empty>
             :
             filteredCourses.length === 0?
-            <EditableCourseListSearchEmpty search={ search } />
+            <SearchEmpty message={`No course found matching "${search}"`} />
             :
             <Paper 
                 className='p-5 mb-5 grid gap-5' 

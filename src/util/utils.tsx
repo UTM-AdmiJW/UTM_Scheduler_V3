@@ -2,6 +2,12 @@ import { MenuItem } from "@mui/material"
 
 
 
+/**
+ * Converts an enum to an array of <MenuItem> for use in <Select> component of MUI.
+ * 
+ * @param enumObj enum to convert to MenuItem
+ * @returns array of <MenuItem>
+ */
 export function enumToMenuItem<T extends Record<string, string>>(
     enumObj: T
 ): React.ReactElement[] {
@@ -13,6 +19,28 @@ export function enumToMenuItem<T extends Record<string, string>>(
 }
 
 
+
+/**
+ * Converts an enum to an array of <option> for use in <select> component of HTML.
+ * 
+ * @param enumObj The enum to convert to <option> for use in <select> component of HTML.
+ * @returns array of <option> for use in <select> component of HTML.
+ */
+export function enumToOptions<T extends Record<string, string>>(
+    enumObj: T
+): React.ReactElement[] {
+    return Object.entries(enumObj).map( ([value, label]) => (
+        <option key={value} value={label}>{ label }</option>
+    ));
+}
+
+
+
+/**
+ * Returns an array of <MenuItem> for hours 0-23 in 12-hour format for use in <Select> component of MUI.
+ * 
+ * @returns array of <MenuItem> for hours 0-23
+ */
 export function hoursToMenuItem(): React.ReactElement[] {
     return Array
         .from(Array(24).keys())
@@ -22,3 +50,5 @@ export function hoursToMenuItem(): React.ReactElement[] {
             </MenuItem>
         ));
 }
+
+

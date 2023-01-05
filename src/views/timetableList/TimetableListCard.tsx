@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Card, CardActionArea, CardActions, CardContent } from "@mui/material";
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, Typography } from "@mui/material";
 
 import { BsFillTrashFill, BsTable } from 'react-icons/bs';
 
@@ -47,16 +47,16 @@ export default function TimetableListCard({ timetable }: ITimetableListCardProps
 
     return <>
         <Card variant='outlined'>
-        <CardActionArea className='p-1' onClick={onClick}>
+        <CardActionArea className='h-full flex flex-col justify-start items-stretch' onClick={onClick}>
+            
+            <Box className='bg-blue-500 rounded p-4 text-white flex items-center'>
+                <BsTable className='mr-3 min-w-max text-xl' />
+                <Typography className='font-extralight text-xl'>{timetable.timetableName}</Typography>
+            </Box>
 
-            {/* Timetable details */}
             <CardContent>
-                <Box className='flex items-center mb-6'>
-                    <BsTable className='mr-4 text-2xl min-w-max' />
-                    <p className='text-2xl font-medium'>{timetable.timetableName}</p>
-                </Box>
 
-                <table className="table-auto my-3 text-gray-400">
+                <table className="table-auto">
                 <tbody>
                     <tr>
                         <td className='pr-3 font-medium align-top'>Created: </td>
@@ -73,15 +73,16 @@ export default function TimetableListCard({ timetable }: ITimetableListCardProps
                 </tbody>
                 </table>
 
-                <p className='text-gray-400'>
+                <Typography className='text-gray-400 mt-4 font-light'>
                     {timetable.description}
-                </p>
+                </Typography>
+
             </CardContent>
 
             {/* Delete Button */}
             <CardActions className="justify-end">
                 <Button 
-                    variant="contained" 
+                    variant="outlined" 
                     component='span'
                     color='error' 
                     size='small'
@@ -92,7 +93,8 @@ export default function TimetableListCard({ timetable }: ITimetableListCardProps
                     <BsFillTrashFill className='mr-2' />
                     Delete
                 </Button>
-            </CardActions>  
+            </CardActions>
+
         </CardActionArea>  
         </Card>
     </>
