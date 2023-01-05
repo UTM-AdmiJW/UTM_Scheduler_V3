@@ -1,6 +1,11 @@
 import { MenuItem } from "@mui/material"
 
 
+import { convert24HourTo12Hour } from "./timetableUtils";
+
+
+// Utility functions that deal with convertion to menu items <option> or <MenuItem>
+
 
 /**
  * Converts an enum to an array of <MenuItem> for use in <Select> component of MUI.
@@ -46,7 +51,7 @@ export function hoursToMenuItem(): React.ReactElement[] {
         .from(Array(24).keys())
         .map((hour) => (
             <MenuItem key={hour} value={hour}>
-                { (hour % 12 || 12) + ` ${ hour < 12? 'AM': 'PM' }` }
+                { convert24HourTo12Hour(hour) }
             </MenuItem>
         ));
 }

@@ -3,15 +3,18 @@ import { CourseCatalogContextProvider } from "../../context/CourseCatalogContext
 import CourseCatalogStepper from "./CourseCatalogStepper";
 import SelectSessionSemesterView from "./selectSessionSemester/SelectSessionSemesterView";
 import SelectCourseView from "./selectCourse/SelectCourseView";
+import SelectSectionView from "./selectSection/SelectSectionView";
+import CourseCatalogConfirmView from "./confirmation/CourseCatalogConfirmView";
 
 import { AiFillDatabase } from "react-icons/ai";
 
 import { useCourseCatalog } from "../../hooks/useCourseCatalog";
 
 import { CourseCatalogProgress } from "../../enums/CourseCatalogProgress";
+import type { ITimetable } from "../../model/domain/ITimetable";
 
 
-export default function CourseCatalogDialog() {
+export default function CourseCatalogDialog({ timetable }: { timetable: ITimetable }) {
     return <>
     <CourseCatalogContextProvider>
 
@@ -27,7 +30,7 @@ export default function CourseCatalogDialog() {
         <CourseCatalogStepper />
 
         {/* Show different view based on progress */}
-        <CourseCatalogProgressView />
+        <CourseCatalogProgressView timetable={timetable} />
         
     </CourseCatalogContextProvider>
     </>
@@ -36,7 +39,7 @@ export default function CourseCatalogDialog() {
 
 
 // Different views based on progress. Eg: Select Session Semester, Select Subject, Select Section, Confirmation
-function CourseCatalogProgressView() {
+function CourseCatalogProgressView({ timetable }: { timetable: ITimetable }) {
     const { courseCatalog } = useCourseCatalog();
 
     return <>
@@ -47,7 +50,10 @@ function CourseCatalogProgressView() {
             courseCatalog.progress === CourseCatalogProgress.SELECT_SUBJECT?
             <SelectCourseView />
             :
-            <></>
+            courseCatalog.progress === CourseCatalogProgress.SELECT_SECTION?
+            <SelectSectionView />
+            :
+            <CourseCatalogConfirmView timetable={timetable} />
         }
     </>
 }

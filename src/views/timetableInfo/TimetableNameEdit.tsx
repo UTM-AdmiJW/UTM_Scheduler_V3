@@ -32,7 +32,7 @@ export default function TimetableNameEdit({ timetable }: { timetable: ITimetable
 
     const onSubmit: SubmitHandler<{ timetableName: string }> = (data) => {
         setIsEditing(false);
-        dispatch( updateTimetableName({ id, timetableName: data.timetableName }));
+        dispatch( updateTimetableName({ timetableId: id, timetableName: data.timetableName }));
         alertSuccess('Timetable name updated');
     }
 

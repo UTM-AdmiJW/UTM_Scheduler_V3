@@ -10,7 +10,7 @@ import { TimetableOrientation } from "../../enums/TimetableOrientation";
 
 import { MdExpandMore, MdPalette } from "react-icons/md";
 
-import { enumToMenuItem } from "../../util/utils";
+import { enumToMenuItem } from "../../util/menuUtils";
 
 
 

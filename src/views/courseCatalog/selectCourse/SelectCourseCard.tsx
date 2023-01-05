@@ -4,17 +4,23 @@ import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
 import { useAlert } from "../../../hooks/useAlert";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
-import type { ISubjekDTO } from "../../../model/DTO/ISubjekDTO";
+import type { ISubjekSeksyenDTO } from "../../../model/DTO/ISubjekSeksyenDTO";
 
 import { BsCode } from 'react-icons/bs';
 
 
-export default function SelectCourseCard({ course }: { course: ISubjekDTO }) {
+export default function SelectCourseCard({ course }: { course: ISubjekSeksyenDTO }) {
     
     const { setCourseCatalog } = useCourseCatalog();
-    const { alertSuccess } = useAlert();
+    const { alertSuccess, alertWarning } = useAlert();
 
     const handleSelectCourse = () => {
+        // If no sections list, alert user and return
+        if ( !(course.seksyen_list) || course.seksyen_list.length === 0 ) {
+            alertWarning(`No section data found for ${course.kod_subjek} ${course.nama_subjek}`);
+            return;
+        }
+
         setCourseCatalog(prev => {
             return {
                 ...prev,
@@ -60,7 +66,6 @@ export default function SelectCourseCard({ course }: { course: ISubjekDTO }) {
                 </tbody>
                 </table>
             </CardContent>
-
         </CardActionArea>
         </Card>
     </>

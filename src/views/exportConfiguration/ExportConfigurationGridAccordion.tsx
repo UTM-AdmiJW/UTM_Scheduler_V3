@@ -10,7 +10,7 @@ import { TimetableWeekendType } from "../../enums/TimetableWeekendType";
 import { MdExpandMore } from "react-icons/md";
 import { AiOutlineTable } from "react-icons/ai";
 
-import { enumToMenuItem, hoursToMenuItem } from "../../util/utils";
+import { enumToMenuItem, hoursToMenuItem } from "../../util/menuUtils";
 import HookFormSwitch from "../../components/form/HookFormSwitch";
 
 

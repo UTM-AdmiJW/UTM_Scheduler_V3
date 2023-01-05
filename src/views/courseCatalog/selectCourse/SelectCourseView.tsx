@@ -3,6 +3,7 @@ import { Box, Button, DialogActions, DialogContent, Paper, TextField, Typography
 import SelectCourseCard from "./SelectCourseCard";
 import ErrorPage from "../../../components/error/ErrorPage";
 import Loading from "../../../components/loading/Loading";
+import Empty from "../../../components/empty/Empty";
 import SearchEmpty from "../../../components/searchEmpty/SearchEmpty";
 
 import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
@@ -11,32 +12,36 @@ import { useAlert } from "../../../hooks/useAlert";
 import { useDialog } from "../../../hooks/useDialog";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
-import type { ISubjekDTO } from "../../../model/DTO/ISubjekDTO";
+import type { ISubjekSeksyenDTO } from "../../../model/DTO/ISubjekSeksyenDTO";
 
-import { enumToOptions } from "../../../util/utils";
-import Empty from "../../../components/empty/Empty";
+import { enumToOptions } from "../../../util/menuUtils";
 
 
 
 
 export default function SelectSessionSemesterView() {
 
+    const { alertError } = useAlert();
+    const { closeDialog } = useDialog();
     const { courseCatalog, setCourseCatalog } = useCourseCatalog();
 
-    let { isLoading, error, data } = useQuery<ISubjekDTO[], Error>(
+    let { isLoading, error, data } = useQuery<ISubjekSeksyenDTO[], Error>(
         ['courses', courseCatalog.sessionSemester?.sesi, courseCatalog.sessionSemester?.semester], 
         async () => {
             return fetch(
                 `http://web.fc.utm.my/ttms/web_man_webservice_json.cgi?` +
-                `entity=subjek&sesi=${ courseCatalog.sessionSemester?.sesi }` +
-                `&semester=${ courseCatalog.sessionSemester?.semester }`
+                `entity=subjek_seksyen&` + 
+                `sesi=${ courseCatalog.sessionSemester?.sesi }&` +
+                `semester=${ courseCatalog.sessionSemester?.semester }`
             )
             .then(res => res.json());
+        }, {
+            onError: (error) => {
+                alertError("Failed to retrieve course data. See console for more details.");
+                console.error(error);
+            }
         }
     );
-
-    const { alertError } = useAlert();
-    const { closeDialog } = useDialog();
 
 
     const handleBack = ()=> {
@@ -46,12 +51,6 @@ export default function SelectSessionSemesterView() {
     }
 
 
-
-    // Error handling
-    if (error) {
-        alertError("Failed to retrieve course data. See console for more details.");
-        console.error(error);
-    }
 
     
     return <>
@@ -84,17 +83,17 @@ enum SelectCourseSortOrder {
     CODE_DESCENDING = 'Code (Z-A)',
 }
 
-function SelectCourseCardContainer({ data }: { data: ISubjekDTO[] }) {
+function SelectCourseCardContainer({ data }: { data: ISubjekSeksyenDTO[] }) {
 
     const [ search, setSearch ] = useState<string>('');
     const [ sortOrder, setSortOrder ] = useState<SelectCourseSortOrder>(SelectCourseSortOrder.NAME_ASCENDING);
 
     // Filter out null values
-    data = data.filter((course) => course);
+    data = data.filter((course) => course && course.kod_subjek);
 
     const filteredSortedData = data
         .filter((course) => {
-            return course && (
+            return (
                 course.nama_subjek.toLowerCase().includes(search.toLowerCase()) ||
                 course.kod_subjek.toLowerCase().includes(search.toLowerCase())
             );

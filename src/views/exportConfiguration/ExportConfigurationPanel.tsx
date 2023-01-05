@@ -35,7 +35,7 @@ export default function ExportConfigurationPanel({ timetable }: { timetable: ITi
 
 
     const onSubmit = (data: ITimetableExportConfig) => {
-        dispatch(updateTimetableExportConfig({ id: timetable.id, exportConfig: data }));
+        dispatch(updateTimetableExportConfig({ timetableId: timetable.id, exportConfig: data }));
         alertSuccess('Export configuration saved successfully.');
     }
 

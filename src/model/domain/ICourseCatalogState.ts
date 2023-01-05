@@ -1,14 +1,16 @@
 import { CourseCatalogProgress } from "../../enums/CourseCatalogProgress";
-import { ISeksyenDTO } from "../DTO/ISeksyenDTO";
 
+import type { ISeksyenDTO } from "../DTO/ISeksyenDTO";
+import type { ICombinedJadualDTO } from "../DTO/ICombinedJadualDTO";
 import type { ISesiSemesterDTO } from "../DTO/ISesiSemesterDTO";
-import { ISubjekDTO } from "../DTO/ISubjekDTO";
+import type { ISubjekSeksyenDTO } from "../DTO/ISubjekSeksyenDTO";
 
 
 export interface ICourseCatalogState {
     progress: CourseCatalogProgress;
     
     sessionSemester?: ISesiSemesterDTO;
-    subject?: ISubjekDTO;
+    course?: ISubjekSeksyenDTO;
     section?: ISeksyenDTO;
+    times?: ICombinedJadualDTO[];
 }

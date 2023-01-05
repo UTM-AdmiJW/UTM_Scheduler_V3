@@ -18,19 +18,19 @@ export default function CourseCatalogStepper() {
         <Stepper activeStep={ courseCatalog.progress }>
 
             <Step key={CourseCatalogProgress.SELECT_SESSION_SEMESTER} >
-                <StepLabel>Select Session Semester</StepLabel>
+                <StepLabel>Session Semester</StepLabel>
             </Step>
 
             <Step key={CourseCatalogProgress.SELECT_SUBJECT} >
-                <StepLabel>Select Course</StepLabel>
+                <StepLabel>Course</StepLabel>
             </Step>
 
             <Step key={CourseCatalogProgress.SELECT_SECTION} >
-                <StepLabel>Select Section</StepLabel>
+                <StepLabel>Section</StepLabel>
             </Step>
 
             <Step key={CourseCatalogProgress.CONFIRMATION} >
-                <StepLabel>Confirmation</StepLabel>
+                <StepLabel>Confirm</StepLabel>
             </Step>
             
         </Stepper>

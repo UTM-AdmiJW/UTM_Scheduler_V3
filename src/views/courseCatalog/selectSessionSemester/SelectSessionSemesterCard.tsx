@@ -16,6 +16,7 @@ export default function SelectSessionSemesterCard({ sessionSemester }: { session
     const { setCourseCatalog } = useCourseCatalog();
     const { alertSuccess } = useAlert();
 
+
     const handleSelectSessionSemester = () => {
         setCourseCatalog(prev => {
             return {
@@ -26,7 +27,6 @@ export default function SelectSessionSemesterCard({ sessionSemester }: { session
         });
         alertSuccess(`Selected ${sessionSemester.sesi} Semester ${sessionSemester.semester}`);
     }
-
 
 
     return <>
