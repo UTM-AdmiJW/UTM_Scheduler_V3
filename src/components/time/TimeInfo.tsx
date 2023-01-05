@@ -10,7 +10,7 @@ import { mapDayCodeToDayOfWeek, mapDayOfWeekToString, mapTimeCodeTo12Hour } from
 
 
 // A very small card representing ITime/IJadualDTO of a course.
-interface TimeInfo {
+interface ITimeInfoProps {
     beginTime: number;
     endTime: number;
     dayOfWeek: DayOfWeek | number;
@@ -18,7 +18,7 @@ interface TimeInfo {
 }
 
 
-export default function TimeInfo({ beginTime, endTime, dayOfWeek, venue }: TimeInfo) {
+export default function TimeInfo({ beginTime, endTime, dayOfWeek, venue }: ITimeInfoProps) {
 
 
     return <>
