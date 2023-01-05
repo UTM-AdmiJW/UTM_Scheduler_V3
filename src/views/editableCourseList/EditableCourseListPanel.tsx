@@ -14,7 +14,7 @@ import type { ITimetable } from "../../model/domain/ITimetable";
 import { AiOutlineCloudServer, AiOutlinePlus } from 'react-icons/ai';
 
 import { addBlankCourse } from "../../redux/timetableSlice";
-import { enumToOptions } from "../../util/utils";
+import { enumToOptions } from "../../util/menuUtils";
 
 
 
@@ -56,13 +56,13 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
 
 
     const onAddBlankCourse = ()=> {
-        dispatch( addBlankCourse({ id: timetable.id }) );
+        dispatch( addBlankCourse({ timetableId: timetable.id }) );
         alertSuccess('New blank course created');
     }
 
 
     const onOpenCourseCatalog = ()=> {
-        openDialog(<CourseCatalogDialog />);
+        openDialog(<CourseCatalogDialog timetable={timetable} />);
     }
 
 

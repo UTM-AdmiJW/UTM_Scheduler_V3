@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { ITimetable } from "../model/domain/ITimetable";
 import type { IStudent } from '../model/domain/IStudent';
 import type { ITimetableExportConfig } from "../model/domain/ITimetableExportConfig";
+import type { IEditableCourse } from "../model/domain/IEditableCourse";
 
 import createBlankTimetable from "../model/modelGenerators/createBlankTimetable";
 import createBlankEditableCourse from "../model/modelGenerators/createBlankEditableCourse";
@@ -37,30 +38,30 @@ export const timetableSlice = createSlice({
         deleteTimetable(state, action: PayloadAction<string>) {
             delete state.timetables[action.payload];
         },
-        updateTimetableName(state, action: PayloadAction<{ id: string, timetableName: string }>) {
-            const { id, timetableName } = action.payload;
-            state.timetables[id].timetableName = timetableName;
+        updateTimetableName(state, action: PayloadAction<{ timetableId: string, timetableName: string }>) {
+            const { timetableId, timetableName } = action.payload;
+            state.timetables[timetableId].timetableName = timetableName;
             
-            state.timetables[id].lastModifiedDate = new Date().toLocaleString();
+            state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
         },
-        updateTimetableDescription(state, action: PayloadAction<{ id: string, description: string }>) {
-            const { id, description } = action.payload;
-            state.timetables[id].description = description;
+        updateTimetableDescription(state, action: PayloadAction<{ timetableId: string, description: string }>) {
+            const { timetableId, description } = action.payload;
+            state.timetables[timetableId].description = description;
 
-            state.timetables[id].lastModifiedDate = new Date().toLocaleString();
+            state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
         },
-        updateTimetableExportConfig(state, action: PayloadAction<{ id: string, exportConfig: ITimetableExportConfig }>) {
-            const { id, exportConfig } = action.payload;
-            state.timetables[id].exportConfig = exportConfig;
+        updateTimetableExportConfig(state, action: PayloadAction<{ timetableId: string, exportConfig: ITimetableExportConfig }>) {
+            const { timetableId, exportConfig } = action.payload;
+            state.timetables[timetableId].exportConfig = exportConfig;
 
-            state.timetables[id].lastModifiedDate = new Date().toLocaleString();
+            state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
         },
-        addBlankCourse(state, action: PayloadAction<{ id: string }>) {
-            const { id } = action.payload;
+        addBlankCourse(state, action: PayloadAction<{ timetableId: string }>) {
+            const { timetableId } = action.payload;
             const blankEditableCourse = createBlankEditableCourse();
-            state.timetables[id].editableCourses[blankEditableCourse.id] = blankEditableCourse;
+            state.timetables[timetableId].editableCourses[blankEditableCourse.id] = blankEditableCourse;
 
-            state.timetables[id].lastModifiedDate = new Date().toLocaleString();
+            state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
         },
         deleteCourse(state, action: PayloadAction<{ timetableId: string, courseId: string }>) {
             const { timetableId, courseId } = action.payload;
@@ -68,6 +69,12 @@ export const timetableSlice = createSlice({
 
             state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
         },
+        addCourse(state, action: PayloadAction<{ timetableId: string, course: IEditableCourse }>) {
+            const { timetableId, course } = action.payload;
+            state.timetables[timetableId].editableCourses[course.id] = course;
+
+            state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
+        }
     }
 });
 
@@ -84,4 +91,5 @@ export const {
 
     addBlankCourse,
     deleteCourse,
+    addCourse,
 } = timetableSlice.actions;

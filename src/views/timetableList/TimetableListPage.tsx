@@ -13,7 +13,7 @@ import { addBlankTimetable } from "../../redux/timetableSlice";
 
 import { useAlert } from "../../hooks/useAlert";
 
-import { enumToOptions } from "../../util/utils";
+import { enumToOptions } from "../../util/menuUtils";
 
 
 

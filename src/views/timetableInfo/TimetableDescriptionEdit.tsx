@@ -32,7 +32,7 @@ export default function TimetableDescriptionEdit({ timetable }: { timetable: ITi
 
     const onSubmit: SubmitHandler<{ description: string }> = (data) => {
         setIsEditing(false);
-        dispatch( updateTimetableDescription({ id, description: data.description }));
+        dispatch( updateTimetableDescription({ timetableId: id, description: data.description }));
         alertSuccess('Timetable description updated');
     }
 

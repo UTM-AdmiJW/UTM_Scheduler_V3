@@ -44,6 +44,7 @@ export function DialogContextProvider({ children }: { children: React.ReactNode 
                 fullScreen={ isFullScreen }
                 open={ isOpen }
                 onClose={ closeDialog }
+                maxWidth='md'
                 className='p-4'
                 aria-labelledby="responsive-dialog"
                 scroll="paper"

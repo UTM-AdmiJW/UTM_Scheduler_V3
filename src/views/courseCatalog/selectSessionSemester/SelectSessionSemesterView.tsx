@@ -10,31 +10,30 @@ import { useDialog } from "../../../hooks/useDialog";
 
 import type { ISesiSemesterDTO } from "../../../model/DTO/ISesiSemesterDTO";
 
-import { enumToOptions } from "../../../util/utils";
+import { enumToOptions } from "../../../util/menuUtils";
 
 
 
 
 export default function SelectSessionSemesterView() {
 
+    const { alertError } = useAlert();
+    const { closeDialog } = useDialog();
+    
     let { isLoading, error, data } = useQuery<ISesiSemesterDTO[], Error>(
         'session/semester', 
         async () => {
             return fetch('http://web.fc.utm.my/ttms/web_man_webservice_json.cgi?entity=sesisemester')
                 .then(res => res.json());
+        }, {
+            onError: (error) => {
+                alertError("Failed to retrieve session/semester data. See console for more details.");
+                console.error(error);
+            }
         }
     );
 
-    const { alertError } = useAlert();
-    const { closeDialog } = useDialog();
 
-
-
-    // Error handling
-    if (error) {
-        alertError("Failed to retrieve session/semester data. See console for more details.");
-        console.error(error);
-    }
 
     
     return <>
@@ -65,7 +64,7 @@ function SelectSessionSemesterCardContainer({ data }: { data: ISesiSemesterDTO[]
 
     const [ sortOrder, setSortOrder ] = useState<SelectSessionSemesteSortOrder>(SelectSessionSemesteSortOrder.DATE_START_DESCENDING);
 
-    data = data.sort((a, b) => {
+    data.sort((a, b) => {
         const dateA = new Date(a.tarikh_mula);
         const dateB = new Date(b.tarikh_mula);
         
