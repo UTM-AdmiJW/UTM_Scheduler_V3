@@ -1,6 +1,7 @@
 import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
 import EditableCourseListCard from "./EditableCourseListCard";
 import CourseCatalogDialog from "../courseCatalog/CourseCatalogDialog";
+import RegisteredCoursesDialog from "../registeredCourses/RegisteredCoursesDialog";
 import Empty from "../../components/empty/Empty";
 import SearchEmpty from "../../components/searchEmpty/SearchEmpty";
 
@@ -11,7 +12,8 @@ import { useDialog } from "../../hooks/useDialog";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
 
-import { AiOutlineCloudServer, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineCloudServer, AiOutlinePlus, AiOutlineSearch } from 'react-icons/ai';
+import { MdPersonSearch } from 'react-icons/md';
 
 import { addBlankCourse } from "../../redux/timetableSlice";
 import { enumToOptions } from "../../util/menuUtils";
@@ -65,6 +67,10 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
         openDialog(<CourseCatalogDialog timetable={timetable} />);
     }
 
+    const onOpenAddRegisteredCoursesDialog = ()=> {
+        openDialog(<RegisteredCoursesDialog timetable={timetable} />);
+    }
+
 
 
     return <>
@@ -81,13 +87,13 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
 
                 <Tooltip title='Browse courses provided by the faculty'>
                 <Button size='small' color='secondary' variant='outlined' onClick={ onOpenCourseCatalog }>
-                    <AiOutlinePlus className='mr-2' /> Browse
+                    <AiOutlineSearch className='mr-2' /> Browse
                 </Button>
                 </Tooltip>
 
                 <Tooltip title='Download registered courses based on your matric number'>
-                <Button size='small' color='secondary' variant='outlined' onClick={ ()=> {} }>
-                    <AiOutlinePlus className='mr-2' /> My Registered Courses
+                <Button size='small' color='secondary' variant='outlined' onClick={ onOpenAddRegisteredCoursesDialog }>
+                    <MdPersonSearch className='mr-2' /> My Registered Courses
                 </Button>
                 </Tooltip>
             </Box>
