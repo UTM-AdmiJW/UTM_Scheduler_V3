@@ -1,6 +1,6 @@
 import { DialogContent, Step, StepLabel, Stepper } from "@mui/material";
 
-import { useCourseCatalog } from "../../hooks/useCourseCatalog";
+import { useCourseCatalogContext } from "../../hooks/context/useCourseCatalogContext";
 
 import { CourseCatalogProgress } from "../../enums/CourseCatalogProgress";
 
@@ -8,7 +8,7 @@ import { CourseCatalogProgress } from "../../enums/CourseCatalogProgress";
 
 export default function CourseCatalogStepper() {
     
-    const { courseCatalog } = useCourseCatalog();
+    const { courseCatalog } = useCourseCatalogContext();
 
     return <>
     <DialogContent 

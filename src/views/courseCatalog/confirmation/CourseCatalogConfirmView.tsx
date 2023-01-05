@@ -2,14 +2,13 @@
 import { Box, Button, Card, CardContent, DialogActions, DialogContent, Typography } from "@mui/material";
 import TimeInfo from "../../../components/time/TimeInfo";
 
-import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
+import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useAlert } from "../../../hooks/useAlert";
 import { useDialog } from "../../../hooks/useDialog";
-import { useDispatch } from "react-redux";
+import { useTimetableRedux } from "../../../hooks/redux/useTimetableRedux";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
 
-import { addCourse } from "../../../redux/timetableSlice";
 
 import type { ITimetable } from "../../../model/domain/ITimetable";
 import { convertICourseCatalogStateToIEditableCourse } from "../../../util/timetableUtils";
@@ -19,12 +18,12 @@ import { convertICourseCatalogStateToIEditableCourse } from "../../../util/timet
 
 export default function CourseCatalogConfirmView({ timetable }: { timetable: ITimetable }) {
 
-    const { courseCatalog, setCourseCatalog } = useCourseCatalog();
+    const { courseCatalog, setCourseCatalog } = useCourseCatalogContext();
     const { subjekSeksyen: course, seksyen: section, jadualSubjek: times } = courseCatalog;
 
     const { alertSuccess } = useAlert();
     const { closeDialog } = useDialog();
-    const dispatch = useDispatch();
+    const { timetableActions: { addCourse } } = useTimetableRedux();
     
 
     const handleBack = ()=> {
@@ -34,10 +33,10 @@ export default function CourseCatalogConfirmView({ timetable }: { timetable: ITi
     }
 
     const handleConfirm = ()=> {
-        dispatch( addCourse({ 
+        addCourse({ 
             timetableId: timetable.id, 
             course: convertICourseCatalogStateToIEditableCourse(courseCatalog) 
-        }));
+        });
         alertSuccess("Course added to timetable successfully.");
         closeDialog();
     }

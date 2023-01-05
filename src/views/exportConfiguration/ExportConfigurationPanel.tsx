@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Alert, Box, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useAlert } from "../../hooks/useAlert";
+import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
 import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
@@ -11,15 +11,13 @@ import ExportConfigurationAppearanceAccordion from "./ExportConfigurationAppeara
 import ExportConfigurationGridAccordion from "./ExportConfigurationGridAccordion";
 import ExportConfigurationSizingAccordion from "./ExportConfigurationSizingAccordion";
 
-import { updateTimetableExportConfig } from "../../redux/timetableSlice";
-
 
 
 
 
 export default function ExportConfigurationPanel({ timetable }: { timetable: ITimetable }) {
 
-    const dispatch = useDispatch();
+    const { timetableActions: { updateTimetableExportConfig } } = useTimetableRedux();
     const { alertSuccess, alertInfo } = useAlert();
 
     const { control, handleSubmit, formState: { isDirty }, reset } = useForm<ITimetableExportConfig>({
@@ -35,7 +33,7 @@ export default function ExportConfigurationPanel({ timetable }: { timetable: ITi
 
 
     const onSubmit = (data: ITimetableExportConfig) => {
-        dispatch(updateTimetableExportConfig({ timetableId: timetable.id, exportConfig: data }));
+        updateTimetableExportConfig({ timetableId: timetable.id, exportConfig: data });
         alertSuccess('Export configuration saved successfully.');
     }
 

@@ -1,15 +1,12 @@
 import { Button, Divider } from "@mui/material";
 
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import type { RootState } from "../../redux/store";
-import { logout } from "../../redux/studentSlice";
 
 import { AiOutlineLogin, AiOutlineLogout } from 'react-icons/ai';
 import { FaUserGraduate } from 'react-icons/fa';
 
 import { useDialog } from "../../hooks/useDialog";
 import { useAlert } from "../../hooks/useAlert";
+import { useStudentRedux } from "../../hooks/redux/useStudentRedux";
 
 import LoginDialog from "../../views/login/LoginDialog";
 
@@ -17,8 +14,8 @@ import LoginDialog from "../../views/login/LoginDialog";
 export default function Profile() {
     const { alertSuccess } = useAlert();
     const { openDialog } = useDialog();
-    const dispatch = useDispatch();
-    const { isLoggedIn, student } = useSelector((state: RootState) => state.student);
+    const { studentState: { isLoggedIn, student }, studentActions: { logout } } = useStudentRedux();
+
 
 
     const onLoginButtonClick = () => {
@@ -26,7 +23,7 @@ export default function Profile() {
     }
 
     const onLogoutButtonClick = () => {
-        dispatch(logout());
+        logout();
         alertSuccess('Logout successful');
     };
 

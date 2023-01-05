@@ -36,5 +36,5 @@ export const studentSlice = createSlice({
 
 
 // Export actions and reducers
-export const { login, logout } = studentSlice.actions;
+export const actions = studentSlice.actions;
 export default studentSlice.reducer;

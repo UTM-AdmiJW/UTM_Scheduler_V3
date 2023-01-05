@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Box, Button, Container, Paper, TextField, Tooltip, Typography } from "@mui/material";
 import Empty from "../../components/empty/Empty";
 import SearchEmpty from "../../components/searchEmpty/SearchEmpty";
@@ -8,10 +7,9 @@ import TimetableListCard from "./TimetableListCard";
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdTableView } from 'react-icons/md';
 
-import { RootState } from "../../redux/store";
-import { addBlankTimetable } from "../../redux/timetableSlice";
-
 import { useAlert } from "../../hooks/useAlert";
+import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
+import { useStudentRedux } from "../../hooks/redux/useStudentRedux";
 
 import { enumToOptions } from "../../util/menuUtils";
 
@@ -32,9 +30,8 @@ enum TimetableListSortOrder {
 
 export default function TimetableListPage() {
     const { alertSuccess } = useAlert();
-    const { student } = useSelector((state: RootState) => state.student);
-    const { timetables } = useSelector((state: RootState) => state.timetable);
-    const dispatch = useDispatch();
+    const { studentState: { student } } = useStudentRedux();
+    const { timetableState: { timetables }, timetableActions: { addBlankTimetable } } = useTimetableRedux();
 
     const [ sortOrder, setSortOrder ] = useState<TimetableListSortOrder>(TimetableListSortOrder.MODIFIED_DESC);
     const [ search, setSearch ] = useState<string>('');
@@ -61,7 +58,7 @@ export default function TimetableListPage() {
 
 
     const onAddBlankTimetable = ()=> {
-        dispatch( addBlankTimetable(student) );
+        addBlankTimetable(student);
         alertSuccess('New timetable created');
     }
     

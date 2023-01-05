@@ -1,7 +1,7 @@
 import { Box, Card, CardActionArea, CardContent, Typography } from "@mui/material";
 
 
-import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
+import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useAlert } from "../../../hooks/useAlert";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
@@ -13,7 +13,7 @@ import { AiTwotoneCalendar } from "react-icons/ai";
 
 export default function SelectSessionSemesterCard({ sessionSemester }: { sessionSemester: ISesiSemesterDTO }) {
     
-    const { setCourseCatalog } = useCourseCatalog();
+    const { setCourseCatalog } = useCourseCatalogContext();
     const { alertSuccess } = useAlert();
 
 

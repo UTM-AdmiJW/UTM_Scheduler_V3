@@ -6,16 +6,15 @@ import Empty from "../../components/empty/Empty";
 import SearchEmpty from "../../components/searchEmpty/SearchEmpty";
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useAlert } from "../../hooks/useAlert";
 import { useDialog } from "../../hooks/useDialog";
+import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
 
 import { AiOutlineCloudServer, AiOutlinePlus, AiOutlineSearch } from 'react-icons/ai';
 import { MdPersonSearch } from 'react-icons/md';
 
-import { addBlankCourse } from "../../redux/timetableSlice";
 import { enumToOptions } from "../../util/menuUtils";
 
 
@@ -34,7 +33,7 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
 
     const { alertSuccess } = useAlert();
     const { openDialog } = useDialog();
-    const dispatch = useDispatch();
+    const { timetableActions: { addBlankCourse } } = useTimetableRedux();
 
     const [sortOrder, setSortOrder] = useState<EditableCourseListSortOrder>(EditableCourseListSortOrder.NAME_ASC);
     const [search, setSearch] = useState<string>('');
@@ -58,7 +57,7 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
 
 
     const onAddBlankCourse = ()=> {
-        dispatch( addBlankCourse({ timetableId: timetable.id }) );
+        addBlankCourse({ timetableId: timetable.id });
         alertSuccess('New blank course created');
     }
 

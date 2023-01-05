@@ -8,7 +8,7 @@ import CourseCatalogConfirmView from "./confirmation/CourseCatalogConfirmView";
 
 import { AiFillDatabase } from "react-icons/ai";
 
-import { useCourseCatalog } from "../../hooks/useCourseCatalog";
+import { useCourseCatalogContext } from "../../hooks/context/useCourseCatalogContext";
 
 import { CourseCatalogProgress } from "../../enums/CourseCatalogProgress";
 import type { ITimetable } from "../../model/domain/ITimetable";
@@ -40,7 +40,7 @@ export default function CourseCatalogDialog({ timetable }: { timetable: ITimetab
 
 // Different views based on progress. Eg: Select Session Semester, Select Subject, Select Section, Confirmation
 function CourseCatalogProgressView({ timetable }: { timetable: ITimetable }) {
-    const { courseCatalog } = useCourseCatalog();
+    const { courseCatalog } = useCourseCatalogContext();
 
     return <>
         {

@@ -4,7 +4,7 @@ import SelectCourseCardContainer from "./SelectCourseCardContainer";
 import ErrorPage from "../../../components/error/ErrorPage";
 import Loading from "../../../components/loading/Loading";
 
-import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
+import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useFetchSubjekSeksyen } from "../../../hooks/query/useFetchSubjekSeksyen";
 import { useDialog } from "../../../hooks/useDialog";
 
@@ -16,7 +16,7 @@ import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
 export default function SelectSessionSemesterView() {
 
     const { closeDialog } = useDialog();
-    const { courseCatalog, setCourseCatalog } = useCourseCatalog();
+    const { courseCatalog, setCourseCatalog } = useCourseCatalogContext();
     let { isLoading, error, data } = useFetchSubjekSeksyen(courseCatalog.sesiSemester!);
 
 

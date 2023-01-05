@@ -82,14 +82,4 @@ export const timetableSlice = createSlice({
 // Export actions and reducers
 export default timetableSlice.reducer;
 
-export const { 
-    addBlankTimetable,
-    deleteTimetable,
-    updateTimetableName,
-    updateTimetableDescription,
-    updateTimetableExportConfig,
-
-    addBlankCourse,
-    deleteCourse,
-    addCourse,
-} = timetableSlice.actions;
+export const actions = timetableSlice.actions;

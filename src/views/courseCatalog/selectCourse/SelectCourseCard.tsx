@@ -1,6 +1,6 @@
 import { Box, Card, CardActionArea, CardContent, Typography } from "@mui/material";
 
-import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
+import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useAlert } from "../../../hooks/useAlert";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
@@ -11,7 +11,7 @@ import { BsCode } from 'react-icons/bs';
 
 export default function SelectCourseCard({ course }: { course: ISubjekSeksyenDTO }) {
     
-    const { setCourseCatalog } = useCourseCatalog();
+    const { setCourseCatalog } = useCourseCatalogContext();
     const { alertSuccess, alertWarning } = useAlert();
 
     const handleSelectCourse = () => {

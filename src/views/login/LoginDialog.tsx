@@ -1,12 +1,12 @@
-import { useDispatch } from "react-redux";
+
 import { useForm } from "react-hook-form";
 import { useDialog } from "../../hooks/useDialog";
 import { useAlert } from "../../hooks/useAlert";
+import { useStudentRedux } from "../../hooks/redux/useStudentRedux";
 
 import { DialogTitle, DialogContent, DialogActions, Button, Typography, Divider } from "@mui/material";
 import HookFormTextField from "../../components/form/HookFormTextField";
 
-import { login } from "../../redux/studentSlice";
 
 import { AiOutlineLogin } from 'react-icons/ai';
 
@@ -17,7 +17,7 @@ import type { IStudent } from "../../model/domain/IStudent";
 
 
 export default function LoginDialog() {
-    const dispatch = useDispatch();
+    const { studentActions: { login } } = useStudentRedux();
     const { control, handleSubmit } = useForm<IStudent>();
     
     const { alertSuccess } = useAlert();
@@ -25,7 +25,7 @@ export default function LoginDialog() {
 
 
     const onSubmit: SubmitHandler<IStudent> = (data) => {
-        dispatch(login(data));
+        login(data);
         alertSuccess('Login successful. Welcome, ' + data.name);
         closeDialog();
     };

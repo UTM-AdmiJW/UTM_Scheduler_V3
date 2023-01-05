@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, Typography } from "@mui/material";
 
@@ -8,8 +7,7 @@ import type { ITimetable } from "../../model/domain/ITimetable";
 
 import { useAlert } from "../../hooks/useAlert";
 import { useDialog } from "../../hooks/useDialog";
-
-import { deleteTimetable } from "../../redux/timetableSlice";
+import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 
 
 
@@ -21,7 +19,7 @@ interface ITimetableListCardProps {
 export default function TimetableListCard({ timetable }: ITimetableListCardProps) {
     const { alertSuccess } = useAlert();
     const { openConfirmDialog } = useDialog();
-    const dispatch = useDispatch();
+    const { timetableActions: { deleteTimetable } } = useTimetableRedux();
     const navigate = useNavigate();
 
 
@@ -37,7 +35,7 @@ export default function TimetableListCard({ timetable }: ITimetableListCardProps
             title: `Delete Timetable`,
             message: `Are you sure you want to delete '${timetable.timetableName}'?`,
             onConfirm: ()=> {
-                dispatch( deleteTimetable(timetable.id) );
+                deleteTimetable(timetable.id);
                 alertSuccess('Timetable deleted');
             }
         });

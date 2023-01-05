@@ -2,10 +2,11 @@
 import { DialogTitle, Typography } from "@mui/material";
 import { RegisteredCoursesContextProvider } from "../../context/RegisteredCoursesContext";
 import RegisteredCoursesStepper from "./RegisteredCoursesStepper";
+import RegisteredCoursesLoginView from "./login/RegisteredCoursesLoginView";
 
 import { BsBookshelf } from "react-icons/bs";
 
-import { useRegisteredCourses } from "../../hooks/useRegisteredCourses";
+import { useRegisteredCoursesContext } from "../../hooks/context/useRegisteredCoursesContext";
 
 import { RegisteredCoursesProgress } from "../../enums/RegisteredCoursesProgress";
 import type { ITimetable } from "../../model/domain/ITimetable";
@@ -37,12 +38,12 @@ export default function RegisteredCoursesDialog({ timetable }: { timetable: ITim
 
 // Different views based on progress. Eg: Select Session Semester, Select Subject, Select Section, Confirmation
 function RegisteredCoursesProgressView({ timetable }: { timetable: ITimetable }) {
-    const { registeredCoursesState } = useRegisteredCourses();
+    const { registeredCoursesState } = useRegisteredCoursesContext();
 
     return <>
         {
             registeredCoursesState.progress === RegisteredCoursesProgress.LOGIN?
-            <></>
+            <RegisteredCoursesLoginView />
             :
             registeredCoursesState.progress === RegisteredCoursesProgress.SELECT_REGISTERED_SUBJECT?
             <></>

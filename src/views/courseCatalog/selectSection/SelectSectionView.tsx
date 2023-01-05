@@ -4,7 +4,7 @@ import SelectSectionCardContainer from "./SelectSectionCardContainer";
 import ErrorPage from "../../../components/error/ErrorPage";
 import Loading from "../../../components/loading/Loading";
 
-import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
+import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useFetchJadualSubjek } from "../../../hooks/query/useFetchJadualSubjek";
 import { useAlert } from "../../../hooks/useAlert";
 import { useDialog } from "../../../hooks/useDialog";
@@ -16,7 +16,7 @@ import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
 
 export default function SelectSectionView() {
 
-    const { courseCatalog: { sesiSemester, subjekSeksyen }, setCourseCatalog } = useCourseCatalog();
+    const { courseCatalog: { sesiSemester, subjekSeksyen }, setCourseCatalog } = useCourseCatalogContext();
 
     const { alertError } = useAlert();
     const { closeDialog } = useDialog();

@@ -1,6 +1,6 @@
 import { DialogContent, Step, StepLabel, Stepper } from "@mui/material";
 
-import { useRegisteredCourses } from "../../hooks/useRegisteredCourses";
+import { useRegisteredCoursesContext } from "../../hooks/context/useRegisteredCoursesContext";
 
 import { RegisteredCoursesProgress } from "../../enums/RegisteredCoursesProgress";
 
@@ -8,7 +8,7 @@ import { RegisteredCoursesProgress } from "../../enums/RegisteredCoursesProgress
 
 export default function RegisteredCoursesStepper() {
     
-    const { registeredCoursesState } = useRegisteredCourses();
+    const { registeredCoursesState } = useRegisteredCoursesContext();
 
     return <>
     <DialogContent 

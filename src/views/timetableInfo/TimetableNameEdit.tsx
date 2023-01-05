@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useAlert } from "../../hooks/useAlert";
+import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 
 import type { SubmitHandler } from "react-hook-form/dist/types";
 import type { ITimetable } from "../../model/domain/ITimetable";
@@ -12,8 +12,6 @@ import SubmitEndAdornmentButton from "../../components/form/SubmitEndAdornmentBu
 
 import { AiFillEdit } from "react-icons/ai";
 
-import { updateTimetableName } from "../../redux/timetableSlice";
-
 
 
 
@@ -21,7 +19,7 @@ import { updateTimetableName } from "../../redux/timetableSlice";
 export default function TimetableNameEdit({ timetable }: { timetable: ITimetable }) {
     const { id, timetableName } = timetable;
     
-    const dispatch = useDispatch();
+    const { timetableActions: { updateTimetableName } } = useTimetableRedux();
     const { alertSuccess } = useAlert();
 
     const [ isEditing, setIsEditing ] = useState(false);
@@ -32,7 +30,7 @@ export default function TimetableNameEdit({ timetable }: { timetable: ITimetable
 
     const onSubmit: SubmitHandler<{ timetableName: string }> = (data) => {
         setIsEditing(false);
-        dispatch( updateTimetableName({ timetableId: id, timetableName: data.timetableName }));
+        updateTimetableName({ timetableId: id, timetableName: data.timetableName });
         alertSuccess('Timetable name updated');
     }
 

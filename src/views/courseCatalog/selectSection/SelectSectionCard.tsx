@@ -1,7 +1,7 @@
 import { Box, Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import TimeInfo from "../../../components/time/TimeInfo";
 
-import { useCourseCatalog } from "../../../hooks/useCourseCatalog";
+import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useAlert } from "../../../hooks/useAlert";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
@@ -13,7 +13,7 @@ import { combineIJadualDTO } from "../../../util/timetableUtils";
 
 export default function SelectSectionCard({ seksyen, jadual }: IJadualSubjek_SeksyenJadual) {
     
-    const { setCourseCatalog } = useCourseCatalog();
+    const { setCourseCatalog } = useCourseCatalogContext();
     const { alertSuccess } = useAlert();
 
     // From a list of IJadualSubjek, combine them into IJadualSubjek_Combine that includes time start and end

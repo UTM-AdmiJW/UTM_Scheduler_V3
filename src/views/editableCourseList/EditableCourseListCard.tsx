@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, Typography } from "@mui/material";
 
@@ -6,10 +5,9 @@ import { BsFillTrashFill, BsBookHalf, BsCode, BsDoorOpenFill, BsPersonSquare } f
 
 import { useAlert } from "../../hooks/useAlert";
 import { useDialog } from "../../hooks/useDialog";
+import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
-
-import { deleteCourse } from "../../redux/timetableSlice";
 
 
 
@@ -22,7 +20,7 @@ interface IEditableCourseListCardProps {
 export default function EditableCourseListCard({ timetableId, course }: IEditableCourseListCardProps) {
     const { alertSuccess } = useAlert();
     const { openConfirmDialog } = useDialog();
-    const dispatch = useDispatch();
+    const { timetableActions: { deleteCourse } } = useTimetableRedux();
     const navigate = useNavigate();
 
 
@@ -38,7 +36,7 @@ export default function EditableCourseListCard({ timetableId, course }: IEditabl
             title: `Delete Course`,
             message: `Are you sure you want to delete '${course.courseName}'?`,
             onConfirm: ()=> {
-                dispatch( deleteCourse({ timetableId: timetableId, courseId: course.id }) );
+                deleteCourse({ timetableId: timetableId, courseId: course.id });
                 alertSuccess('Course deleted');
             }
         });
