@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +8,7 @@ import TimetableInfoPanel from "../timetableInfo/TimetableInfoPanel";
 import ExportConfigurationPanel from "../exportConfiguration/ExportConfigurationPanel";
 import EditableCourseListPanel from "../editableCourseList/EditableCourseListPanel";
 
-import type { RootState } from "../../redux/store";
+import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 
 import { MdClass, MdArrowBack } from "react-icons/md";
 import { FaFileExport, FaInfoCircle } from "react-icons/fa";
@@ -21,7 +20,7 @@ export default function TimetablePage() {
     const navigate = useNavigate();
     const { id } = useParams();
     const [ tab, setTab ] = useState(0);
-    const { timetables } = useSelector( (state: RootState) => state.timetable );
+    const { timetableState: { timetables } } = useTimetableRedux();
 
 
 
