@@ -1,6 +1,6 @@
 import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
 import EditableCourseListCard from "./EditableCourseListCard";
-import CourseCatalogDialog from "../courseCatalog/CourseCatalogDialog";
+import CourseCatalogDialog from "../courseCatalog/courseCatalogDialog";
 import Empty from "../../components/empty/Empty";
 import SearchEmpty from "../../components/searchEmpty/SearchEmpty";
 
