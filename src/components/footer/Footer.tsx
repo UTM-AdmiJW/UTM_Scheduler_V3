@@ -1,6 +1,7 @@
 import { Container, Grid, Box } from '@mui/material';
-import { Icon, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { List, ListItem, ListItemText, ListItemButton } from '@mui/material';
 
 import { AiFillGithub, AiFillPhone, AiFillMail } from 'react-icons/ai';
 import { ImLocation2 } from 'react-icons/im';
@@ -13,27 +14,17 @@ export default function Footer() {
             <Container>
 
                 <Grid container spacing={4} mx-auto width="100%">
-                    <Grid item xs={12} sm={6} >
-                        <Box className='flex items-center gap-3'>
+                    <Grid item xs={12} sm={6} gap-3 >
+                        <Box className='flex items-center gap-3 p-3'>
                             <ImLocation2 className='text-xl' />
                             <span>UTM Skudai, Johor Bahru, Malaysia</span>
                         </Box>
-                        <Box>
-                            <IconButton
-                                size="large"
-                                color="inherit"
-                                aria-label="Phone">
-                                <Icon component={AiFillPhone} fontSize='medium' />
-                            </IconButton>
+                        <Box className='flex items-center gap-3 p-3'>
+                            <AiFillPhone className='text-xl'/>
                             <span>+60 7-553 5000</span>
                         </Box>
-                        <Box>
-                            <IconButton
-                                size="large"
-                                color="inherit"
-                                aria-label="Email">
-                                <Icon component={AiFillMail} fontSize='medium' />
-                            </IconButton>
+                        <Box className='flex items-center gap-3 p-3'>
+                            <AiFillMail className='text-xl'/>
                             <span>utm.my</span>
                         </Box>
                     </Grid>
@@ -42,15 +33,22 @@ export default function Footer() {
                             UTM Timetable Generator V3
                         </Box>
                         <Box>
-                            <Link to="/">Home</Link>
-                        </Box>
-                        <Box>
-                            <Link to="/about">About</Link>
+                            <List disablePadding>
+                                <ListItem disablePadding>
+                                    <ListItemButton LinkComponent={Link} href="/">
+                                    <ListItemText primary='Home' />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem disablePadding>
+                                    <ListItemButton LinkComponent={Link} href="">
+                                    <ListItemText primary='About' />
+                                    </ListItemButton>
+                                </ListItem>
+                            </List>
                         </Box>
                         <Box borderBottom={1}>
                             Subscribe us
                         </Box>
-
                         {/* @todo: Add externel Link
                                 Add another tsx to export the button??*/}
                         <Box>
@@ -58,25 +56,25 @@ export default function Footer() {
                                 size="large"
                                 color="inherit"
                                 aria-label="Facebook">
-                                <Icon component={FaFacebook} fontSize='medium' />
+                                <FaFacebook  />
                             </IconButton>
                             <IconButton
                                 size="large"
                                 color="inherit"
                                 aria-label="Instagram">
-                                <Icon component={FaInstagram} fontSize='medium' />
+                                <FaInstagram />
                             </IconButton>
                             <IconButton
                                 size="large"
                                 color="inherit"
                                 aria-label="Twitter">
-                                <Icon component={FaTwitter} fontSize='medium' />
+                                <FaTwitter />
                             </IconButton>
                             <IconButton
                                 size="large"
                                 color="inherit"
                                 aria-label="Github">
-                                <Icon component={AiFillGithub} fontSize='medium' />
+                               <AiFillGithub />
                             </IconButton>
                         </Box>
                     </Grid>
