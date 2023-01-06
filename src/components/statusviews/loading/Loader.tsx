@@ -7,7 +7,7 @@ import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { GiAbstract080 } from "react-icons/gi";
 
 
-import '../../style/loader.css';
+import '../../../style/loader.css';
 
 
 export default function Loader() {

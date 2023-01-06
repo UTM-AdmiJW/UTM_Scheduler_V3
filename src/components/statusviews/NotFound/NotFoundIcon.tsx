@@ -1,4 +1,4 @@
-import "../../style/NotFoundAnimated.css";
+import "../../../style/NotFoundAnimated.css";
 
 //Create a image for 404 page
 //Use template humberger icon

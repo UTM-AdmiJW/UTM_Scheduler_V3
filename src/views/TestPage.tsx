@@ -3,7 +3,7 @@ import { Button, Container } from "@mui/material";
 import { useAlert } from "../hooks/useAlert";
 import { useDialog } from "../hooks/useDialog";
 
-import Loading from "../components/loading/Loading";
+import Loading from "../components/statusviews/loading/Loading";
 
 export default function TestPage() {
 

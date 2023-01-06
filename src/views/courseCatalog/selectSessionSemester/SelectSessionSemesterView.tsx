@@ -1,8 +1,8 @@
 
 import { Button, DialogActions, DialogContent } from "@mui/material";
 import SelectSessionSemesterCardContainer from "./SelectSessionSemesterCardContainer";
-import ErrorPage from "../../../components/error/ErrorPage";
-import Loading from "../../../components/loading/Loading";
+import ErrorPage from "../../../components/statusviews/error/ErrorPage";
+import Loading from "../../../components/statusviews/loading/Loading";
 
 import { useDialog } from "../../../hooks/useDialog";
 import { useFetchSesiSemester } from "../../../hooks/query/useFetchSesiSemester";

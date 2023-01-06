@@ -1,8 +1,8 @@
 
 import { Button, DialogActions, DialogContent, } from "@mui/material";
 import SelectCourseCardContainer from "./SelectCourseCardContainer";
-import ErrorPage from "../../../components/error/ErrorPage";
-import Loading from "../../../components/loading/Loading";
+import ErrorPage from "../../../components/statusviews/error/ErrorPage";
+import Loading from "../../../components/statusviews/loading/Loading";
 
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useFetchSubjekSeksyen } from "../../../hooks/query/useFetchSubjekSeksyen";

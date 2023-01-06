@@ -1,6 +1,6 @@
 
 import { Box, Button, Card, CardContent, DialogActions, DialogContent, Typography } from "@mui/material";
-import TimeInfo from "../../../components/time/TimeInfo";
+import TimeInfo from "../../../components/infocard/TimeInfo";
 
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useAlert } from "../../../hooks/useAlert";
@@ -12,6 +12,7 @@ import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
 
 import type { ITimetable } from "../../../model/domain/ITimetable";
 import { convertICourseCatalogStateToIEditableCourse } from "../../../util/timetableUtils";
+import InfoActionAreaCard from "../../../components/infocard/InfoActionAreaCard";
 
 
 
@@ -48,28 +49,16 @@ export default function CourseCatalogConfirmView({ timetable }: { timetable: ITi
                 The following will be added to your timetable:
             </Typography>
 
-            <Card variant="outlined">
 
-                <Box className='bg-blue-500 rounded p-3 text-white flex items-center'>
-                    <Typography className='font-extralight'>
-                        { course?.nama_subjek }
-                    </Typography>
-                </Box>
-                
-                <CardContent>
-
-                    <Typography variant="body2" className='mb-1'>
-                        { course?.kod_subjek }
-                    </Typography>
-
-                    <Typography variant="body2" className='mb-1'>
-                        Section { section?.seksyen }
-                    </Typography>
-
-                    <Typography variant="body2" className='mb-3'>
-                        { section?.pensyarah || "No lecturer" }
-                    </Typography>
-
+            <InfoActionAreaCard
+                title={course?.nama_subjek}
+                tableData={[
+                    { label: 'Subject Code', value: course?.kod_subjek },
+                    { label: 'Section', value: section?.seksyen },
+                    { label: 'Lecturer', value: section?.pensyarah || "No lecturer" },
+                ]}
+                postDataContent={
+                    <Box className='mt-5'>
                     {
                         times?.map((time) => (
                             <TimeInfo 
@@ -81,9 +70,11 @@ export default function CourseCatalogConfirmView({ timetable }: { timetable: ITi
                             />
                         ))
                     }
-                </CardContent>
-            </Card>
+                    </Box>
+                }
+            />
         </DialogContent>
+
 
         <DialogActions className='mt-2'>
             <Button variant="outlined" color='primary' onClick={handleBack}>

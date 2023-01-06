@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Button, Container, Paper, TextField, Tooltip, Typography } from "@mui/material";
-import Empty from "../../components/empty/Empty";
-import SearchEmpty from "../../components/searchEmpty/SearchEmpty";
+import Empty from "../../components/statusviews/empty/Empty";
+import SearchEmpty from "../../components/statusviews/searchEmpty/SearchEmpty";
 import TimetableListCard from "./TimetableListCard";
 
 import { AiOutlinePlus } from 'react-icons/ai';

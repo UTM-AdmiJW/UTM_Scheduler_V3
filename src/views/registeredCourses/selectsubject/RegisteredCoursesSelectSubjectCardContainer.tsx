@@ -1,10 +1,13 @@
 import { Box, Paper, TextField, Typography } from "@mui/material";
-import Empty from "../../../components/empty/Empty";
-import SearchEmpty from "../../../components/searchEmpty/SearchEmpty";
-import RegisteredCoursesSelectSubjectCard from "./RegisteredCourseSelectSubjectCard";
+import Empty from "../../../components/statusviews/empty/Empty";
+import SearchEmpty from "../../../components/statusviews/searchEmpty/SearchEmpty";
+import InfoActionAreaCard from "../../../components/infocard/InfoActionAreaCard";
 
 import { useState } from "react";
+import { useAlert } from "../../../hooks/useAlert";
+import { useRegisteredCoursesContext } from "../../../hooks/context/useRegisteredCoursesContext";
 
+import { RegisteredCoursesProgress } from "../../../enums/RegisteredCoursesProgress";
 import type { IPelajarSubjekDTO } from "../../../model/DTO/PelajarSubjek/IPelajarSubjekDTO";
 
 import { enumToOptions } from "../../../util/menuUtils";
@@ -24,6 +27,10 @@ export default function RegisteredCoursesSelectSubjectCardContainer({ data }: { 
     
     const [ search, setSearch ] = useState<string>('');
     const [ sortOrder, setSortOrder ] = useState<RegisteredCoursesSelectSubjectSortOrder>(RegisteredCoursesSelectSubjectSortOrder.NAME_ASCENDING);
+
+    const { setRegisteredCoursesState } = useRegisteredCoursesContext();
+    const { alertSuccess } = useAlert();
+
 
     // Filter out null values. Some queries to course can return [null] instead of []
     data = data.filter((course) => course && course.kod_subjek);
@@ -93,9 +100,28 @@ export default function RegisteredCoursesSelectSubjectCardContainer({ data }: { 
                 filteredSortedData.length === 0?
                 <SearchEmpty message={`No course found for "${search}"`} />
                 :
-                filteredSortedData.map((course) => {
-                    return <RegisteredCoursesSelectSubjectCard key={course.kod_subjek} course={course} />
-                })
+                filteredSortedData.map((course) => (
+                    <InfoActionAreaCard
+                        key={course.kod_subjek}
+                        title={course.nama_subjek}
+                        tableData={[
+                            { label: 'Semester: ', value: course.sesi + ' Sem ' + course.semester },
+                            { label: 'Code: ', value: course.kod_subjek || 'N/A' },
+                            { label: 'Year: ', value: course.tahun_kursus || 'N/A' },
+                            { label: 'Section: ', value: course.seksyen || 'N/A' },
+                        ]}
+                        onClick={()=> {
+                            setRegisteredCoursesState(prev => {
+                                return {
+                                    ...prev,
+                                    progress: RegisteredCoursesProgress.CONFIRMATION,
+                                    selectedCourse: course
+                                };
+                            });
+                            alertSuccess(`Selected ${course.kod_subjek} - ${course.nama_subjek}`);
+                        }}
+                    />
+                ))
             }
         </Paper>   
     </>

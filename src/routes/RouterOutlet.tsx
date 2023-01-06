@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import TestPage from '../views/TestPage';
 import TimetableListPage from '../views/timetableList/TimetableListPage';
 import TimetablePage from '../views/timetable/TimetablePage';
-import NotFoundPage from '../components/NotFound/NotFoundPage';
+import NotFoundPage from '../components/statusviews/NotFound/NotFoundPage';
 
 
 export default function RouterOutlet() {

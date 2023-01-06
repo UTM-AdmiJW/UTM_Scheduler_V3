@@ -1,8 +1,8 @@
 
 import { Button, DialogActions, DialogContent, } from "@mui/material";
 import RegisteredCoursesSelectSubjectCardContainer from "./RegisteredCoursesSelectSubjectCardContainer";
-import ErrorPage from "../../../components/error/ErrorPage";
-import Loading from "../../../components/loading/Loading";
+import ErrorPage from "../../../components/statusviews/error/ErrorPage";
+import Loading from "../../../components/statusviews/loading/Loading";
 
 import { useStudentRedux } from "../../../hooks/redux/useStudentRedux";
 import { useFetchPelajarSubjek } from "../../../hooks/query/useFetchPelajarSubjek";

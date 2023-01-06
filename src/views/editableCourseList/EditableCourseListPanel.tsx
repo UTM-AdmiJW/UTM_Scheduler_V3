@@ -2,8 +2,8 @@ import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
 import EditableCourseListCard from "./EditableCourseListCard";
 import CourseCatalogDialog from "../courseCatalog/CourseCatalogDialog";
 import RegisteredCoursesDialog from "../registeredCourses/RegisteredCoursesDialog";
-import Empty from "../../components/empty/Empty";
-import SearchEmpty from "../../components/searchEmpty/SearchEmpty";
+import Empty from "../../components/statusviews/empty/Empty";
+import SearchEmpty from "../../components/statusviews/searchEmpty/SearchEmpty";
 
 import { useState } from "react";
 import { useAlert } from "../../hooks/useAlert";
