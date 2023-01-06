@@ -28,7 +28,7 @@ export default function RegisteredCoursesLoginView() {
         setRegisteredCoursesState(prev => {
             return { ...prev, progress: RegisteredCoursesProgress.SELECT_REGISTERED_SUBJECT };
         });
-    }, [isLoggedIn]);
+    }, [isLoggedIn, setRegisteredCoursesState]);
 
 
     return <>
@@ -42,7 +42,7 @@ export default function RegisteredCoursesLoginView() {
             </Typography>
 
             <Button variant='contained' color='primary' onClick={handleLoginButton}>
-                Login
+                Login Now
             </Button>
         </DialogContent>
 
