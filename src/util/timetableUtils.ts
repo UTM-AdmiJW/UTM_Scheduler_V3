@@ -10,6 +10,7 @@ import type { ICourseCatalogState } from "../model/domain/ICourseCatalogState";
 
 import { DayOfWeek } from "../enums/DayOfWeek";
 import { IRegisteredCoursesState } from "../model/domain/IRegisteredCoursesState";
+import { ISubjekSeksyen_SeksyenDTO } from "../model/DTO/SubjekSeksyen/ISubjekSeksyen_SeksyenDTO";
 
 
 // Converts 24 hour time to 12 hour time, with AM/PM
@@ -134,13 +135,17 @@ export function convertICourseCatalogStateToIEditableCourse(catalog: ICourseCata
 
 
 // Convert IRegisteredCourseState to IEditableCourse
-export function convertIRegisteredCourseStateToIEditableCourse(course: IRegisteredCoursesState): IEditableCourse {
+export function convertIRegisteredCourseStateToIEditableCourse(
+    course: IRegisteredCoursesState,
+    seksyen: ISubjekSeksyen_SeksyenDTO,
+    jadual: IJadualSubjek_Combine[],
+): IEditableCourse {
     return {
         id: uuidv4(),
-        courseCode: course.pelajarSubjek?.kod_kursus || 'N/A',
+        courseCode: course.pelajarSubjek?.kod_subjek || 'N/A',
         courseName: course.pelajarSubjek?.nama_subjek || 'N/A',
         sectionNo: course.pelajarSubjek?.seksyen || 0,
-        lecturer: course.seksyen?.pensyarah || 'N/A',
-        timeList: course.jadualSubjek?.map(convertICombinedJadualDTOToITime) || [],
+        lecturer: seksyen?.pensyarah || 'N/A',
+        timeList: jadual.map(convertICombinedJadualDTOToITime) || [],
     }
 }

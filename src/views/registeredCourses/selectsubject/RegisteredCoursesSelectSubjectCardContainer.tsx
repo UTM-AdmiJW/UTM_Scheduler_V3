@@ -115,7 +115,7 @@ export default function RegisteredCoursesSelectSubjectCardContainer({ data }: { 
                                 return {
                                     ...prev,
                                     progress: RegisteredCoursesProgress.CONFIRMATION,
-                                    selectedCourse: course
+                                    pelajarSubjek: course,
                                 };
                             });
                             alertSuccess(`Selected ${course.kod_subjek} - ${course.nama_subjek}`);
