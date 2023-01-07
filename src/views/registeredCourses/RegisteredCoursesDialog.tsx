@@ -4,6 +4,7 @@ import { RegisteredCoursesContextProvider } from "../../context/RegisteredCourse
 import RegisteredCoursesStepper from "./RegisteredCoursesStepper";
 import RegisteredCoursesLoginView from "./login/RegisteredCoursesLoginView";
 import RegisteredCourseSelectSubjectView from "./selectsubject/RegisteredCourseSelectSubjectView";
+import RegisteredCoursesConfirmView from "./confirmation/RegisteredCoursesConfirmView";
 
 import { BsBookshelf } from "react-icons/bs";
 
@@ -49,7 +50,7 @@ function RegisteredCoursesProgressView({ timetable }: { timetable: ITimetable })
             registeredCoursesState.progress === RegisteredCoursesProgress.SELECT_REGISTERED_SUBJECT?
             <RegisteredCourseSelectSubjectView />
             :
-            <></>
+            <RegisteredCoursesConfirmView timetable={timetable} />
         }
     </>
 }

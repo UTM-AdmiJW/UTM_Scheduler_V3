@@ -5,9 +5,9 @@ import ErrorPage from "../../../components/statusviews/error/ErrorPage";
 import Loading from "../../../components/statusviews/loading/Loading";
 
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
-import { useFetchJadualSubjek } from "../../../hooks/query/useFetchJadualSubjek";
 import { useAlert } from "../../../hooks/useAlert";
 import { useDialog } from "../../../hooks/useDialog";
+import { useFetchJadualSubjekManyWithSeksyen } from "../../../hooks/query/useFetchJadualSubjekWithSeksyen";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
 
@@ -20,13 +20,21 @@ export default function SelectSectionView() {
 
     const { alertError } = useAlert();
     const { closeDialog } = useDialog();
-    const { isError, isSuccess, isLoading, queries } = useFetchJadualSubjek(sesiSemester!, subjekSeksyen!);
+
+    const { isError, isSuccess, isLoading, data, error } = useFetchJadualSubjekManyWithSeksyen(
+        subjekSeksyen?.seksyen_list.map(seksyen => ({
+            sesi: sesiSemester!.sesi,
+            semester: sesiSemester!.semester,
+            kod_subjek: subjekSeksyen.kod_subjek,
+            seksyen
+        })) || []
+    );
 
 
     // Error handling if one of the queries failed
     if (isError) {
         alertError("Failed to retrieve sections. See console for more details.");
-        queries.filter(q => q.isError).forEach(q => console.error(q.error));
+        console.error(error);
     }
 
 
@@ -46,7 +54,7 @@ export default function SelectSectionView() {
             { 
                 isSuccess && 
                 <SelectSectionCardContainer 
-                    data={ queries.map(q => q.data!) }
+                    data={ (data || []).map(d => d!) }
                 />
             }
         </DialogContent>
