@@ -1,8 +1,7 @@
 
 import { Paper, TextField, Typography, Box } from "@mui/material";
-import Empty from "../../../components/statusviews/empty/Empty";
-import SearchEmpty from "../../../components/statusviews/searchEmpty/SearchEmpty";
-import InfoActionAreaCard from "../../../components/infocard/InfoActionAreaCard";
+import { EmptyStatusView, SearchEmptyStatusView } from "../../../components/statuses";
+import ActionAreaCard from "../../../components/card/ActionAreaCard";
 
 import { useState } from "react";
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
@@ -32,7 +31,7 @@ export default function SelectCourseCardContainer({ data }: { data: ISubjekSeksy
     const [ sortOrder, setSortOrder ] = useState<SelectCourseSortOrder>(SelectCourseSortOrder.NAME_ASCENDING);
 
     const { setCourseCatalog } = useCourseCatalogContext();
-    const { alertSuccess, alertWarning } = useAlert();
+    const { alertWarning } = useAlert();
 
 
 
@@ -92,13 +91,13 @@ export default function SelectCourseCardContainer({ data }: { data: ISubjekSeksy
         >
             {
                 data.length === 0?
-                <Empty message={`No data`} />
+                <EmptyStatusView message={`No data`} />
                 :
                 filteredSortedData.length === 0?
-                <SearchEmpty message={`No course found for "${search}"`} />
+                <SearchEmptyStatusView message={`No course found for "${search}"`} />
                 :
                 filteredSortedData.map((course) => (
-                    <InfoActionAreaCard
+                    <ActionAreaCard
                         key={course.kod_subjek}
                         title={course.nama_subjek}
                         preDataContent={
@@ -119,14 +118,11 @@ export default function SelectCourseCardContainer({ data }: { data: ISubjekSeksy
                                 return;
                             }
 
-                            setCourseCatalog(prev => {
-                                return {
-                                    ...prev,
-                                    subjekSeksyen: course,
-                                    progress: CourseCatalogProgress.SELECT_SECTION
-                                };
-                            });
-                            alertSuccess(`Selected ${course.kod_subjek} - ${course.nama_subjek}`);
+                            setCourseCatalog(prev => ({
+                                ...prev,
+                                subjekSeksyen: course,
+                                progress: CourseCatalogProgress.SELECT_SECTION
+                            }));
                         }}
                     />
                 ))

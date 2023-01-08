@@ -11,10 +11,9 @@ export default function Footer() {
     return <>
         <footer>
         <Box className='bg-primary text-white'>
-            <Container>
-
-                <Grid container spacing={4} mx-auto width="100%">
-                    <Grid item xs={12} sm={6} gap-3 >
+            <Container className='p-5'>
+                <Grid container className='mx-auto'>
+                    <Grid item xs={12} sm={6} className='gap-3'>
                         <Box className='flex items-center gap-3 p-3'>
                             <ImLocation2 className='text-xl' />
                             <span>UTM Skudai, Johor Bahru, Malaysia</span>
@@ -28,26 +27,27 @@ export default function Footer() {
                             <span>utm.my</span>
                         </Box>
                     </Grid>
+
                     <Grid item xs={12} sm={6}>
-                        <Box borderBottom={1}>
-                            UTM Timetable Generator V3
+                        <Box className='p-3 border-b-2 font-bold'>
+                            UTM Scheduler V3
                         </Box>
                         <Box>
                             <List disablePadding>
                                 <ListItem disablePadding>
                                     <ListItemButton LinkComponent={Link} href="/">
-                                    <ListItemText primary='Home' />
+                                    <ListItemText primary='> Home' />
                                     </ListItemButton>
                                 </ListItem>
                                 <ListItem disablePadding>
                                     <ListItemButton LinkComponent={Link} href="">
-                                    <ListItemText primary='About' />
+                                    <ListItemText primary='> About' />
                                     </ListItemButton>
                                 </ListItem>
                             </List>
                         </Box>
-                        <Box borderBottom={1}>
-                            Subscribe us
+                        <Box className='p-3 border-b-2 font-bold'>
+                            Contact us
                         </Box>
                         {/* @todo: Add externel Link
                                 Add another tsx to export the button??*/}

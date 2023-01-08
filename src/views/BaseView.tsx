@@ -10,11 +10,13 @@ import Footer from "../components/footer/Footer";
 
 export default function BaseView() {
     return <>
-        <Box className='min-h-screen'>
-            <Navbar />
-            <RouterOutlet />
+        <Box className='flex flex-col'>
+            <Box className='h-screen'>
+                <Navbar />
+                <RouterOutlet />
+            </Box>
+            
+            <Footer />
         </Box>
-        
-        <Footer />
     </>
 }

@@ -1,8 +1,7 @@
 
 import { Button, DialogActions, DialogContent } from "@mui/material";
 import SelectSessionSemesterCardContainer from "./SelectSessionSemesterCardContainer";
-import ErrorPage from "../../../components/statusviews/error/ErrorPage";
-import Loading from "../../../components/statusviews/loading/Loading";
+import { ErrorStatusView, LoadingStatusView } from "../../../components/statuses";
 
 import { useDialog } from "../../../hooks/useDialog";
 import { useFetchSesiSemester } from "../../../hooks/query/useFetchSesiSemester";
@@ -18,8 +17,8 @@ export default function SelectSessionSemesterView() {
     
     return <>
         <DialogContent className='pt-2'>
-            { isLoading && <Loading message='Retrieving session/semester...' /> }
-            { error && <ErrorPage message="Cannot retrieve session/semester." /> }
+            { isLoading && <LoadingStatusView message='Retrieving session/semester...' /> }
+            { error && <ErrorStatusView message="Cannot retrieve session/semester." /> }
             { data && <SelectSessionSemesterCardContainer data={data} /> }
         </DialogContent>
 

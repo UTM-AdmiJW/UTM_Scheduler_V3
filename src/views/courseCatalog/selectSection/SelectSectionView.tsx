@@ -1,8 +1,7 @@
 
 import { Button, DialogActions, DialogContent } from "@mui/material";
 import SelectSectionCardContainer from "./SelectSectionCardContainer";
-import ErrorPage from "../../../components/statusviews/error/ErrorPage";
-import Loading from "../../../components/statusviews/loading/Loading";
+import { ErrorStatusView, LoadingStatusView } from "../../../components/statuses";
 
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useAlert } from "../../../hooks/useAlert";
@@ -49,8 +48,8 @@ export default function SelectSectionView() {
     
     return <>
         <DialogContent className='pt-2'>
-            { isLoading && <Loading message='Retrieving sections...' /> }
-            { isError && <ErrorPage message="Cannot retrieve sections." /> }
+            { isLoading && <LoadingStatusView message='Retrieving sections...' /> }
+            { isError && <ErrorStatusView message="Cannot retrieve sections." /> }
             { 
                 isSuccess && 
                 <SelectSectionCardContainer 

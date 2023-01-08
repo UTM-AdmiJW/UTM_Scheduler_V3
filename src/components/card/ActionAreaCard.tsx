@@ -2,7 +2,7 @@ import { Box, Card, CardActionArea, CardContent, Typography } from "@mui/materia
 import React from "react";
 
 
-interface IInfoActionAreaCardProps {
+interface IActionAreaCardProps {
     title: React.ReactNode;
     preDataContent?: React.ReactNode;
     tableData?: { label: React.ReactNode, value: React.ReactNode }[];
@@ -12,14 +12,14 @@ interface IInfoActionAreaCardProps {
 }
 
 
-export default function InfoActionAreaCard({
+export default function ActionAreaCard({
     title,
     preDataContent,
     tableData = [],
     postDataContent,
 
     onClick = () => {}
-}: IInfoActionAreaCardProps) {
+}: IActionAreaCardProps) {
 
     return <>
         <Card variant="outlined">

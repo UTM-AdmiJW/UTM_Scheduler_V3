@@ -1,9 +1,8 @@
 import { Box, Paper, TextField, Typography } from "@mui/material";
-import InfoActionAreaCard from "../../../components/infocard/InfoActionAreaCard";
+import ActionAreaCard from "../../../components/card/ActionAreaCard";
 
 import { useState } from "react";
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
-import { useAlert } from "../../../hooks/useAlert";
 
 import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
 import type { ISesiSemesterDTO } from "../../../model/DTO/SesiSemester/ISesiSemesterDTO";
@@ -25,7 +24,6 @@ export default function SelectSessionSemesterCardContainer({ data }: { data: ISe
     const [ sortOrder, setSortOrder ] = useState<SelectSessionSemesteSortOrder>(SelectSessionSemesteSortOrder.DATE_START_DESCENDING);
 
     const { setCourseCatalog } = useCourseCatalogContext();
-    const { alertSuccess } = useAlert();
 
     data.sort((a, b) => {
         const dateA = new Date(a.tarikh_mula);
@@ -67,7 +65,7 @@ export default function SelectSessionSemesterCardContainer({ data }: { data: ISe
         >
             {
                 data.map((sessionSemester) => (
-                    <InfoActionAreaCard
+                    <ActionAreaCard
                         key={sessionSemester.sesi_semester_id}
                         title={sessionSemester.sesi + ' Sem ' + sessionSemester.semester}
                         preDataContent={
@@ -77,14 +75,11 @@ export default function SelectSessionSemesterCardContainer({ data }: { data: ISe
                             </Typography>
                         }
                         onClick={() => {
-                            setCourseCatalog(prev => {
-                                return {
-                                    ...prev,
-                                    sesiSemester: sessionSemester,
-                                    progress: CourseCatalogProgress.SELECT_SUBJECT
-                                };
-                            });
-                            alertSuccess(`Selected ${sessionSemester.sesi} Semester ${sessionSemester.semester}`);
+                            setCourseCatalog(prev => ({
+                                ...prev,
+                                sesiSemester: sessionSemester,
+                                progress: CourseCatalogProgress.SELECT_SUBJECT
+                            }));
                         }}
                     />
                 ))

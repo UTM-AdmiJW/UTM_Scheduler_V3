@@ -2,8 +2,7 @@ import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
 import EditableCourseListCard from "./EditableCourseListCard";
 import CourseCatalogDialog from "../courseCatalog/CourseCatalogDialog";
 import RegisteredCoursesDialog from "../registeredCourses/RegisteredCoursesDialog";
-import Empty from "../../components/statusviews/empty/Empty";
-import SearchEmpty from "../../components/statusviews/searchEmpty/SearchEmpty";
+import { EmptyStatusView, SearchEmptyStatusView } from '../../components/statuses';
 
 import { useState } from "react";
 import { useAlert } from "../../hooks/useAlert";
@@ -123,7 +122,7 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
         {/* Editable Course Cards */}
         {
             Object.values(timetable.editableCourses).length === 0?
-            <Empty message='This timetable has no courses yet'>
+            <EmptyStatusView message='This timetable has no courses yet'>
                 <Box className='text-center mt-3'>
                     <Button variant='outlined' size='small' onClick={ onAddBlankCourse } className='mt-3'>
                         <AiOutlinePlus className='mr-2' /> Add a blank course now
@@ -133,10 +132,10 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
                         <AiOutlineCloudServer className='mr-2' /> Browse course catalog
                     </Button>
                 </Box>
-            </Empty>
+            </EmptyStatusView>
             :
             filteredCourses.length === 0?
-            <SearchEmpty message={`No course found matching "${search}"`} />
+            <SearchEmptyStatusView message={`No course found matching "${search}"`} />
             :
             <Paper 
                 className='p-5 mb-5 grid gap-5' 

@@ -6,11 +6,10 @@ import "../../../style/NotFoundAnimated.css";
 export default function NotFoundIcon() {
     return <>
         <svg
-            className="emoji-404 mx-auto max-w-xs min-w-fit w-1/2"
+            className="emoji-404 mx-auto w-3/4"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            width="100%"
-            height="100%"
+            width="75%"
             viewBox="0 0 470 290"
         >
             <defs>

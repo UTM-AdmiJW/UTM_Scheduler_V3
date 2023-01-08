@@ -1,6 +1,6 @@
 
 import { Box, Button, Card, CardContent, DialogActions, DialogContent, Typography } from "@mui/material";
-import TimeInfo from "../../../components/infocard/TimeInfo";
+import TimeInfo from "../../../components/card/TimeInfo";
 
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useAlert } from "../../../hooks/useAlert";
@@ -12,7 +12,7 @@ import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
 
 import type { ITimetable } from "../../../model/domain/ITimetable";
 import { convertICourseCatalogStateToIEditableCourse } from "../../../util/timetableUtils";
-import InfoActionAreaCard from "../../../components/infocard/InfoActionAreaCard";
+import ActionAreaCard from "../../../components/card/ActionAreaCard";
 
 
 
@@ -50,7 +50,7 @@ export default function CourseCatalogConfirmView({ timetable }: { timetable: ITi
             </Typography>
 
 
-            <InfoActionAreaCard
+            <ActionAreaCard
                 title={course?.nama_subjek}
                 tableData={[
                     { label: 'Subject Code', value: course?.kod_subjek },

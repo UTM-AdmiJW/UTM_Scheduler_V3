@@ -12,8 +12,9 @@ import { muiThemeOptions } from './style/MUITheme';
 import BaseView from './views/BaseView';
 import { DialogContextProvider } from './context/DialogContext';
 
-import './style/index.css';
+import { LoadingStatusView } from './components/statuses';
 
+import './style/index.css';
 
 
 
@@ -26,7 +27,10 @@ function UTMSchedulerV3() {
         {/* Redux store provider */}
         <Provider store={store}>
         {/* Redux Persist Gate */}
-        <PersistGate loading={null} persistor={persistor}>
+        <PersistGate 
+            loading={<LoadingStatusView title='Loading...' message='Initializing...' />} 
+            persistor={persistor}
+        >
         {/* React Query client provider */}
         <QueryClientProvider client={queryClient}>
         {/* Material UI Custom Theme Provider */}

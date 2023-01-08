@@ -3,7 +3,7 @@ import Loader from "./Loader";
 
 
 
-export interface ILoadingProps {
+export interface ILoadingStatusViewProps {
     title?: string;
     message?: string;
 }
@@ -11,10 +11,10 @@ export interface ILoadingProps {
 
 
 
-export default function Loading ({
+export default function LoadingStatusView ({
     title = "Loading",
     message = "Retrieving data from the server...",
-}: ILoadingProps) {
+}: ILoadingStatusViewProps) {
 
     return <>
         <Box className='flex flex-col items-center p-6'>

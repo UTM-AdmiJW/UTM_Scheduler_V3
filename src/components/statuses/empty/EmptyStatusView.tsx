@@ -9,7 +9,7 @@ export interface IEmptyProps {
 }
 
 
-export default function Empty({ message, children }: IEmptyProps) {
+export default function EmptyStatusView({ message, children }: IEmptyProps) {
 
     return <>
         <Paper variant='outlined' className='py-9'>

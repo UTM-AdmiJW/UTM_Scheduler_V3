@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Container, Tabs, Tab,  Paper, Box, Button } from "@mui/material";
-import TimetableNotFound from "./TimetableNotFound";
 import TimetableInfoPanel from "../timetableInfo/TimetableInfoPanel";
 import ExportConfigurationPanel from "../exportConfiguration/ExportConfigurationPanel";
 import EditableCourseListPanel from "../editableCourseList/EditableCourseListPanel";
+import { NotFoundStatusView } from "../../components/statuses";
 
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
+
+import { TimetablePageTabs } from "../../enums/TimetablePageTabs";
 
 import { MdClass, MdArrowBack } from "react-icons/md";
 import { FaFileExport, FaInfoCircle } from "react-icons/fa";
@@ -19,7 +20,12 @@ import { FaFileExport, FaInfoCircle } from "react-icons/fa";
 export default function TimetablePage() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const [ tab, setTab ] = useState(0);
+
+    // Using ?tab=0 in the url will set the tab to first tab, and so on
+    const [searchParams] = useSearchParams();
+    const tabParam = parseInt(searchParams.get('tab') || '0');
+    const [ tab, setTab ] = useState<TimetablePageTabs>( tabParam );
+
     const { timetableState: { timetables } } = useTimetableRedux();
 
 
@@ -31,7 +37,7 @@ export default function TimetablePage() {
 
 
     // If timetable does not exist, show error message and link to timetable list page
-    if (!timetables[id!]) return <TimetableNotFound />;
+    if (!timetables[id!]) return <NotFoundStatusView title='No timetable found' message='The selected timetable cannot be found anymore.' />
     const timetable = timetables[id!];
 
     return <>

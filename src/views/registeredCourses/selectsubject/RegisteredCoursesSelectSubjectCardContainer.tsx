@@ -1,10 +1,8 @@
 import { Box, Paper, TextField, Typography } from "@mui/material";
-import Empty from "../../../components/statusviews/empty/Empty";
-import SearchEmpty from "../../../components/statusviews/searchEmpty/SearchEmpty";
-import InfoActionAreaCard from "../../../components/infocard/InfoActionAreaCard";
+import { EmptyStatusView, SearchEmptyStatusView } from '../../../components/statuses';
+import ActionAreaCard from "../../../components/card/ActionAreaCard";
 
 import { useState } from "react";
-import { useAlert } from "../../../hooks/useAlert";
 import { useRegisteredCoursesContext } from "../../../hooks/context/useRegisteredCoursesContext";
 
 import { RegisteredCoursesProgress } from "../../../enums/RegisteredCoursesProgress";
@@ -29,7 +27,6 @@ export default function RegisteredCoursesSelectSubjectCardContainer({ data }: { 
     const [ sortOrder, setSortOrder ] = useState<RegisteredCoursesSelectSubjectSortOrder>(RegisteredCoursesSelectSubjectSortOrder.NAME_ASCENDING);
 
     const { setRegisteredCoursesState } = useRegisteredCoursesContext();
-    const { alertSuccess } = useAlert();
 
 
     // Filter out null values. Some queries to course can return [null] instead of []
@@ -95,13 +92,13 @@ export default function RegisteredCoursesSelectSubjectCardContainer({ data }: { 
         >
             {
                 data.length === 0?
-                <Empty message={`No data`} />
+                <EmptyStatusView message={`No data`} />
                 :
                 filteredSortedData.length === 0?
-                <SearchEmpty message={`No course found for "${search}"`} />
+                <SearchEmptyStatusView message={`No course found for "${search}"`} />
                 :
                 filteredSortedData.map((course) => (
-                    <InfoActionAreaCard
+                    <ActionAreaCard
                         key={course.kod_subjek}
                         title={course.nama_subjek}
                         tableData={[
@@ -111,14 +108,11 @@ export default function RegisteredCoursesSelectSubjectCardContainer({ data }: { 
                             { label: 'Section: ', value: course.seksyen || 'N/A' },
                         ]}
                         onClick={()=> {
-                            setRegisteredCoursesState(prev => {
-                                return {
-                                    ...prev,
-                                    progress: RegisteredCoursesProgress.CONFIRMATION,
-                                    pelajarSubjek: course,
-                                };
-                            });
-                            alertSuccess(`Selected ${course.kod_subjek} - ${course.nama_subjek}`);
+                            setRegisteredCoursesState(prev => ({
+                                ...prev,
+                                progress: RegisteredCoursesProgress.CONFIRMATION,
+                                pelajarSubjek: course,
+                            }));
                         }}
                     />
                 ))

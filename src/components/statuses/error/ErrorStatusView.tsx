@@ -4,17 +4,17 @@ import { MdOutlineError } from 'react-icons/md';
 
 
 
-export interface IErrorPageProps {
+export interface IErrorStatusViewProps {
     title?: string;
     message?: string;
 }
 
 
 
-export default function ErrorPage ({
+export default function ErrorStatusView ({
     title = "Error",
     message = "An error had occurred.",
-}: IErrorPageProps) {
+}: IErrorStatusViewProps) {
 
     return <>
         <Box className='flex flex-col items-center p-6'>

@@ -1,8 +1,7 @@
 
 import { Button, DialogActions, DialogContent, } from "@mui/material";
 import SelectCourseCardContainer from "./SelectCourseCardContainer";
-import ErrorPage from "../../../components/statusviews/error/ErrorPage";
-import Loading from "../../../components/statusviews/loading/Loading";
+import { ErrorStatusView, LoadingStatusView } from "../../../components/statuses";
 
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useFetchSubjekSeksyen } from "../../../hooks/query/useFetchSubjekSeksyen";
@@ -29,8 +28,8 @@ export default function SelectSessionSemesterView() {
     
     return <>
         <DialogContent className='pt-2'>
-            { isLoading && <Loading message='Retrieving session/semester...' /> }
-            { error && <ErrorPage message="Cannot retrieve session/semester." /> }
+            { isLoading && <LoadingStatusView message='Retrieving session/semester...' /> }
+            { error && <ErrorStatusView message="Cannot retrieve session/semester." /> }
             { data && <SelectCourseCardContainer data={data} /> }
         </DialogContent>
 

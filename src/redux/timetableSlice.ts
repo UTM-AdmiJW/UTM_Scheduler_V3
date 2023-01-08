@@ -74,6 +74,12 @@ export const timetableSlice = createSlice({
             state.timetables[timetableId].editableCourses[course.id] = course;
 
             state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
+        },
+        updateCourse(state, action: PayloadAction<{ timetableId: string, course: IEditableCourse }>) {
+            const { timetableId, course } = action.payload;
+            state.timetables[timetableId].editableCourses[course.id] = course;
+
+            state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
         }
     }
 });

@@ -1,9 +1,8 @@
 
 import { Box, Button, DialogActions, DialogContent, Typography } from "@mui/material";
-import TimeInfo from "../../../components/infocard/TimeInfo";
-import InfoActionAreaCard from "../../../components/infocard/InfoActionAreaCard";
-import Loading from "../../../components/statusviews/loading/Loading";
-import ErrorPage from "../../../components/statusviews/error/ErrorPage";
+import TimeInfo from "../../../components/card/TimeInfo";
+import ActionAreaCard from "../../../components/card/ActionAreaCard";
+import { ErrorStatusView, LoadingStatusView } from '../../../components/statuses';
 
 import { useRegisteredCoursesContext } from "../../../hooks/context/useRegisteredCoursesContext";
 import { useAlert } from "../../../hooks/useAlert";
@@ -81,17 +80,17 @@ export default function CourseCatalogConfirmView({ timetable }: { timetable: ITi
 
             {
                 isLoading?
-                <Loading message='Loading course info...' />
+                <LoadingStatusView message='Loading course info...' />
                 :
                 error?
-                <ErrorPage message='Error loading course info.' />
+                <ErrorStatusView message='Error loading course info.' />
                 :
                 <>
                 <Typography className='mb-2 font-light'>
                     The following will be added to your timetable:
                 </Typography>
 
-                <InfoActionAreaCard
+                <ActionAreaCard
                     title={ course?.nama_subjek }
                     tableData={[
                         { label: 'Subject Code', value: course?.kod_subjek },

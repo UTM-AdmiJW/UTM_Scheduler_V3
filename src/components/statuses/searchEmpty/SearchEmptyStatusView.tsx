@@ -3,12 +3,12 @@ import { Box, Paper, Typography } from "@mui/material";
 import { MdSearchOff } from "react-icons/md";
 
 
-export interface ISearchEmptyProps {
+export interface ISearchEmptyStatusViewProps {
     message: string;
 }
 
 
-export default function SearchEmpty({ message }: ISearchEmptyProps) {
+export default function SearchEmptyStatusView({ message }: ISearchEmptyStatusViewProps) {
 
     return <>
         <Paper variant='outlined' className='py-9 mb-5'>

@@ -37,8 +37,7 @@ export default function RegisteredCoursesLoginView() {
             <BsPersonXFill className='text-5xl text-gray-400' />
 
             <Typography className='text-center text-gray-400 mt-2 mb-4 font-extralight'>
-                You must be logged in in order to view your registered <br/>
-                courses using your matric number.
+                You must be logged in. We need your matric number<br/> to retrieve your registered courses.
             </Typography>
 
             <Button variant='contained' color='primary' onClick={handleLoginButton}>

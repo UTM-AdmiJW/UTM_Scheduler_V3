@@ -1,8 +1,7 @@
 
 import { Button, DialogActions, DialogContent, } from "@mui/material";
 import RegisteredCoursesSelectSubjectCardContainer from "./RegisteredCoursesSelectSubjectCardContainer";
-import ErrorPage from "../../../components/statusviews/error/ErrorPage";
-import Loading from "../../../components/statusviews/loading/Loading";
+import { ErrorStatusView, LoadingStatusView } from '../../../components/statuses';
 
 import { useStudentRedux } from "../../../hooks/redux/useStudentRedux";
 import { useFetchPelajarSubjek } from "../../../hooks/query/useFetchPelajarSubjek";
@@ -20,8 +19,8 @@ export default function RegisteredCourseSelectSubjectView() {
     
     return <>
         <DialogContent className='pt-2'>
-            { isLoading && <Loading message='Retrieving registered courses...' /> }
-            { error && <ErrorPage message="Cannot retrieve registered courses." /> }
+            { isLoading && <LoadingStatusView message='Retrieving registered courses...' /> }
+            { error && <ErrorStatusView message="Cannot retrieve registered courses." /> }
             { data && <RegisteredCoursesSelectSubjectCardContainer data={data} /> }
         </DialogContent>
 
