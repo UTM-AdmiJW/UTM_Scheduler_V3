@@ -10,11 +10,11 @@ import NotFoundIcon from "./NotFoundIcon";
 //404 Not Found Page
 
 export default function NotFoundPage() {
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
-const goBack = () => {
-    navigate(-1);
-}
+    const goBack = () => {
+        navigate(-1);
+    }
 
     return <>
         <Box className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-16">
