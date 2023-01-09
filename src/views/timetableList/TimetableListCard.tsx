@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, Typography } from "@mui/material";
 
 import { BsFillTrashFill, BsTable } from 'react-icons/bs';
@@ -6,6 +5,7 @@ import { BsFillTrashFill, BsTable } from 'react-icons/bs';
 import type { ITimetable } from "../../model/domain/ITimetable";
 
 import { useAlert } from "../../hooks/useAlert";
+import { useNavigate } from "react-router-dom";
 import { useDialog } from "../../hooks/useDialog";
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 

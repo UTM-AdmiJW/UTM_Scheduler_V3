@@ -10,7 +10,7 @@ import { TimetableWeekendType } from "../../enums/TimetableWeekendType";
 import { MdExpandMore } from "react-icons/md";
 import { AiOutlineTable } from "react-icons/ai";
 
-import { enumToMenuItem, hoursToMenuItem } from "../../util/menuUtils";
+import { enumToMenuItem, hoursMenuItem } from "../../util/selectUtils";
 import HookFormSwitch from "../../components/form/HookFormSwitch";
 
 
@@ -82,7 +82,7 @@ export default function ExportConfigurationGridAccordion({
             >
                 <Box className='flex flex-col'>
                     <HookFormSelect
-                        menuItems={ hoursToMenuItem() }
+                        menuItems={ hoursMenuItem }
                         hookFormProps={{
                             name: 'visibleTimeRangeStart',
                             control,
@@ -98,7 +98,7 @@ export default function ExportConfigurationGridAccordion({
                     <span className='my-3 text-center'>To</span>
 
                     <HookFormSelect
-                        menuItems={ hoursToMenuItem() }
+                        menuItems={ hoursMenuItem }
                         hookFormProps={{
                             name: 'visibleTimeRangeEnd',
                             control,

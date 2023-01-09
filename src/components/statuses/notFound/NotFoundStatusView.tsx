@@ -29,10 +29,10 @@ export default function NotFoundStatusView({
                 <NotFoundIcon />
                 
                 <p className="my-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl">
-                    Not Found
+                    { title }
                 </p>
                 <p className="mb-4 text-lg font-extralight text-gray-500 ">
-                    Sorry, we can't find that page. You'll find lots to explore on the home page. 
+                    { message }
                 </p>
                 
                 <Box className="py-4">
