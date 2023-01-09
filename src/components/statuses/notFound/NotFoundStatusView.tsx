@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import NotFoundIcon from "./NotFoundIcon";
 
@@ -17,6 +17,11 @@ export default function NotFoundStatusView({
     message = "Sorry, we can't find that page. You'll find lots to explore on the home page." 
 }: INotFoundStatusViewProps) {
 
+    const navigate = useNavigate();
+
+    const goBack = () => {
+        navigate(-1);
+    }
 
     return <>
         <Box className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-16">
@@ -30,11 +35,17 @@ export default function NotFoundStatusView({
                     Sorry, we can't find that page. You'll find lots to explore on the home page. 
                 </p>
                 
-                <Link to="/" >
+                <Box className="py-4">
                     <Button variant="contained" color="error">
-                        Go to Home
+                        Back Previous Page
                     </Button>
-                </Link>
+
+                    <Link to="/" className="pl-2">
+                        <Button variant="contained" color="error">
+                            Home Page
+                            </Button>
+                        </Link>
+                </Box>
             </Box>
         </Box>
     </>;
