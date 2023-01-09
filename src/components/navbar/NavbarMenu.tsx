@@ -5,6 +5,7 @@ import { IconButton, Tooltip, Menu } from "@mui/material";
 import { AiFillNotification } from 'react-icons/ai';
 import { MdHelpCenter } from 'react-icons/md';
 import { FaUserCircle } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 
 
 import Profile from "./Profile";
@@ -22,6 +23,8 @@ export default function NavbarMenu() {
         setProfileAnchorElem(null);
     }
 
+    const navigate = useNavigate();
+
 
 
 
@@ -33,6 +36,7 @@ export default function NavbarMenu() {
                     size="large"
                     color="inherit"
                     aria-label="tutorial"
+
                 >
                     <MdHelpCenter fontSize='x-large' />
                 </IconButton>
@@ -44,6 +48,7 @@ export default function NavbarMenu() {
                     size="large"
                     color="inherit"
                     aria-label="announcements"
+                    onClick={ () => navigate('/announcements') }
                 >
                     <AiFillNotification fontSize='x-large' />
                 </IconButton>
