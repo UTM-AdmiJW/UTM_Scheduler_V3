@@ -4,7 +4,7 @@ import HookFormSelect from "../../components/form/HookFormSelect";
 import HookFormSwitch from "../../components/form/HookFormSwitch";
 
 import { TimetableWeekendTypeMenuItems } from "../../enums/";
-import type { Control } from "react-hook-form";
+import type { Control, UseFormGetValues } from "react-hook-form";
 import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
 
 import { MdExpandMore } from "react-icons/md";
@@ -16,12 +16,21 @@ import { getMenuItemsfromIMenuItems, hoursMenuItem } from "../../util/menuItemUt
 
 interface IExportConfigurationGridAccordionProps {
     control: Control<ITimetableExportConfig, any>;
+    getValues: UseFormGetValues<ITimetableExportConfig>;
 }
 
 
 export default function ExportConfigurationGridAccordion({ 
-    control 
+    control, 
+    getValues,
 }: IExportConfigurationGridAccordionProps) {
+
+
+    const validateVisibleTimeRange = ()=> {
+        const beginTime = getValues(`visibleTimeRangeStart`);
+        const endTime = getValues(`visibleTimeRangeEnd`);
+        if (beginTime >= endTime) return "Visible time range start time must be before end time";
+    }
 
     return <>
     <Accordion className="mb-3">
@@ -85,6 +94,7 @@ export default function ExportConfigurationGridAccordion({
                         hookFormProps={{
                             name: 'visibleTimeRangeStart',
                             control,
+                            rules: { validate: validateVisibleTimeRange }
                         }}
                         textFieldProps={{
                             label: 'Starting time',
@@ -101,6 +111,7 @@ export default function ExportConfigurationGridAccordion({
                         hookFormProps={{
                             name: 'visibleTimeRangeEnd',
                             control,
+                            rules: { validate: validateVisibleTimeRange }
                         }}
                         textFieldProps={{
                             label: 'End time',
