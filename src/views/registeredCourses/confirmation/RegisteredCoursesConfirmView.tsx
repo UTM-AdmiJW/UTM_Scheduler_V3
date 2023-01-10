@@ -11,11 +11,11 @@ import { useTimetableRedux } from "../../../hooks/redux/useTimetableRedux";
 import { useFetchSubjekSeksyen } from "../../../hooks/query/useFetchSubjekSeksyen";
 import { useFetchJadualSubjek } from "../../../hooks/query/useFetchJadualSubjek";
 
-import { RegisteredCoursesProgress } from "../../../enums/RegisteredCoursesProgress";
+import { RegisteredCoursesProgress } from "../../../enums/";
 
 import type { ITimetable } from "../../../model/domain/ITimetable";
 
-import { combineIJadualDTO, convertIRegisteredCourseStateToIEditableCourse } from "../../../util/timetableUtils";
+import { combineIJadualDTO, convertIRegisteredCourseStateToIEditableCourse } from "../../../util/timeUtils";
 
 
 

@@ -2,15 +2,13 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import ExportConfigurationCard from "./ExportConfigurationCard";
 import HookFormSelect from "../../components/form/HookFormSelect";
 
+import { TimetableThemeMenuItems, TimetableOrientationMenuItems } from "../../enums/";
 import type { Control } from "react-hook-form";
 import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
 
-import { TimetableTheme } from "../../enums/TimetableTheme";
-import { TimetableOrientation } from "../../enums/TimetableOrientation";
-
 import { MdExpandMore, MdPalette } from "react-icons/md";
 
-import { enumToMenuItem } from "../../util/selectUtils";
+import { getMenuItemsfromIMenuItems } from "../../util/menuItemUtils";
 
 
 
@@ -49,7 +47,7 @@ export default function ExportConfigurationAppearanceAccordion({
                         fullWidth: true,
                         required: true,
                     }}
-                    menuItems={ enumToMenuItem(TimetableTheme) }
+                    menuItems={ getMenuItemsfromIMenuItems(TimetableThemeMenuItems) }
                 />
             </ExportConfigurationCard>
 
@@ -69,7 +67,7 @@ export default function ExportConfigurationAppearanceAccordion({
                         fullWidth: true,
                         required: true,
                     }}
-                    menuItems={ enumToMenuItem(TimetableOrientation) }
+                    menuItems={ getMenuItemsfromIMenuItems(TimetableOrientationMenuItems) }
                 />
             </ExportConfigurationCard>
             

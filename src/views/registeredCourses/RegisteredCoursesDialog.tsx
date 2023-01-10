@@ -10,7 +10,7 @@ import { BsBookshelf } from "react-icons/bs";
 
 import { useRegisteredCoursesContext } from "../../hooks/context/useRegisteredCoursesContext";
 
-import { RegisteredCoursesProgress } from "../../enums/RegisteredCoursesProgress";
+import { RegisteredCoursesProgress } from "../../enums/";
 import type { ITimetable } from "../../model/domain/ITimetable";
 
 

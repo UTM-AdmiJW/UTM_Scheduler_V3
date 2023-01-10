@@ -10,10 +10,11 @@ import { useDialog } from "../../../hooks/useDialog";
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
 import { useFetchJadualSubjekManyWithSeksyen } from "../../../hooks/query/useFetchJadualSubjekWithSeksyen";
 
-import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
+import { CourseCatalogProgress } from "../../../enums/";
 import type { IJadualSubjek_SeksyenJadual } from "../../../model/DTO/JadualSubjek/IJadualSubjek_SeksyenJadual";
 
-import { combineIJadualDTO } from "../../../util/timetableUtils";
+import { combineIJadualDTO } from "../../../util/timeUtils";
+import { stringEnumToIMenuItems } from "../../../util/menuItemUtils";
 
 
 
@@ -127,7 +128,7 @@ export default function SelectSectionView() {
                     searchOptions={{ searchFn }}
                     cardRenderFn={cardRenderFn}
                     sortOptions={{ 
-                        sortEnum: SelectSectionSortOrder,
+                        sortMenuItems: stringEnumToIMenuItems(SelectSectionSortOrder),
                         initialSortBy: SelectSectionSortOrder.SECTION_ASCENDING,
                         sortFn
                     }}

@@ -3,8 +3,9 @@ import { Box, Paper, PaperProps, TextField } from "@mui/material";
 import { EmptyStatusView, SearchEmptyStatusView } from "../statuses";
 
 import type { TextFieldProps } from '@mui/material';
+import { IMenuItem } from "../../types/IMenuItem";
 
-import { enumToMenuItem } from "../../util/selectUtils";
+import { getMenuItemsfromIMenuItems } from "../../util/menuItemUtils";
 
 
 /**
@@ -27,13 +28,13 @@ import { enumToMenuItem } from "../../util/selectUtils";
  * @param [sortTextFieldProps] Props to be passed to the sort TextField. Optional.
  * @param [searchTextFieldProps] Props to be passed to the search TextField. Optional.
  */
-interface ICardContainerProps<IData, ISortEnum> {
+interface ICardContainerProps<IData, ISortEnum extends string | number> {
 
     // Control panel params
     buttons?: React.ReactNode,
     prefilterFn?: (a: IData) => boolean,
     sortOptions?: {
-        sortEnum: Record<string, ISortEnum>,
+        sortMenuItems: IMenuItem<ISortEnum>[],
         sortFn: (a: IData, b: IData, sortOrder: ISortEnum) => number,
         initialSortBy: ISortEnum,
     },
@@ -42,7 +43,7 @@ interface ICardContainerProps<IData, ISortEnum> {
     }
 
     // Data
-    cardRenderFn: (data: IData) => React.ReactNode,
+    cardRenderFn: (data: IData, index: number, array: IData[]) => React.ReactNode,
     data: IData[],
 
     // Status display
@@ -61,7 +62,7 @@ interface ICardContainerProps<IData, ISortEnum> {
  * A reusable component that features a control panel to search, sort and place buttons to control the data.
  * Below the control panel is a grid container to display the data rendered by the cardRenderFn.
  */
-export default function CardContainer<IData, ISortEnum>({ 
+export default function CardContainer<IData, ISortEnum extends string | number>({ 
     buttons,
     prefilterFn,
     sortOptions,
@@ -110,7 +111,7 @@ export default function CardContainer<IData, ISortEnum>({
                         onChange={(e)=> setSortOrder(e.target.value as ISortEnum)}
                         { ...sortTextFieldProps }
                     >
-                        { enumToMenuItem( sortOptions.sortEnum ) }
+                        { getMenuItemsfromIMenuItems( sortOptions.sortMenuItems ) }
                     </TextField>
                 }
 

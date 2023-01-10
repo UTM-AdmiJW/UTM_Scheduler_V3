@@ -2,10 +2,10 @@ import { Paper, Typography } from "@mui/material";
 
 import { AiOutlineFieldTime } from "react-icons/ai";
 
-import { DayOfWeek } from "../../enums/DayOfWeek";
+import { DayOfWeek } from "../../enums/";
 
 
-import { mapDayCodeToDayOfWeek, mapDayOfWeekToString, mapTimeCodeTo12Hour } from "../../util/timetableUtils";
+import { convertDayCodeToDayOfWeek, convertDayOfWeekToString, convertTimeCodeTo12Hour } from "../../util/timeUtils";
 
 
 
@@ -20,7 +20,6 @@ interface ITimeInfoProps {
 
 export default function TimeInfo({ beginTime, endTime, dayOfWeek, venue }: ITimeInfoProps) {
 
-
     return <>
         <Paper
             variant='outlined'
@@ -28,10 +27,10 @@ export default function TimeInfo({ beginTime, endTime, dayOfWeek, venue }: ITime
         >
             <AiOutlineFieldTime className='inline mr-1' />
             <Typography className='inline text-xs font-light'>
-                <b>{ mapDayOfWeekToString(mapDayCodeToDayOfWeek(dayOfWeek)) }</b>
+                <b>{ convertDayOfWeekToString(convertDayCodeToDayOfWeek(dayOfWeek)) }</b>
                 ,
-                <b> { mapTimeCodeTo12Hour(beginTime) } </b> - 
-                <b> { mapTimeCodeTo12Hour(endTime) }</b>
+                <b> { convertTimeCodeTo12Hour(beginTime) } </b> - 
+                <b> { convertTimeCodeTo12Hour(endTime) }</b>
                 
                 { 
                     venue && 

@@ -1,6 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
 
-// Utilities for working with timetable data
+/**
+ * This file contains utility functions for working with time in the application,
+ * such as Day of Week conversion from number to string,
+ * or time code (02) to actual time: 8AM
+ */
+
 
 import type { IJadualSubjekDTO } from "../model/DTO/JadualSubjek/IJadualSubjekDTO";
 import type { IJadualSubjek_Combine } from "../model/DTO/JadualSubjek/IJadualSubjek_Combine";
@@ -8,12 +13,16 @@ import type { ITime } from "../model/domain/ITime";
 import type { IEditableCourse } from "../model/domain/IEditableCourse";
 import type { ICourseCatalogState } from "../model/domain/ICourseCatalogState";
 
-import { DayOfWeek } from "../enums/DayOfWeek";
+import { DayOfWeek } from "../enums";
 import { IRegisteredCoursesState } from "../model/domain/IRegisteredCoursesState";
 import { ISubjekSeksyen_SeksyenDTO } from "../model/DTO/SubjekSeksyen/ISubjekSeksyen_SeksyenDTO";
 
 
-// Converts 24 hour time to 12 hour time, with AM/PM
+//============================
+// Time conversion
+//===========================
+
+// Converts 24 hour time to 12 hour time, with AM/PM suffix
 export function convert24HourTo12Hour(time: number): string {
     if (time > 23 || time < 0) throw new Error("Time is out of range: " + time);
     return (time % 12 || 12) + `${ time < 12? 'AM': 'PM' }`
@@ -21,35 +30,41 @@ export function convert24HourTo12Hour(time: number): string {
 
 
 
+
 // UTM represent time slots as 02 = 8:00am, 03 = 9:00am, 04 = 10:00am, etc.
 // This function converts UTM time slot to 24-hour time 
-export function mapTimeCodeTo24Hour(time: number): number {
+export function convertTimeCodeTo24Hour(time: number): number {
     if (time > 17) throw new Error("Time code is out of range");
     return time + 6;
 }
 
 
 // This function converts UTM time slot to 12-hour time with AM/PM
-export function mapTimeCodeTo12Hour(time: number): string {
-    return convert24HourTo12Hour(mapTimeCodeTo24Hour(time));
+export function convertTimeCodeTo12Hour(time: number): string {
+    return convert24HourTo12Hour(convertTimeCodeTo24Hour(time));
 }
 
 
+
+//============================
+// Day of Week 
+//===========================
+
 // This function converts the dayOfWeek numbers into DayOfWeek enum, where 1 = Sunday, 2 = Monday, etc.
-export function mapDayCodeToDayOfWeek(day: number): DayOfWeek {
+export function convertDayCodeToDayOfWeek(day: number): DayOfWeek {
     if (day > 7) throw new Error("Day code is out of range");
     return day;
 }
 
 
 // This function converts the dayOfWeek enum into a string, where 1 = Sunday, 2 = Monday, etc.
-export function mapDayOfWeekToString(day: DayOfWeek): string {
-    if (day === DayOfWeek.Sunday) return "Sunday";
-    if (day === DayOfWeek.Monday) return "Monday";
-    if (day === DayOfWeek.Tuesday) return "Tuesday";
-    if (day === DayOfWeek.Wednesday) return "Wednesday";
-    if (day === DayOfWeek.Thursday) return "Thursday";
-    if (day === DayOfWeek.Friday) return "Friday";
+export function convertDayOfWeekToString(day: DayOfWeek): string {
+    if (day === DayOfWeek.SUNDAY) return "Sunday";
+    if (day === DayOfWeek.MONDAY) return "Monday";
+    if (day === DayOfWeek.TUESDAY) return "Tuesday";
+    if (day === DayOfWeek.WEDNESDAY) return "Wednesday";
+    if (day === DayOfWeek.THURSDAY) return "Thursday";
+    if (day === DayOfWeek.FRIDAY) return "Friday";
     return "Saturday";
 }
 
@@ -113,9 +128,9 @@ export function combineIJadualDTO(jadual: IJadualSubjekDTO[]): IJadualSubjek_Com
 export function convertICombinedJadualDTOToITime(jadual: IJadualSubjek_Combine): ITime {
     return {
         id: jadual.id_jws,
-        dayOfWeek: mapDayCodeToDayOfWeek(jadual.hari),
-        beginTime: mapTimeCodeTo24Hour(jadual.masa_mula),
-        endTime: mapTimeCodeTo24Hour(jadual.masa_tamat),
+        dayOfWeek: convertDayCodeToDayOfWeek(jadual.hari),
+        beginTime: convertTimeCodeTo24Hour(jadual.masa_mula),
+        endTime: convertTimeCodeTo24Hour(jadual.masa_tamat),
         venue: jadual.ruang.nama_ruang_singkatan
     }
 }

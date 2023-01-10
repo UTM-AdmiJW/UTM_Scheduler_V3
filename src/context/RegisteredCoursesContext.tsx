@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 import { useState } from "react";
 
-import { RegisteredCoursesProgress } from "../enums/RegisteredCoursesProgress";
+import { RegisteredCoursesProgress } from "../enums/";
 import type { IRegisteredCoursesState } from "../model/domain/IRegisteredCoursesState";
 
 

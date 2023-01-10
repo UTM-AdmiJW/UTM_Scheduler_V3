@@ -2,6 +2,7 @@
 import { Box, Button, Container, Tooltip, Typography } from "@mui/material";
 import CardContainer from "../../components/card/CardContainer";
 import TimetableListCard from "./TimetableListCard";
+import { EmptyStatusView } from "../../components/statuses";
 
 import { AiOutlinePlus } from 'react-icons/ai';
 import { MdTableView } from 'react-icons/md';
@@ -10,8 +11,9 @@ import { useAlert } from "../../hooks/useAlert";
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 import { useStudentRedux } from "../../hooks/redux/useStudentRedux";
 
-import { EmptyStatusView } from "../../components/statuses";
-import { ITimetable } from "../../model/domain/ITimetable";
+import type { ITimetable } from "../../model/domain/ITimetable";
+
+import { stringEnumToIMenuItems } from "../../util/menuItemUtils";
 
 
 
@@ -21,8 +23,9 @@ enum TimetableListSortOrder {
     CREATED_ASC = 'Created (Oldest)',
     CREATED_DESC = 'Created (Newest)',
     MODIFIED_ASC = 'Modified (Oldest)',
-    MODIFIED_DESC = 'Modified (Newest)',
+    MODIFIED_DESC = 'Modified (Newest)'
 }
+
 
 
 
@@ -97,7 +100,7 @@ export default function TimetableListPage() {
                 cardRenderFn={(timetable)=> <TimetableListCard key={timetable.id} timetable={timetable} />}
                 searchOptions={{ searchFn, }}
                 sortOptions={{
-                    sortEnum: TimetableListSortOrder,
+                    sortMenuItems: stringEnumToIMenuItems(TimetableListSortOrder),
                     initialSortBy: TimetableListSortOrder.NAME_ASC,
                     sortFn,
                 }}

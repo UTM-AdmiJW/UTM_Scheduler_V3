@@ -11,8 +11,10 @@ import { useAlert } from "../../../hooks/useAlert";
 
 import { BsCode } from "react-icons/bs";
 
-import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
+import { CourseCatalogProgress } from "../../../enums/";
 import type { ISubjekSeksyenDTO } from "../../../model/DTO/SubjekSeksyen/ISubjekSeksyenDTO";
+
+import { stringEnumToIMenuItems } from "../../../util/menuItemUtils";
 
 
 
@@ -80,7 +82,7 @@ export default function SelectSessionSemesterView() {
                     prefilterFn={prefilterFn}
                     searchOptions={{ searchFn }}
                     sortOptions={{
-                        sortEnum: SelectCourseSortOrder,
+                        sortMenuItems: stringEnumToIMenuItems(SelectCourseSortOrder),
                         initialSortBy: SelectCourseSortOrder.NAME_ASCENDING,
                         sortFn
                     }}

@@ -1,9 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import type { ITimetable } from "../domain/ITimetable";
 
-import { TimetableTheme } from "../../enums/TimetableTheme";
-import { TimetableWeekendType } from "../../enums/TimetableWeekendType";
-import { TimetableOrientation } from "../../enums/TimetableOrientation";
+import { TimetableTheme, TimetableWeekendType, TimetableOrientation } from "../../enums/";
 
 
 // This is the default timetable template that is used when a new timetable is created

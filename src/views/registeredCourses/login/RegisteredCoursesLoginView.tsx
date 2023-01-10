@@ -7,7 +7,7 @@ import { useStudentRedux } from '../../../hooks/redux/useStudentRedux';
 import { useRegisteredCoursesContext } from '../../../hooks/context/useRegisteredCoursesContext';
 
 import { BsPersonXFill } from 'react-icons/bs';
-import { RegisteredCoursesProgress } from '../../../enums/RegisteredCoursesProgress';
+import { RegisteredCoursesProgress } from '../../../enums/';
 
 
 

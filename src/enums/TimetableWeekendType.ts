@@ -1,5 +1,13 @@
+import { IMenuItem } from "../types/IMenuItem";
+
 
 export enum TimetableWeekendType {
-    SATSUN = "Sat/Sun",
-    FRISAT = "Fri/Sat",
-}
+    SATSUN = 0,
+    FRISAT = 1
+};
+
+
+export const TimetableWeekendTypeMenuItems: IMenuItem<TimetableWeekendType>[] = [
+    { label: "Sat/Sun", value: TimetableWeekendType.SATSUN },
+    { label: "Fri/Sat", value: TimetableWeekendType.FRISAT }
+]

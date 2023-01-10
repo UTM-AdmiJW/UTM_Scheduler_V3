@@ -9,12 +9,17 @@ import { NotFoundStatusView } from "../../components/statuses";
 
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 
-import { TimetablePageTabs } from "../../enums/TimetablePageTabs";
-
 import { MdClass, MdArrowBack } from "react-icons/md";
 import { FaFileExport, FaInfoCircle } from "react-icons/fa";
 
 
+
+
+enum TimetablePageTabs {
+    INFO = 0,
+    COURSES = 1,
+    EXPORT = 2,
+}
 
 
 export default function TimetablePage() {
@@ -22,7 +27,7 @@ export default function TimetablePage() {
     const { id } = useParams();
 
     // Using ?tab=0 in the url will set the tab to first tab, and so on
-    const [searchParams] = useSearchParams();
+    const [ searchParams, setSearchParams ] = useSearchParams();
     const tabParam = parseInt(searchParams.get('tab') || '0');
     const [ tab, setTab ] = useState<TimetablePageTabs>( tabParam );
 
@@ -32,6 +37,7 @@ export default function TimetablePage() {
 
     const handleTabChange = (e: React.SyntheticEvent, newValue: number) => {
         setTab(newValue);
+        setSearchParams({ tab: newValue.toString() });
     };
 
 

@@ -1,5 +1,5 @@
 
-import { Box, Button, Card, CardContent, DialogActions, DialogContent, Typography } from "@mui/material";
+import { Box, Button, DialogActions, DialogContent, Typography } from "@mui/material";
 import TimeInfo from "../../../components/card/TimeInfo";
 
 import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalogContext";
@@ -7,11 +7,11 @@ import { useAlert } from "../../../hooks/useAlert";
 import { useDialog } from "../../../hooks/useDialog";
 import { useTimetableRedux } from "../../../hooks/redux/useTimetableRedux";
 
-import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
+import { CourseCatalogProgress } from "../../../enums/";
 
 
 import type { ITimetable } from "../../../model/domain/ITimetable";
-import { convertICourseCatalogStateToIEditableCourse } from "../../../util/timetableUtils";
+import { convertICourseCatalogStateToIEditableCourse } from "../../../util/timeUtils";
 import ActionAreaCard from "../../../components/card/ActionAreaCard";
 
 

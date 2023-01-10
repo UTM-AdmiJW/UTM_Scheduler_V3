@@ -1,17 +1,16 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box } from "@mui/material";
 import ExportConfigurationCard from "./ExportConfigurationCard";
 import HookFormSelect from "../../components/form/HookFormSelect";
+import HookFormSwitch from "../../components/form/HookFormSwitch";
 
+import { TimetableWeekendTypeMenuItems } from "../../enums/";
 import type { Control } from "react-hook-form";
 import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
-
-import { TimetableWeekendType } from "../../enums/TimetableWeekendType";
 
 import { MdExpandMore } from "react-icons/md";
 import { AiOutlineTable } from "react-icons/ai";
 
-import { enumToMenuItem, hoursMenuItem } from "../../util/selectUtils";
-import HookFormSwitch from "../../components/form/HookFormSwitch";
+import { getMenuItemsfromIMenuItems, hoursMenuItem } from "../../util/menuItemUtils";
 
 
 
@@ -42,7 +41,7 @@ export default function ExportConfigurationGridAccordion({
                 tooltip="Select the weekends. Some states, like Johor, have weekends on Fri/Sat instead of Sat/Sun."
             >
                 <HookFormSelect
-                    menuItems={ enumToMenuItem(TimetableWeekendType) }
+                    menuItems={ getMenuItemsfromIMenuItems(TimetableWeekendTypeMenuItems) }
                     hookFormProps={{
                         name: 'weekendType',
                         control,

@@ -10,11 +10,13 @@ import { useDialog } from "../../hooks/useDialog";
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
+import type { IEditableCourse } from "../../model/domain/IEditableCourse";
 
 import { AiOutlineCloudServer, AiOutlinePlus, AiOutlineSearch } from 'react-icons/ai';
 import { MdPersonSearch } from 'react-icons/md';
 
-import { IEditableCourse } from "../../model/domain/IEditableCourse";
+import { stringEnumToIMenuItems } from "../../util/menuItemUtils";
+
 
 
 
@@ -111,7 +113,7 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
             searchOptions={{ searchFn }}
             containerProps={{ sx: { gridTemplateColumns: 'repeat( auto-fit, minmax(175px, 325px) )' } }}
             sortOptions={{
-                sortEnum: EditableCourseListSortOrder,
+                sortMenuItems: stringEnumToIMenuItems(EditableCourseListSortOrder),
                 initialSortBy: EditableCourseListSortOrder.NAME_ASC,
                 sortFn
             }}

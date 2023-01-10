@@ -10,7 +10,7 @@ import { AiFillDatabase } from "react-icons/ai";
 
 import { useCourseCatalogContext } from "../../hooks/context/useCourseCatalogContext";
 
-import { CourseCatalogProgress } from "../../enums/CourseCatalogProgress";
+import { CourseCatalogProgress } from "../../enums/";
 import type { ITimetable } from "../../model/domain/ITimetable";
 
 

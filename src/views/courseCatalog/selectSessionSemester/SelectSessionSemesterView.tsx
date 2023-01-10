@@ -4,7 +4,7 @@ import { ErrorStatusView, LoadingStatusView } from "../../../components/statuses
 import CardContainer from "../../../components/card/CardContainer";
 import ActionAreaCard from "../../../components/card/ActionAreaCard";
 
-import { CourseCatalogProgress } from "../../../enums/CourseCatalogProgress";
+import { CourseCatalogProgress } from "../../../enums/";
 import type { ISesiSemesterDTO } from "../../../model/DTO/SesiSemester/ISesiSemesterDTO";
 
 import { useDialog } from "../../../hooks/useDialog";
@@ -13,6 +13,7 @@ import { useCourseCatalogContext } from "../../../hooks/context/useCourseCatalog
 
 import { AiTwotoneCalendar } from "react-icons/ai";
 
+import { stringEnumToIMenuItems } from "../../../util/menuItemUtils";
 
 
 
@@ -59,7 +60,7 @@ export default function SelectSessionSemesterView() {
                     searchOptions={{ searchFn }}
                     data={ data }
                     sortOptions={{
-                        sortEnum: SelectSessionSemesteSortOrder,
+                        sortMenuItems: stringEnumToIMenuItems(SelectSessionSemesteSortOrder),
                         initialSortBy: SelectSessionSemesteSortOrder.DATE_START_DESCENDING,
                         sortFn
                     }}

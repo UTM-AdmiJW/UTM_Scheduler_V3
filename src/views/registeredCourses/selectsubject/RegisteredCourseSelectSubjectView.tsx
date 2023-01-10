@@ -9,9 +9,10 @@ import { useFetchPelajarSubjek } from "../../../hooks/query/useFetchPelajarSubje
 import { useDialog } from "../../../hooks/useDialog";
 import { useRegisteredCoursesContext } from "../../../hooks/context/useRegisteredCoursesContext";
 
-import { RegisteredCoursesProgress } from "../../../enums/RegisteredCoursesProgress";
+import { RegisteredCoursesProgress } from "../../../enums/";
 import type { IPelajarSubjekDTO } from "../../../model/DTO/PelajarSubjek/IPelajarSubjekDTO";
 
+import { stringEnumToIMenuItems } from "../../../util/menuItemUtils";
 
 
 
@@ -80,7 +81,7 @@ export default function RegisteredCourseSelectSubjectView() {
                     searchOptions={{ searchFn }}
                     data={ data }
                     sortOptions={{
-                        sortEnum: RegisteredCoursesSelectSubjectSortOrder,
+                        sortMenuItems: stringEnumToIMenuItems(RegisteredCoursesSelectSubjectSortOrder),
                         initialSortBy: RegisteredCoursesSelectSubjectSortOrder.SESSIONSEMESTER_DESCENDING,
                         sortFn
                     }}

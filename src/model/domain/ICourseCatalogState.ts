@@ -1,4 +1,4 @@
-import { CourseCatalogProgress } from "../../enums/CourseCatalogProgress";
+import { CourseCatalogProgress } from "../../enums/";
 
 import type { ISubjekSeksyen_SeksyenDTO } from "../DTO/SubjekSeksyen/ISubjekSeksyen_SeksyenDTO";
 import type { IJadualSubjek_Combine } from "../DTO/JadualSubjek/IJadualSubjek_Combine";

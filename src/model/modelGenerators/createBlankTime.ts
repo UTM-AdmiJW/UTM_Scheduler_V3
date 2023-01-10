@@ -1,6 +1,6 @@
 
 import { v4 as uuidv4 } from "uuid";
-import { DayOfWeek } from "../../enums/DayOfWeek";
+import { DayOfWeek } from "../../enums/";
 
 import type { ITime } from "../domain/ITime";
 
@@ -14,7 +14,7 @@ const blankTimeTemplate: ITime = {
     
     beginTime: 8,
     endTime: 9,
-    dayOfWeek: DayOfWeek.Sunday,
+    dayOfWeek: DayOfWeek.SUNDAY,
     venue: "",
 };
 

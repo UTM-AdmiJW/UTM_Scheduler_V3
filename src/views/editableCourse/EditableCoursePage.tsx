@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Container, Paper, Typography } from "@mui/material";
+import { Alert, Box, Button, Container, Divider, Paper, Typography } from "@mui/material";
 import EditableCourseInfoEdit from "./EditableCourseInfoEdit";
 import EditableCourseTimeEdit from "./EditableCourseTimeEdit";
 
@@ -60,7 +60,7 @@ export default function EditableCoursePage() {
                 </Button>
             </Box>
 
-            <Paper elevation={2} className='p-5'>
+            <Paper elevation={2} className='p-5 bg-gray-50'>
                 {/* Title */}
                 <Typography className='text-2xl font-light flex items-center mb-2'>
                     <AiOutlineEdit className='mr-2' />
@@ -74,6 +74,8 @@ export default function EditableCoursePage() {
 
                 {/* Course Info Edit */}
                 <EditableCourseInfoEdit control={control} />
+
+                <Divider className='my-8' />
 
                 {/* Time Sessions Edit */}
                 <EditableCourseTimeEdit control={control} />

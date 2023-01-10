@@ -1,41 +1,54 @@
 
-import { Box, Button, Paper, Typography } from "@mui/material";
-import HookFormTextField from "../../components/form/HookFormTextField";
-
-import { Control, useFieldArray } from "react-hook-form";
+import { Box, Button, Typography } from "@mui/material";
+import CardContainer from "../../components/card/CardContainer";
+import EditableCourseTimeCard from "./EditableCourseTimeCard";
 
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
 
+import { Control, useFieldArray } from "react-hook-form";
 import { useAlert } from "../../hooks/useAlert";
 
 import { AiOutlineClockCircle, AiOutlinePlus } from "react-icons/ai";
-import { EmptyStatusView } from "../../components/statuses";
 
 import createBlankTime from "../../model/modelGenerators/createBlankTime";
 
 
 
-interface IEditableCourseTimeEdit {
+
+interface IEditableCourseTimeEditProps {
     control: Control<IEditableCourse, any>;
 }
 
 
 export default function EditableCourseTimeEdit({
     control
-}: IEditableCourseTimeEdit) {
+}: IEditableCourseTimeEditProps) {
 
-    const { alertSuccess } = useAlert();
-    const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
+    const { alertWarning, alertInfo } = useAlert();
+    const { fields, append, remove } = useFieldArray({
         control,
         name: "timeList",
     });
 
 
+
     const handleAddTime = ()=> {
-        alertSuccess('Added a new class');
+        alertInfo('Added a new class');
         append(createBlankTime());
     }
 
+    const handleDeleteTime = (index: number)=> {
+        alertWarning('Deleted a class');
+        remove(index);
+    }
+
+
+    const buttons = <>
+        <Button variant='outlined' size='small' onClick={ handleAddTime }>
+            <AiOutlinePlus className='mr-2' />
+            Add
+        </Button>
+    </>;
 
 
 
@@ -46,38 +59,20 @@ export default function EditableCourseTimeEdit({
             Classes
         </Typography>
 
-        {/* Button controls */}
-        <Box className='flex gap-3 mb-3'>
-            <Button variant='outlined' size='small' onClick={ handleAddTime }>
-                <AiOutlinePlus className='mr-2' />
-                Add
-            </Button>
-        </Box>
-
-        {/* List of times */}
-        {
-            fields.length === 0?
-            <EmptyStatusView message='This course has no classes yet'>
-                <Box className='text-center mt-3'>
-                    <Button variant='outlined' size='small' onClick={ handleAddTime } className='mt-3'>
-                        <AiOutlinePlus className='mr-2' /> Add a class
-                    </Button>
-                </Box>
-            </EmptyStatusView>
-            :
-            <Paper
-                className='p-5 mb-5 grid gap-5' 
-                variant='outlined' 
-                sx={{ gridTemplateColumns: 'repeat( auto-fit, minmax(175px, 325px) )' }}
-            >
-                {
-                    fields.map((time, index)=> {
-                        return <>{ time.beginTime } - { time.endTime }</>
-                    })
-                }
-            </Paper>
-        }
-
+        <CardContainer
+            buttons={ buttons }
+            data={ fields }
+            containerProps={{ sx: { 
+                gridTemplateColumns: 'repeat( auto-fit, minmax(175px, 325px) )' 
+            }}}
+            cardRenderFn={(time, i, arr)=> (
+                <EditableCourseTimeCard 
+                    control={ control }
+                    index={ i }
+                    deleteFn={ ()=> handleDeleteTime(i) }
+                />
+            )}
+        />
     </Box>
     </>
 }

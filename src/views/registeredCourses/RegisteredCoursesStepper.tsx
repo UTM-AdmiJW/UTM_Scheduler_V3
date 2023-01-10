@@ -2,7 +2,7 @@ import { DialogContent, Step, StepLabel, Stepper } from "@mui/material";
 
 import { useRegisteredCoursesContext } from "../../hooks/context/useRegisteredCoursesContext";
 
-import { RegisteredCoursesProgress } from "../../enums/RegisteredCoursesProgress";
+import { RegisteredCoursesProgress } from "../../enums/";
 
 
 
