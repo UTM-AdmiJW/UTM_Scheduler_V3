@@ -18,12 +18,12 @@ import { MdArrowBack } from "react-icons/md";
 export default function EditableCoursePage() {
     const navigate = useNavigate();
     const { timetableId, courseId } = useParams();
-    const { alertSuccess, alertInfo } = useAlert();
+    const { alertSuccess, alertInfo, alertError } = useAlert();
 
     const { timetableState, timetableActions } = useTimetableRedux();
     const course = timetableState.timetables[timetableId!].editableCourses[courseId!];
 
-    const { control, handleSubmit, formState: { isDirty }, reset } = useForm<IEditableCourse>({
+    const { control, handleSubmit, formState: { isDirty }, reset, getValues } = useForm<IEditableCourse>({
         defaultValues: course
     });
 
@@ -41,6 +41,10 @@ export default function EditableCoursePage() {
         alertSuccess('Course saved successfully.');
     }
 
+    const onInvalid = ()=> {
+        alertError("Invalid fields. Please check your inputs.");
+    }
+
     const onReset = () => {
         reset(course);
         alertInfo('Course resetted.');
@@ -50,7 +54,7 @@ export default function EditableCoursePage() {
 
     return <>
         <Container className='pb-7'>
-        <form onSubmit={ handleSubmit(onSubmit) }>
+        <form onSubmit={ handleSubmit(onSubmit, onInvalid) }>
 
             {/* Back to timetable */}
             <Box className='flex mb-6'>
@@ -78,7 +82,7 @@ export default function EditableCoursePage() {
                 <Divider className='my-8' />
 
                 {/* Time Sessions Edit */}
-                <EditableCourseTimeEdit control={control} />
+                <EditableCourseTimeEdit control={control} getValues={getValues} />
 
 
                 {/* Buttons */}

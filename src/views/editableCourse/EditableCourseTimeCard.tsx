@@ -2,7 +2,7 @@ import { Box, Button, Card, CardActions, CardContent } from "@mui/material";
 import HookFormSelect from "../../components/form/HookFormSelect";
 import HookFormTextField from "../../components/form/HookFormTextField";
 
-import { Control, } from "react-hook-form";
+import { Control, UseFormGetValues, } from "react-hook-form";
 
 import { BsFillTrashFill } from "react-icons/bs";
 
@@ -15,15 +15,24 @@ import { getMenuItemsfromIMenuItems, hoursMenuItem } from "../../util/menuItemUt
 
 interface IEditableCourseTimeCardProps {
     control: Control<IEditableCourse, any>;
+    getValues: UseFormGetValues<IEditableCourse>;
     index: number;
     deleteFn: ()=> void;
 }
 
 export default function EditableCourseTimeCard({
     control,
+    getValues,
     index,
     deleteFn
 }: IEditableCourseTimeCardProps) {
+
+
+    const validateBeginTime = ()=> {
+        const beginTime = getValues(`timeList.${index}.beginTime`);
+        const endTime = getValues(`timeList.${index}.endTime`);
+        if (beginTime >= endTime) return "Begin time must be before end time";
+    }
 
 
     return <>
@@ -46,7 +55,8 @@ export default function EditableCourseTimeCard({
                 <HookFormSelect
                     hookFormProps={{
                         control,
-                        name: `timeList.${index}.beginTime`,
+                        name: `timeList.${index}.beginTime`, 
+                        rules: { validate: validateBeginTime }
                     }}
                     textFieldProps={{
                         label: 'Begin Time',
@@ -60,6 +70,7 @@ export default function EditableCourseTimeCard({
                     hookFormProps={{
                         control,
                         name: `timeList.${index}.endTime`,
+                        rules: { validate: validateBeginTime }
                     }}
                     textFieldProps={{
                         label: 'End Time',

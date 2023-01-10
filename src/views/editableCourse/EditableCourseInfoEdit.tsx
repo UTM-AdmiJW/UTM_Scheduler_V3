@@ -24,10 +24,12 @@ export default function EditableCourseInfoEdit({
             hookFormProps={{
                 control,
                 name: 'courseName',
+                rules: { required: 'Course Name is empty' }
             }}
             textFieldProps={{
                 label: 'Course Name',
                 fullWidth: true,
+                required: true,
             }}
         />
         <Box className="my-4" />
@@ -51,11 +53,17 @@ export default function EditableCourseInfoEdit({
                 hookFormProps={{
                     control,
                     name: 'sectionNo',
+                    rules: { 
+                        required: 'Section No is empty', 
+                        min: { value: 0, message: 'Section no cannot be less than 0'}, 
+                        max: { value: 99, message: 'Section no cannot be greater than 99' }
+                    }
                 }}
                 textFieldProps={{
                     label: 'Section No',
                     type: 'number',
                     fullWidth: true,
+                    required: true,
                     size: 'small'
                 }}
             />

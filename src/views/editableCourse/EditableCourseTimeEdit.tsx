@@ -5,7 +5,7 @@ import EditableCourseTimeCard from "./EditableCourseTimeCard";
 
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
 
-import { Control, useFieldArray } from "react-hook-form";
+import { Control, useFieldArray, UseFormGetValues } from "react-hook-form";
 import { useAlert } from "../../hooks/useAlert";
 
 import { AiOutlineClockCircle, AiOutlinePlus } from "react-icons/ai";
@@ -17,11 +17,13 @@ import createBlankTime from "../../model/modelGenerators/createBlankTime";
 
 interface IEditableCourseTimeEditProps {
     control: Control<IEditableCourse, any>;
+    getValues: UseFormGetValues<IEditableCourse>;
 }
 
 
 export default function EditableCourseTimeEdit({
-    control
+    control,
+    getValues,
 }: IEditableCourseTimeEditProps) {
 
     const { alertWarning, alertInfo } = useAlert();
@@ -67,6 +69,8 @@ export default function EditableCourseTimeEdit({
             }}}
             cardRenderFn={(time, i, arr)=> (
                 <EditableCourseTimeCard 
+                    key={ i }
+                    getValues={ getValues }
                     control={ control }
                     index={ i }
                     deleteFn={ ()=> handleDeleteTime(i) }
