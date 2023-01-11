@@ -5,7 +5,7 @@ import { NotFoundStatusView } from '../components/statuses';
 import TimetableListPage from '../views/timetableList/TimetableListPage';
 import TimetablePage from '../views/timetable/TimetablePage';
 import EditableCoursePage from '../views/editableCourse/EditableCoursePage';
-import AnnouncePage from '../components/announce/AnnouncePage';
+import AnnouncePage from '../views/announce/AnnouncePage';
 
 export default function RouterOutlet() {
     return <Routes>

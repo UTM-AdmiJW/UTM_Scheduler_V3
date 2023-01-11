@@ -1,0 +1,26 @@
+[
+    {
+        "key": 1,
+        "title":"Welcome",
+        "date":"2022-01-01",
+        "summary":"Welcome to the UTM Timetable Generator V3. This is just for the education purpose only.",
+        "content":"If need more information or need to provide feedback, please follow us at the footer of the website",
+        "update":["Software Engineering 2022/2023", "Software Engineering 2021/2022"]
+
+    },
+    {
+        "key": 2,
+        "title":"Update 1.0",
+        "date":"2023-01-01",
+        "summary":"Include the other information about the website",
+        "update":["Foreign Languages"]
+
+    },
+    {
+        "key": 3,
+        "title":"Update 2.0",
+        "date":"2024-01-01",
+        "summary":"Include the other information about the website"
+
+    }
+]
