@@ -1,13 +1,11 @@
 import { Container, Paper, Typography } from "@mui/material";
 import { GrAnnounce } from "react-icons/gr";
-import Update from "./Update";
-import Data from "./Data.json";
-import { useState } from "react";
+import Update from "../../components/announce/Update";
+import Data from "../../components/announce/Data.json";
 
 export default function AnnouncePage() {
-  //const [items, setItems] = useState(Data);
   const items = Data;
-
+  {/*Announce Page */}
   return (
     <>
       <Container className="py-7">
@@ -21,7 +19,8 @@ export default function AnnouncePage() {
           variant="outlined"
           sx={{ gridTemplateColumns: "repeat( auto-fit )" }}
         >
-          {Data.map((item) => {
+          {/*Announce Component*/}
+          {items.map((item) => {
             return <Update announce={item} key={item.key} />;
           })}
         </Paper>
