@@ -1,45 +1,65 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, Paper, Typography } from "@mui/material";
-import React from "react";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, Typography } from "@mui/material";
+import { IAnnouncement } from "../../model/domain/IAnnouncement";
 
-export default function Update() {
+interface IAnnouncementProps {
+    announce:IAnnouncement
+}
 
-    const [expanded, setExpanded] = React.useState<string | false>(false);
 
-    const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-        setExpanded(isExpanded ? panel : false);
-    };
+export default function Update(
+    {
+       announce
+    } : IAnnouncementProps
+) {
+
+
+    //give the array of the update, if null, return no update
+    const updatelist = announce.update && announce.update.map((update, index) => <li key={index}>{update}</li>);
 
     return <>
     
-        
-        <Paper variant="outlined" elevation={8}>
-        <Accordion expanded={expanded === 'Welcome'} onChange={handleChange('Welcome')}>
-            <AccordionSummary className='p-0'>
-                <div>
-            <Box className='bg-red-800 rounded p4 text-white flex items-center pl-4'>
-            <Typography className='font-light text-xl'>Welcome</Typography>
-                </Box>
-                <Typography className='font-extralight text-sm pl-4 pt-2'>
-                    2023-12-31
+        {/* One Component */}
+            
+        <Accordion className=''>
+            <AccordionSummary className=''>
+                <div className="min-w-full">
+                    {/*Title of the component*/}
+            <Box className='bg-red-800 text-white items-center pl-4'>
+                <Typography variant='h2' className='font-light text-xl'>{announce.title}</Typography>
+            </Box>
+                <Typography variant='subtitle2' className='font-extralight pl-4 pt-2'>
+                    {announce.date}
                 </Typography>
-            <Box className='p-4'>
-                <Typography className='font-extralight text-m'>Welcome to the new version of the timetable app. This is a major update and there are a lot of changes. Please read the changelog below.</Typography>
+            <Box className='p-4 pb-0'>
+                <Typography variant="subtitle1" className=' text-m'>{announce.summary}</Typography>
                 <Divider />
 
             </Box>
             </div>
             </AccordionSummary>
-            <AccordionDetails className="p-0">
-                <Box className='p-4'>
-                <Typography className='font-extralight text-m'>
-                    Thank you for using the timetable app. This is a major update and there are a lot of changes. Please read the changelog below.
-                    If you have any questions or suggestions, please contact me at <b>Github</b>
-                </Typography>
+            {/*Details of the component*/}
+            <AccordionDetails className="">
+                <Box className='pl-4'>
+                    {/*Content of the component*/
+                    announce.content ?(
+                        <Typography variant="subtitle2" className='text-m'>
+                            {announce.content}
+                            <br/>
+                            </Typography>
+                            
+                    ):(
+                        <span></span>
+                    )}
+                
+                {/*Update of the component*/
+                updatelist ? (
+                    <ul className="list-disc list-inside font-light"><b>Update</b>{updatelist}</ul>
+                ):(
+                    <span>No update</span>
+                )}
                 </Box>
             </AccordionDetails>
-            </Accordion>
-        </Paper>
-        
-        
+            </Accordion>        
+
     </>
 }

@@ -19,9 +19,6 @@ export default function NotFoundStatusView({
 
     const navigate = useNavigate();
 
-    const goBack = () => {
-        navigate(-1);
-    }
 
     return <>
         <Box className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-16">
@@ -36,15 +33,15 @@ export default function NotFoundStatusView({
                 </p>
                 
                 <Box className="py-4">
-                    <Button variant="contained" color="error">
+                    <Button variant="contained" color="error" onClick={()=>{navigate(-1);}}>
                         Back Previous Page
                     </Button>
 
-                    <Link to="/" className="pl-2">
-                        <Button variant="contained" color="error">
+                    
+                        <Button className="pl-2" variant="contained" color="error" onClick={()=>{navigate('/');}}>
                             Home Page
                             </Button>
-                        </Link>
+                        
                 </Box>
             </Box>
         </Box>
