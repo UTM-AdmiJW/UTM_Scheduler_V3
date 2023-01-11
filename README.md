@@ -37,6 +37,7 @@ UTM Scheduler V3, a sequel to the previous [UTM Timetable Generator V2](https://
 9. [React-Icons](https://react-icons.github.io/react-icons/)
 10. [Redux-Persist](https://www.npmjs.com/package/redux-persist)
 11. [UUID](https://www.npmjs.com/package/uuid)
+12. [KonvaJS](https://konvajs.org/)
 
 ## Project Structure:
 

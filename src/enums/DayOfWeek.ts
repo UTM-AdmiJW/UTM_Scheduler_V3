@@ -1,14 +1,15 @@
 import { IMenuItem } from "../types/IMenuItem";
 
 
+// Do not change the numbering. The API data is 1-based, where 1 represents Sunday
 export enum DayOfWeek {
     SUNDAY = 1,
-    MONDAY = 2,
-    TUESDAY = 3,
-    WEDNESDAY = 4,
-    THURSDAY = 5,
-    FRIDAY = 6,
-    SATURDAY = 7
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY
 }
 
 

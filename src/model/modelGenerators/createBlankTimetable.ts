@@ -23,19 +23,19 @@ const blankTimetableTemplate: ITimetable = {
         matricNo: "",
     },
     exportConfig: {
-        theme: TimetableTheme.DEFAULT,
+        theme: TimetableTheme.UTM,
         orientation: TimetableOrientation.HORIZONTAL,
         weekendType: TimetableWeekendType.FRISAT,
         includeWeekends: false,
         visibleTimeRangeStart: 8,
         visibleTimeRangeEnd: 17,
-        gridWidth: 30,
-        gridHeight: 30,
+        gridWidth: 250,
+        gridHeight: 200,
         gridGap: 5,
-        fontSizeCourseName: 20,
-        fontSizeVenue: 10,
-        fontSizeLecturer: 10,
-        fontSizeCourseCode: 10,
+        fontSizeCourseName: 25,
+        fontSizeVenue: 20,
+        fontSizeLecturer: 18,
+        fontSizeCourseCode: 16,
     }
 };
 
