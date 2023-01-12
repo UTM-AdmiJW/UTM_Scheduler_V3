@@ -1,14 +1,14 @@
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import ExportConfigurationCard from "./ExportConfigurationCard";
-import HookFormSelect from "../../components/form/HookFormSelect";
+import HookFormSelect from "../../../components/form/HookFormSelect";
 
-import { TimetableThemeMenuItems, TimetableOrientationMenuItems } from "../../enums/";
+import { TimetableThemeMenuItems, TimetableOrientationMenuItems } from "../../../enums";
 import type { Control } from "react-hook-form";
-import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
+import type { ITimetableExportConfig } from "../../../model/domain/ITimetableExportConfig";
 
 import { MdExpandMore, MdPalette } from "react-icons/md";
 
-import { getMenuItemsfromIMenuItems } from "../../util/menuItemUtils";
+import { getMenuItemsfromIMenuItems } from "../../../util/menuItemUtils";
 
 
 
@@ -25,10 +25,10 @@ export default function ExportConfigurationAppearanceAccordion({
     <Accordion className="mb-3">
         
         <AccordionSummary expandIcon={ <MdExpandMore className='text-2xl' /> }>
-            <h4 className='text-xl font-light'>
+            <Typography className='text-xl font-light'>
                 <MdPalette className='inline-block mr-3' />
                 Appearance
-            </h4>
+            </Typography>
         </AccordionSummary>
 
         <AccordionDetails className='grid gap-3' sx={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 300px))' }}>

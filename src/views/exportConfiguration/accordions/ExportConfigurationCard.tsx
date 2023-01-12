@@ -1,6 +1,6 @@
 
 import { Paper } from "@mui/material";
-import InfoTooltipButton from "../../components/form/InfoTooltipButton";
+import InfoTooltipButton from "../../../components/form/InfoTooltipButton";
 
 
 

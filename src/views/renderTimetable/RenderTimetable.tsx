@@ -38,6 +38,8 @@ export default function RenderTimetable({
     const labelGridLayerTheme = getLabelGridLayerTheme(timetable);
     // Step 5: Get slot grid layer theme
     const slotGridLayerTheme = getSlotGridLayerTheme(timetable);
+    // Step 6: Get label layer theme.
+    
 
 
     // Finally: Pass the data to the layer renderers component

@@ -6,7 +6,7 @@ export interface ITimetableExportConfig {
     theme: TimetableTheme;
     orientation: TimetableOrientation;
     
-    // Grid
+    // Timetable
     weekendType: TimetableWeekendType;
     includeWeekends: boolean;
     visibleTimeRangeStart: number;
@@ -16,6 +16,12 @@ export interface ITimetableExportConfig {
     gridWidth: number;
     gridHeight: number;
     gridGap: number;
+
+    // Font sizes
+    fontSizeDayOfWeekLabelIndiciator: number;
+    fontSizeTimeLabelIndiciator: number;
+    fontSizeDayOfWeekLabel: number;
+    fontSizeTimeLabel: number;
     fontSizeCourseName: number;
     fontSizeVenue: number;
     fontSizeLecturer: number;

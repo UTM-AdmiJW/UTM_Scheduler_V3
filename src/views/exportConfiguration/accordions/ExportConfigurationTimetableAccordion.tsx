@@ -1,29 +1,28 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import ExportConfigurationCard from "./ExportConfigurationCard";
-import HookFormSelect from "../../components/form/HookFormSelect";
-import HookFormSwitch from "../../components/form/HookFormSwitch";
+import HookFormSelect from "../../../components/form/HookFormSelect";
+import HookFormSwitch from "../../../components/form/HookFormSwitch";
 
-import { TimetableWeekendTypeMenuItems } from "../../enums/";
+import { TimetableWeekendTypeMenuItems } from "../../../enums";
 import type { Control, UseFormGetValues } from "react-hook-form";
-import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
+import type { ITimetableExportConfig } from "../../../model/domain/ITimetableExportConfig";
 
-import { MdExpandMore } from "react-icons/md";
-import { AiOutlineTable } from "react-icons/ai";
+import { MdExpandMore, MdTableChart } from "react-icons/md";
 
-import { getMenuItemsfromIMenuItems, hoursMenuItem } from "../../util/menuItemUtils";
-
+import { getMenuItemsfromIMenuItems, hoursMenuItem } from "../../../util/menuItemUtils";
 
 
-interface IExportConfigurationGridAccordionProps {
+
+interface IExportConfigurationTimetableAccordionProps {
     control: Control<ITimetableExportConfig, any>;
     getValues: UseFormGetValues<ITimetableExportConfig>;
-}
+};
 
 
-export default function ExportConfigurationGridAccordion({ 
+export default function ExportConfigurationTimetableAccordion({ 
     control, 
     getValues,
-}: IExportConfigurationGridAccordionProps) {
+}: IExportConfigurationTimetableAccordionProps) {
 
 
     const validateVisibleTimeRange = ()=> {
@@ -36,10 +35,10 @@ export default function ExportConfigurationGridAccordion({
     <Accordion className="mb-3">
 
         <AccordionSummary expandIcon={ <MdExpandMore className='text-2xl' /> }>
-            <h4 className='text-xl font-light'>
-                <AiOutlineTable className='inline-block mr-3' />
-                Grid
-            </h4>
+            <Typography className='text-xl font-light'>
+                <MdTableChart className='inline-block mr-3' />
+                Timetable
+            </Typography>
         </AccordionSummary>
 
         <AccordionDetails className='grid gap-3' sx={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 300px))' }}>
@@ -69,7 +68,7 @@ export default function ExportConfigurationGridAccordion({
                 tooltip="If yes, weekends will be drawn to your timetable."
             >
                 <Box className='flex gap-2 items-center text-gray-400'>
-                    <span>No</span>
+                    <Typography>No</Typography>
                     <HookFormSwitch
                         hookFormProps={{
                             name: 'includeWeekends',
@@ -79,7 +78,7 @@ export default function ExportConfigurationGridAccordion({
                             color: 'primary',
                         }}
                     />
-                    <span>Yes</span>
+                    <Typography>Yes</Typography>
                 </Box>
             </ExportConfigurationCard>
 
@@ -104,7 +103,7 @@ export default function ExportConfigurationGridAccordion({
                         }}
                     />
 
-                    <span className='my-3 text-center'>To</span>
+                    <Typography className='my-3 text-center'>To</Typography>
 
                     <HookFormSelect
                         menuItems={ hoursMenuItem }

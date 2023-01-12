@@ -1,44 +1,44 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import ExportConfigurationCard from "./ExportConfigurationCard";
-import HookFormTextField from "../../components/form/HookFormTextField";
+import HookFormTextField from "../../../components/form/HookFormTextField";
 
 import type { Control } from "react-hook-form";
-import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
+import type { ITimetableExportConfig } from "../../../model/domain/ITimetableExportConfig";
 
-import { MdExpandMore, MdOutlinePhotoSizeSelectSmall } from "react-icons/md";
-
-
+import { MdExpandMore, MdOutlineTextFields } from "react-icons/md";
 
 
-interface IExportConfigurationSizingAccordionProps {
+
+
+interface IExportConfigurationFontSizeAccordionProps {
     control: Control<ITimetableExportConfig, any>;
 }
 
 
-export default function ExportConfigurationSizingAccordion({ 
+export default function ExportConfigurationFontSizeAccordion({ 
     control 
-}: IExportConfigurationSizingAccordionProps) {
+}: IExportConfigurationFontSizeAccordionProps) {
 
     return <>
     <Accordion className="mb-3">
         
         <AccordionSummary expandIcon={ <MdExpandMore className='text-2xl' /> }>
-            <h4 className='text-xl font-light'>
-                <MdOutlinePhotoSizeSelectSmall className='inline-block mr-3' />
-                Sizing
-            </h4>
+            <Typography className='text-xl font-light'>
+                <MdOutlineTextFields className='inline-block mr-3' />
+                Font Size
+            </Typography>
         </AccordionSummary>
 
         <AccordionDetails className='grid gap-3' sx={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 300px))' }}>
             
-            {/* Grid Width */}
+            {/* Day of week label indicator font size */}
             <ExportConfigurationCard
-                title="Cell Width"
-                tooltip="The width of each cell"
+                title="Font size: Day of week label indicator"
+                tooltip="The font size of the day of week label indicator on the top left cell"
             >
                 <HookFormTextField
                     hookFormProps={{
-                        name: 'gridWidth',
+                        name: 'fontSizeDayOfWeekLabelIndiciator',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
                         control,
                     }}
@@ -55,14 +55,14 @@ export default function ExportConfigurationSizingAccordion({
                 />
             </ExportConfigurationCard>
 
-            {/* Grid Height */}
+            {/* Time label indicator font size */}
             <ExportConfigurationCard
-                title="Cell Height"
-                tooltip="The height of each cell"
+                title="Font size: Time label indicator"
+                tooltip="The font size of the time label indicator on the top left cell"
             >
                 <HookFormTextField
                     hookFormProps={{
-                        name: 'gridHeight',
+                        name: 'fontSizeTimeLabelIndiciator',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
                         control,
                     }}
@@ -79,14 +79,38 @@ export default function ExportConfigurationSizingAccordion({
                 />
             </ExportConfigurationCard>
 
-            {/* Grid Gap */}
+            {/* Day of week labels font size */}
             <ExportConfigurationCard
-                title="Cell Gap"
-                tooltip="The gap between each cell"
+                title="Font size: Day of week labels"
+                tooltip="The font size of the day of week labels"
             >
                 <HookFormTextField
                     hookFormProps={{
-                        name: 'gridGap',
+                        name: 'fontSizeDayOfWeekLabel',
+                        rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
+                        control,
+                    }}
+                    textFieldProps={{
+                        size: 'small',
+                        fullWidth: true,
+                        required: true,
+                        type: 'number',
+                        InputProps: { 
+                            inputProps: { min: 0, },
+                            endAdornment: <Box component='span' sx={{ ml: 1 }}>px</Box> 
+                        }
+                    }}
+                />
+            </ExportConfigurationCard>
+
+            {/* Time labels font size */}
+            <ExportConfigurationCard
+                title="Font size: Time labels"
+                tooltip="The font size of the time labels"
+            >
+                <HookFormTextField
+                    hookFormProps={{
+                        name: 'fontSizeTimeLabel',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
                         control,
                     }}
@@ -198,9 +222,6 @@ export default function ExportConfigurationSizingAccordion({
                     }}
                 />
             </ExportConfigurationCard>
-
-            
-
 
         </AccordionDetails>
     </Accordion>

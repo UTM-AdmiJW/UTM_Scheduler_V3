@@ -24,7 +24,6 @@ export function generateTimetableDimensionReport(
     
     const { 
         gridGap, gridHeight, gridWidth,
-        fontSizeCourseCode, fontSizeCourseName, fontSizeLecturer, fontSizeVenue,
         orientation, weekendType, includeWeekends,
         visibleTimeRangeEnd, visibleTimeRangeStart,
     } = timetable.exportConfig;
@@ -36,14 +35,10 @@ export function generateTimetableDimensionReport(
     return {
         width, height, nRows, nCols,
         gridWidth, gridHeight, gridGap,
-
-        fontSizeCourseName, fontSizeVenue, fontSizeLecturer, fontSizeCourseCode,
-
         orientation, weekendType, includeWeekends,
         visibleTimeRangeStart, visibleTimeRangeEnd,
         
 
-        
         getGridDimensionFromRowCol: (nRow, nCol)=> {
             return getGridDimensionFromRowCol(gridGap, gridWidth, gridHeight, nRow, nCol);
         },

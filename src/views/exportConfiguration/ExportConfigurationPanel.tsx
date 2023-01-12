@@ -7,9 +7,12 @@ import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 import type { ITimetable } from "../../model/domain/ITimetable";
 import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
 
-import ExportConfigurationAppearanceAccordion from "./ExportConfigurationAppearanceAccordion";
-import ExportConfigurationGridAccordion from "./ExportConfigurationGridAccordion";
-import ExportConfigurationSizingAccordion from "./ExportConfigurationSizingAccordion";
+import ExportConfigurationAppearanceAccordion from "./accordions/ExportConfigurationAppearanceAccordion";
+import ExportConfigurationTimetableAccordion from "./accordions/ExportConfigurationTimetableAccordion";
+import ExportConfigurationGridAccordion from "./accordions/ExportConfigurationGridAccordion";
+import ExportConfigurationFontSizeAccordion from "./accordions/ExportConfigurationFontSizeAccordion";
+
+
 
 // TODO: Testing import please remove
 import { useDialog } from "../../hooks/useDialog";
@@ -27,9 +30,9 @@ export default function ExportConfigurationPanel({ timetable }: { timetable: ITi
     });
 
 
-    // Testing purpose, remove this.
+    // TODO: Testing purpose, remove this.
     const { openDialog } = useDialog();
-    //
+    // ===================================
 
 
 
@@ -62,9 +65,11 @@ export default function ExportConfigurationPanel({ timetable }: { timetable: ITi
         </Alert>
 
         <form onSubmit={ handleSubmit(onSubmit, onInvalid) }>
+
             <ExportConfigurationAppearanceAccordion control={control} />
-            <ExportConfigurationGridAccordion control={control} getValues={getValues} />
-            <ExportConfigurationSizingAccordion control={control} />
+            <ExportConfigurationTimetableAccordion control={control} getValues={getValues} />
+            <ExportConfigurationGridAccordion control={control} />
+            <ExportConfigurationFontSizeAccordion control={control} />
 
             <Box className='mt-5 flex gap-4 justify-end'>
                 <Button type='submit' variant='contained' color='success' disabled={ !isDirty }>Save</Button>
@@ -75,6 +80,6 @@ export default function ExportConfigurationPanel({ timetable }: { timetable: ITi
 
 
         {/* TODO: Testing Purpose remove this. */}
-        <Button variant='contained' onClick={() => openDialog(<RenderTimetableDialog timetable={timetable} />)}>Render Timetable</Button>
+        <Button variant='contained' onClick={() => openDialog(<RenderTimetableDialog timetable={timetable} />)}>Test Timetable</Button>
     </>
 }

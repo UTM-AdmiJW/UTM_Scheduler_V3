@@ -37,11 +37,6 @@ export interface ITimetableDimensionReport {
     nRows: number;
     nCols: number;
 
-    fontSizeCourseName: number;
-    fontSizeVenue: number;
-    fontSizeLecturer: number;
-    fontSizeCourseCode: number;
-
     orientation: TimetableOrientation;
     weekendType: TimetableWeekendType;
     includeWeekends: boolean;
