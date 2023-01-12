@@ -1,22 +1,22 @@
 import { Layer, Rect } from "react-konva";
 
 import type { ITimetableDimensionReport } from "../../model/render/ITimetableDimensionReport";
-import type { IThemeBackgroundLayer } from "../../model/render/theme/IThemeBackgroundLayer";
+import type { ITimetableThemeReport } from "../../model/render/theme/ITimetableThemeReport";
 
 
 interface IBackgroundLayerProps {
     timetableDimensionReport: ITimetableDimensionReport,
-    backgroundLayerTheme: IThemeBackgroundLayer,
+    timetableThemeReport: ITimetableThemeReport,
 }
 
 
 export default function BackgroundLayer({
     timetableDimensionReport,
-    backgroundLayerTheme
+    timetableThemeReport
 }: IBackgroundLayerProps) {
 
     const { width, height } = timetableDimensionReport;
-    const { backgroundColor, injection } = backgroundLayerTheme;
+    const { backgroundColor, injection } = timetableThemeReport.backgroundLayerTheme;
     const { pre = null, post = null } = injection ?? {};
 
     return <>

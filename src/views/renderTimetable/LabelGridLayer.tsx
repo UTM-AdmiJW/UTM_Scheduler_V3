@@ -1,18 +1,18 @@
 import { Layer, Rect } from "react-konva";
 
-import type { ITimetableGrid } from "../../model/render/ITimetableGrid";
-import type { IThemeLabelGridLayer } from "../../model/render/theme/IThemeLabelGridLayer";
+import type { ITimetableGridReport } from "../../model/render/ITimetableGridReport";
+import type { ITimetableThemeReport } from "../../model/render/theme/ITimetableThemeReport";
 
 
 interface ILabelGridLayerProps {
-    timetableGrid: ITimetableGrid,
-    labelGridLayerTheme: IThemeLabelGridLayer,
+    timetableGrid: ITimetableGridReport,
+    timetableThemeReport: ITimetableThemeReport
 }
 
 
 export default function LabelGridLayer({
     timetableGrid,
-    labelGridLayerTheme
+    timetableThemeReport
 }: ILabelGridLayerProps) {
 
     const { dayOfWeekLabel, labelIndicator, timeLabel } = timetableGrid;
@@ -21,7 +21,7 @@ export default function LabelGridLayer({
         timeLabelColor, dayOfWeekLabelColor, 
         labelIndicatorDayOfWeekBgColor, labelIndicatorTimeBgColor,
         injection
-    } = labelGridLayerTheme;
+    } = timetableThemeReport.labelGridLayerTheme;
 
     const { pre = null, post = null } = injection ?? {};
 

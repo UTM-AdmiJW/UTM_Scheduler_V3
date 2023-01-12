@@ -16,6 +16,7 @@ export interface ITimetableExportConfig {
     gridWidth: number;
     gridHeight: number;
     gridGap: number;
+    textPadding: number;
 
     // Font sizes
     fontSizeDayOfWeekLabelIndiciator: number;

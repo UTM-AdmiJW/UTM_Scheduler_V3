@@ -18,7 +18,7 @@ import {
 
 
 
-export function generateTimetableDimensionReport(
+export function getTimetableDimensionReport(
     timetable: ITimetable,
 ): ITimetableDimensionReport {
     

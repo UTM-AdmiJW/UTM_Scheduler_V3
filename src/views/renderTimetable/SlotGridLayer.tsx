@@ -1,18 +1,21 @@
 import { Layer, Rect } from "react-konva";
 
-import type { ITimetableGrid } from "../../model/render/ITimetableGrid";
-import type { IThemeSlotGridLayer } from "../../model/render/theme/IThemeSlotGridLayer";
+import type { ITimetableDimensionReport } from "../../model/render/ITimetableDimensionReport";
+import type { ITimetableGridReport } from "../../model/render/ITimetableGridReport";
+import type { ITimetableThemeReport } from "../../model/render/theme/ITimetableThemeReport";
 
 
 interface ISlotGridLayerProps {
-    timetableGrid: ITimetableGrid,
-    slotGridLayerTheme: IThemeSlotGridLayer,
+    timetableDimensionReport: ITimetableDimensionReport,
+    timetableGrid: ITimetableGridReport,
+    timetableThemeReport: ITimetableThemeReport,
 }
 
 
 export default function SlotGridLayer({
+    timetableDimensionReport,
     timetableGrid,
-    slotGridLayerTheme
+    timetableThemeReport
 }: ISlotGridLayerProps) {
 
     const { slots } = timetableGrid;
@@ -20,7 +23,7 @@ export default function SlotGridLayer({
     const {
         stripBgColors,
         injection
-    } = slotGridLayerTheme;
+    } = timetableThemeReport.slotGridLayerTheme;
 
     const { pre = null, post = null } = injection ?? {};
 
@@ -31,8 +34,14 @@ export default function SlotGridLayer({
             { pre }
 
             {/* Slot grids */}
-            {
-                Object.entries(slots).map( ([dayOfWeek, strip], i) => {
+            {/* 
+                The order in which day of week are rendered is important to ensure alternating coloring is correct.
+                That's why 
+            */}
+            {   
+                timetableDimensionReport.getDayOfWeeks().map((dayOfWeek, i)=> {
+                    const strip = slots[dayOfWeek];
+
                     return Object.entries(strip).map( ([time, { startX, startY, width, height }]) => {
                         return <Rect
                             key={dayOfWeek + " " + time}

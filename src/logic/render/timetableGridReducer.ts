@@ -2,14 +2,14 @@ import { DayOfWeek, TimetableOrientation } from "../../enums";
 
 import type { IGridDimension } from "../../model/render/IGridDimension";
 import type { ITimetableDimensionReport } from "../../model/render/ITimetableDimensionReport";
-import type { ITimetableGrid } from "../../model/render/ITimetableGrid";
+import type { ITimetableGridReport } from "../../model/render/ITimetableGridReport";
 import { getPlacementTime } from "../../util/timetableRenderUtils";
 
 
 
-export function timetableGridReducer(
+export function getTimetableGrid(
     timetableDimensionReport: ITimetableDimensionReport,
-): ITimetableGrid {
+): ITimetableGridReport {
     return {
         labelIndicator: getLabelIndicatorGridDimensions( timetableDimensionReport ),
         dayOfWeekLabel: getDayOfWeekLabelGridDimensions( timetableDimensionReport ),
@@ -23,8 +23,6 @@ export function timetableGridReducer(
 //=============================
 // Modularized helper functions
 //=============================
-
-
 
 // Get the dimension for label indicator (At row 0 col 0)
 function getLabelIndicatorGridDimensions( timetableDimensionReport: ITimetableDimensionReport ) {
@@ -90,7 +88,7 @@ function getTimeLabelGridDimensions( timetableDimensionReport: ITimetableDimensi
     } 
     else {
         for (let i = visibleTimeRangeStart; i < visibleTimeRangeEnd; ++i)
-            res[i] = getGridDimensionFromRowCol(i, getPlacementTime(i, visibleTimeRangeStart));
+            res[i] = getGridDimensionFromRowCol(getPlacementTime(i, visibleTimeRangeStart), 0);
     }
 
     return res;

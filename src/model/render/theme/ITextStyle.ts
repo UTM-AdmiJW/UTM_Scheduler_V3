@@ -7,14 +7,13 @@
  */
 export interface ITextStyle {
     fontFamily: string;
-    fontSize: number;
     color: string;
-    padding: number;
 
     // 'normal', 'bold', 'italic' or even 'italic bold'
     fontStyle?: string;             
     // 'line-through', 'underline'
     textDecoration?: string;        
+    lineHeight?: number;
     
     strokeColor?: string;
     strokeWidth?: number;

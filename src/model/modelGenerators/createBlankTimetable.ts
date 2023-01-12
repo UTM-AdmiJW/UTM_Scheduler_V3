@@ -17,18 +17,19 @@ const blankTimetableExportConfigTemplate: ITimetableExportConfig = {
     visibleTimeRangeStart: 8,
     visibleTimeRangeEnd: 17,
 
-    gridWidth: 250,
-    gridHeight: 200,
-    gridGap: 5,
+    gridWidth: 125,
+    gridHeight: 100,
+    gridGap: 3,
+    textPadding: 3,
 
-    fontSizeDayOfWeekLabelIndiciator: 20,
-    fontSizeTimeLabelIndiciator: 20,
-    fontSizeDayOfWeekLabel: 20,
-    fontSizeTimeLabel: 20,
-    fontSizeCourseName: 25,
-    fontSizeVenue: 20,
-    fontSizeLecturer: 18,
-    fontSizeCourseCode: 16,
+    fontSizeDayOfWeekLabelIndiciator: 11,
+    fontSizeTimeLabelIndiciator: 11,
+    fontSizeDayOfWeekLabel: 13,
+    fontSizeTimeLabel: 13,
+    fontSizeCourseName: 13,
+    fontSizeVenue: 10,
+    fontSizeLecturer: 9,
+    fontSizeCourseCode: 8,
 }
 
 

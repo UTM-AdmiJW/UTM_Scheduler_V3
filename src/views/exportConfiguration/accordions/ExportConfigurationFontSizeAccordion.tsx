@@ -1,6 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import ExportConfigurationCard from "./ExportConfigurationCard";
-import HookFormTextField from "../../../components/form/HookFormTextField";
+import HookFormNumberField from "../../../components/form/HookFormNumberField";
 
 import type { Control } from "react-hook-form";
 import type { ITimetableExportConfig } from "../../../model/domain/ITimetableExportConfig";
@@ -33,10 +33,10 @@ export default function ExportConfigurationFontSizeAccordion({
             
             {/* Day of week label indicator font size */}
             <ExportConfigurationCard
-                title="Font size: Day of week label indicator"
+                title="Day of week label indicator"
                 tooltip="The font size of the day of week label indicator on the top left cell"
             >
-                <HookFormTextField
+                <HookFormNumberField
                     hookFormProps={{
                         name: 'fontSizeDayOfWeekLabelIndiciator',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
@@ -57,10 +57,10 @@ export default function ExportConfigurationFontSizeAccordion({
 
             {/* Time label indicator font size */}
             <ExportConfigurationCard
-                title="Font size: Time label indicator"
+                title="Time label indicator"
                 tooltip="The font size of the time label indicator on the top left cell"
             >
-                <HookFormTextField
+                <HookFormNumberField
                     hookFormProps={{
                         name: 'fontSizeTimeLabelIndiciator',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
@@ -81,10 +81,10 @@ export default function ExportConfigurationFontSizeAccordion({
 
             {/* Day of week labels font size */}
             <ExportConfigurationCard
-                title="Font size: Day of week labels"
+                title="Day of week labels"
                 tooltip="The font size of the day of week labels"
             >
-                <HookFormTextField
+                <HookFormNumberField
                     hookFormProps={{
                         name: 'fontSizeDayOfWeekLabel',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
@@ -105,10 +105,10 @@ export default function ExportConfigurationFontSizeAccordion({
 
             {/* Time labels font size */}
             <ExportConfigurationCard
-                title="Font size: Time labels"
+                title="Time labels"
                 tooltip="The font size of the time labels"
             >
-                <HookFormTextField
+                <HookFormNumberField
                     hookFormProps={{
                         name: 'fontSizeTimeLabel',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
@@ -129,10 +129,10 @@ export default function ExportConfigurationFontSizeAccordion({
 
             {/* Course name font size */}
             <ExportConfigurationCard
-                title="Font size: Course name"
+                title="Course name"
                 tooltip="The font size of the course name"
             >
-                <HookFormTextField
+                <HookFormNumberField
                     hookFormProps={{
                         name: 'fontSizeCourseName',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
@@ -153,10 +153,10 @@ export default function ExportConfigurationFontSizeAccordion({
 
             {/* Venue font size */}
             <ExportConfigurationCard
-                title="Font size: Venue"
+                title="Venue"
                 tooltip="The font size of the venue"
             >
-                <HookFormTextField
+                <HookFormNumberField
                     hookFormProps={{
                         name: 'fontSizeVenue',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
@@ -177,10 +177,10 @@ export default function ExportConfigurationFontSizeAccordion({
 
             {/* Lecturer font size */}
             <ExportConfigurationCard
-                title="Font size: Lecturer"
+                title="Lecturer"
                 tooltip="The font size of the lecturer"
             >
-                <HookFormTextField
+                <HookFormNumberField
                     hookFormProps={{
                         name: 'fontSizeLecturer',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },
@@ -201,10 +201,10 @@ export default function ExportConfigurationFontSizeAccordion({
 
             {/* Course code font size */}
             <ExportConfigurationCard
-                title="Font size: Course code"
+                title="Course code"
                 tooltip="The font size of the course code"
             >
-                <HookFormTextField
+                <HookFormNumberField
                     hookFormProps={{
                         name: 'fontSizeCourseCode',
                         rules: { required: true, min: { value: 0, message: "Value must be non-negative"} },

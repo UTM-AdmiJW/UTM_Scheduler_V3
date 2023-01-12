@@ -4,7 +4,7 @@ import type { IThemeSlotGridLayer } from "../../../../model/render/theme/IThemeS
 
 
 
-export const slotGridLayerThemeUTM: IThemeSlotGridLayer = {
+export const slotGridLayer: IThemeSlotGridLayer = {
     stripBgColors: [
         '#EDDD9E',
         '#EEE1C6',

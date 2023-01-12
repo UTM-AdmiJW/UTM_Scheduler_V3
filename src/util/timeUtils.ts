@@ -25,7 +25,7 @@ import { ISubjekSeksyen_SeksyenDTO } from "../model/DTO/SubjekSeksyen/ISubjekSek
 // Converts 24 hour time to 12 hour time, with AM/PM suffix
 export function convert24HourTo12Hour(time: number): string {
     if (time > 23 || time < 0) throw new Error("Time is out of range: " + time);
-    return (time % 12 || 12) + `${ time < 12? 'AM': 'PM' }`
+    return (time % 12 || 12) + ` ${ time < 12? 'AM': 'PM' }`
 }
 
 

@@ -3,6 +3,6 @@ import { IThemeBackgroundLayer } from "../../../../model/render/theme/IThemeBack
 
 
 
-export const backgroundLayerThemeUTM: IThemeBackgroundLayer = {
+export const backgroundLayer: IThemeBackgroundLayer = {
     backgroundColor: '#332C2C',
 }

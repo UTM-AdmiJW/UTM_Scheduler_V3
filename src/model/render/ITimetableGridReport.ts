@@ -11,7 +11,7 @@ import type { IGridDimension } from "./IGridDimension"
  * @prop dayOfWeekLabel A map of day of week label to grid dimensions.
  * @prop slots A map of timeslots to grid dimensions.
  */
-export interface ITimetableGrid {
+export interface ITimetableGridReport {
     labelIndicator: {
         dayOfWeek: IGridDimension,
         time: IGridDimension,
