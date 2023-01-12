@@ -47,7 +47,7 @@ export default function TimetableListCard({ timetable }: ITimetableListCardProps
         <Card variant='outlined'>
         <CardActionArea className='h-full flex flex-col justify-start items-stretch' onClick={onClick}>
             
-            <Box className='bg-blue-500 rounded p-4 text-white flex items-center'>
+            <Box className='bg-secondary rounded p-4 text-white flex items-center'>
                 <BsTable className='mr-3 min-w-max text-xl' />
                 <Typography className='font-extralight text-xl'>{timetable.timetableName}</Typography>
             </Box>

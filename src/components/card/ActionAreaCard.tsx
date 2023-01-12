@@ -25,7 +25,7 @@ export default function ActionAreaCard({
         <Card variant="outlined">
         <CardActionArea className='h-full flex flex-col justify-start items-stretch' onClick={onClick}>
 
-            <Box className='bg-blue-500 rounded p-3 text-white flex items-center'>
+            <Box className='bg-secondary rounded p-3 text-white flex items-center'>
                 <Typography className='font-extralight'>{ title }</Typography>
             </Box>
 

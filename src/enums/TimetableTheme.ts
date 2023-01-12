@@ -1,4 +1,4 @@
-import { IMenuItem } from "../types/IMenuItem";
+import { IMenuItem } from "../model/types/menuItem/IMenuItem";
 
 
 export enum TimetableTheme {

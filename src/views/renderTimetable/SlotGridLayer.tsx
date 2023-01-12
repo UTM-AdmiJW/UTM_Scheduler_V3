@@ -1,8 +1,8 @@
 import { Layer, Rect } from "react-konva";
 
-import type { ITimetableDimensionReport } from "../../model/render/ITimetableDimensionReport";
-import type { ITimetableGridReport } from "../../model/render/ITimetableGridReport";
-import type { ITimetableThemeReport } from "../../model/render/theme/ITimetableThemeReport";
+import type { ITimetableDimensionReport } from "../../model/types/render/ITimetableDimensionReport";
+import type { ITimetableGridReport } from "../../model/types/render/ITimetableGridReport";
+import type { ITimetableThemeReport } from "../../model/types/render/theme/ITimetableThemeReport";
 
 
 interface ISlotGridLayerProps {

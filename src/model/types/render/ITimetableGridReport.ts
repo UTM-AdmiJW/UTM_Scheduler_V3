@@ -1,4 +1,4 @@
-import { DayOfWeek } from "../../enums"
+import { DayOfWeek } from "../../../enums"
 import type { IGridDimension } from "./IGridDimension"
 
 

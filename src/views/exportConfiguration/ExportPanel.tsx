@@ -7,10 +7,12 @@ import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 import type { ITimetable } from "../../model/domain/ITimetable";
 import type { ITimetableExportConfig } from "../../model/domain/ITimetableExportConfig";
 
-import ExportConfigurationAppearanceAccordion from "./accordions/ExportConfigurationAppearanceAccordion";
-import ExportConfigurationTimetableAccordion from "./accordions/ExportConfigurationTimetableAccordion";
-import ExportConfigurationGridAccordion from "./accordions/ExportConfigurationGridAccordion";
-import ExportConfigurationFontSizeAccordion from "./accordions/ExportConfigurationFontSizeAccordion";
+import ExportConfigurationAppearanceAccordion from "./configurationAccordions/ExportConfigurationAppearanceAccordion";
+import ExportConfigurationTimetableAccordion from "./configurationAccordions/ExportConfigurationTimetableAccordion";
+import ExportConfigurationGridAccordion from "./configurationAccordions/ExportConfigurationGridAccordion";
+import ExportConfigurationFontSizeAccordion from "./configurationAccordions/ExportConfigurationFontSizeAccordion";
+
+import { clashChecker } from "../../logic/clashCheck/clashChecker";
 
 
 
@@ -20,7 +22,7 @@ import RenderTimetableDialog from "../renderTimetable/RenderTimetableDialog";
 
 
 
-export default function ExportConfigurationPanel({ timetable }: { timetable: ITimetable }) {
+export default function ExportPanel({ timetable }: { timetable: ITimetable }) {
 
     const { timetableActions: { updateTimetableExportConfig } } = useTimetableRedux();
     const { alertSuccess, alertInfo, alertError } = useAlert();
@@ -33,6 +35,11 @@ export default function ExportConfigurationPanel({ timetable }: { timetable: ITi
     // TODO: Testing purpose, remove this.
     const { openDialog } = useDialog();
     // ===================================
+
+
+    // Clash checking.
+    const clashCheckReport = clashChecker(Object.values(timetable.editableCourses));
+    console.log(clashCheckReport);
 
 
 

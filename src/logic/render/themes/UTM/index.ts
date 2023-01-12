@@ -1,4 +1,4 @@
-import type { ITimetableThemeReport } from "../../../../model/render/theme/ITimetableThemeReport";
+import type { ITimetableThemeReport } from "../../../../model/types/render/theme/ITimetableThemeReport";
 import { backgroundLayer } from "./backgroundLayer";
 import { labelGridLayer } from "./labelGridLayer";
 import { labelLayer } from "./labelLayer";

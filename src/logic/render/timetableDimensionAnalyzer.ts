@@ -3,7 +3,7 @@
 import { DayOfWeek, TimetableWeekendType } from "../../enums";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
-import type { ITimetableDimensionReport } from "../../model/render/ITimetableDimensionReport";
+import type { ITimetableDimensionReport } from "../../model/types/render/ITimetableDimensionReport";
 
 import { 
     getNoRowsAndCols, 

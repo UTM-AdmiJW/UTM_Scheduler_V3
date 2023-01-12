@@ -3,7 +3,7 @@ import { Box, Paper, PaperProps, TextField } from "@mui/material";
 import { EmptyStatusView, SearchEmptyStatusView } from "../statuses";
 
 import type { TextFieldProps } from '@mui/material';
-import { IMenuItem } from "../../types/IMenuItem";
+import { IMenuItem } from "../../model/types/menuItem/IMenuItem";
 
 import { getMenuItemsfromIMenuItems } from "../../util/menuItemUtils";
 

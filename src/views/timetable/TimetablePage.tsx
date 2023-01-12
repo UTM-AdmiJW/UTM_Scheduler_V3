@@ -3,7 +3,7 @@ import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Container, Tabs, Tab,  Paper, Box, Button } from "@mui/material";
 import TimetableInfoPanel from "../timetableInfo/TimetableInfoPanel";
-import ExportConfigurationPanel from "../exportConfiguration/ExportConfigurationPanel";
+import ExportPanel from "../exportConfiguration/ExportPanel";
 import EditableCourseListPanel from "../editableCourseList/EditableCourseListPanel";
 import { NotFoundStatusView } from "../../components/statuses";
 
@@ -76,7 +76,7 @@ export default function TimetablePage() {
                         tab === 1?
                         <EditableCourseListPanel timetable={timetable} />
                         :
-                        <ExportConfigurationPanel timetable={timetable} />
+                        <ExportPanel timetable={timetable} />
                     }
                 </Box>
             </Paper>

@@ -1,7 +1,7 @@
 import { Text } from "react-konva";
 
-import type { IGridDimension } from "../../model/render/IGridDimension";
-import type { ITextStyle } from "../../model/render/theme/ITextStyle";
+import type { IGridDimension } from "../../model/types/render/IGridDimension";
+import type { ITextStyle } from "../../model/types/render/theme/ITextStyle";
 
 
 

@@ -1,4 +1,4 @@
-import { DayOfWeek, TimetableOrientation, TimetableWeekendType } from "../../enums";
+import { DayOfWeek, TimetableOrientation, TimetableWeekendType } from "../../../enums";
 import { IGridDimension } from "./IGridDimension";
 
 

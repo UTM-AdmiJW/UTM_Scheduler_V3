@@ -1,7 +1,7 @@
 import { TimetableTheme } from "../../enums";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
-import type { ITimetableThemeReport } from "../../model/render/theme/ITimetableThemeReport";
+import type { ITimetableThemeReport } from "../../model/types/render/theme/ITimetableThemeReport";
 
 
 import { utmTheme } from "./themes/UTM";

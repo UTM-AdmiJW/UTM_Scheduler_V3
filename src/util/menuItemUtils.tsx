@@ -3,7 +3,7 @@ import React from "react";
 
 import { convert24HourTo12Hour } from "./timeUtils";
 
-import type { IMenuItem } from "../types/IMenuItem";
+import type { IMenuItem } from "../model/types/menuItem/IMenuItem";
 
 
 

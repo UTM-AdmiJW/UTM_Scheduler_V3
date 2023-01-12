@@ -1,4 +1,4 @@
-import type { IThemeSlotGridLayer } from "../../../../model/render/theme/IThemeSlotGridLayer";
+import type { IThemeSlotGridLayer } from "../../../../model/types/render/theme/IThemeSlotGridLayer";
 
 
 

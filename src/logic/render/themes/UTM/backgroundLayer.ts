@@ -1,5 +1,5 @@
 
-import { IThemeBackgroundLayer } from "../../../../model/render/theme/IThemeBackgroundLayer";
+import { IThemeBackgroundLayer } from "../../../../model/types/render/theme/IThemeBackgroundLayer";
 
 
 

@@ -1,5 +1,5 @@
 
-import { IThemeLabelLayer } from "../../../../model/render/theme/IThemeLabelLayer";
+import { IThemeLabelLayer } from "../../../../model/types/render/theme/IThemeLabelLayer";
 
 
 const fontFamily = 'Poppins, sans-serif';

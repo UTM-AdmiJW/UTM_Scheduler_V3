@@ -1,7 +1,7 @@
 import { Layer, Rect } from "react-konva";
 
-import type { ITimetableGridReport } from "../../model/render/ITimetableGridReport";
-import type { ITimetableThemeReport } from "../../model/render/theme/ITimetableThemeReport";
+import type { ITimetableGridReport } from "../../model/types/render/ITimetableGridReport";
+import type { ITimetableThemeReport } from "../../model/types/render/theme/ITimetableThemeReport";
 
 
 interface ILabelGridLayerProps {

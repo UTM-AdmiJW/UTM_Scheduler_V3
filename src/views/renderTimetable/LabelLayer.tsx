@@ -1,9 +1,9 @@
 import { Layer } from "react-konva";
 import ThemedText from "../../components/render/ThemedText";
 
-import type { ITimetableGridReport } from "../../model/render/ITimetableGridReport";
-import type { ITimetableTextSizingReport } from "../../model/render/ITimetableTextSizingReport";
-import type { ITimetableThemeReport } from "../../model/render/theme/ITimetableThemeReport";
+import type { ITimetableGridReport } from "../../model/types/render/ITimetableGridReport";
+import type { ITimetableTextSizingReport } from "../../model/types/render/ITimetableTextSizingReport";
+import type { ITimetableThemeReport } from "../../model/types/render/theme/ITimetableThemeReport";
 
 import { convertDayOfWeekToString } from "../../util/timeUtils";
 import { convert24HourTo12Hour } from "../../util/timeUtils";
@@ -92,7 +92,7 @@ export default function LabelLayer({
                         style={ labelTime }
                         textPadding={ textPadding }
                         fontSize={ fontSizeTimeLabel }
-                        text={`${convert24HourTo12Hour(t)}\n▼\n${convert24HourTo12Hour(t+1)}`}
+                        text={`${convert24HourTo12Hour(t)}\n~\n${convert24HourTo12Hour(t+1)}`}
                     />
                 })
             }

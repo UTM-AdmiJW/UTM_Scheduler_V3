@@ -9,7 +9,7 @@ export const muiThemeOptions: ThemeOptions = createTheme({
             main: '#81163f',
         },
         secondary: {
-            main: '#9d2281',
+            main: '#1d3362',
         },
     },
 });

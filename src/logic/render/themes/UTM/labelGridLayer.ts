@@ -1,4 +1,4 @@
-import { IThemeLabelGridLayer } from "../../../../model/render/theme/IThemeLabelGridLayer";
+import { IThemeLabelGridLayer } from "../../../../model/types/render/theme/IThemeLabelGridLayer";
 
 
 

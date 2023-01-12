@@ -1,6 +1,6 @@
 import { DayOfWeek, TimetableOrientation, TimetableWeekendType } from "../enums";
 
-import type { IGridDimension } from "../model/render/IGridDimension";
+import type { IGridDimension } from "../model/types/render/IGridDimension";
 
 
 /**

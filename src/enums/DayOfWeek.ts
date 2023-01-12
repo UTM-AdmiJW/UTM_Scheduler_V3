@@ -1,4 +1,4 @@
-import { IMenuItem } from "../types/IMenuItem";
+import { IMenuItem } from "../model/types/menuItem/IMenuItem";
 
 
 // Do not change the numbering. The API data is 1-based, where 1 represents Sunday

@@ -1,8 +1,8 @@
 import { DayOfWeek, TimetableOrientation } from "../../enums";
 
-import type { IGridDimension } from "../../model/render/IGridDimension";
-import type { ITimetableDimensionReport } from "../../model/render/ITimetableDimensionReport";
-import type { ITimetableGridReport } from "../../model/render/ITimetableGridReport";
+import type { IGridDimension } from "../../model/types/render/IGridDimension";
+import type { ITimetableDimensionReport } from "../../model/types/render/ITimetableDimensionReport";
+import type { ITimetableGridReport } from "../../model/types/render/ITimetableGridReport";
 import { getPlacementTime } from "../../util/timetableRenderUtils";
 
 

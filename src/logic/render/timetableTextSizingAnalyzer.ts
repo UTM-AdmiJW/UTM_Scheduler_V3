@@ -1,7 +1,7 @@
 
 
 import type { ITimetable } from "../../model/domain/ITimetable";
-import type { ITimetableTextSizingReport } from "../../model/render/ITimetableTextSizingReport";
+import type { ITimetableTextSizingReport } from "../../model/types/render/ITimetableTextSizingReport";
 
 
 

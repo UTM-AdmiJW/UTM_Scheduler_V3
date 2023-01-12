@@ -85,19 +85,19 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
 
     const buttons = <>
         <Tooltip title='Add a blank editable course'>
-        <Button size='small' color='secondary' variant='outlined' onClick={ onAddBlankCourse }>
+        <Button size='small' variant='outlined' onClick={ onAddBlankCourse }>
             <AiOutlinePlus className='mr-2' /> Blank Course
         </Button>
         </Tooltip>
 
         <Tooltip title='Browse courses provided by the faculty'>
-        <Button size='small' color='secondary' variant='outlined' onClick={ onOpenCourseCatalog }>
+        <Button size='small' variant='outlined' onClick={ onOpenCourseCatalog }>
             <AiOutlineSearch className='mr-2' /> Browse
         </Button>
         </Tooltip>
         
         <Tooltip title='Download registered courses based on your matric number'>
-        <Button size='small' color='secondary' variant='outlined' onClick={ onOpenAddRegisteredCoursesDialog }>
+        <Button size='small' variant='outlined' onClick={ onOpenAddRegisteredCoursesDialog }>
             <MdPersonSearch className='mr-2' /> My Registered Courses
         </Button>
         </Tooltip>
