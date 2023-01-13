@@ -34,8 +34,8 @@ export default function ExportConfigurationTimetableAccordion({
     return <>
     <Accordion className="mb-3">
 
-        <AccordionSummary expandIcon={ <MdExpandMore className='text-2xl' /> }>
-            <Typography className='text-xl font-light'>
+        <AccordionSummary expandIcon={ <MdExpandMore className='text-xl' /> }>
+            <Typography className='text-lg font-light'>
                 <MdTableChart className='inline-block mr-3' />
                 Timetable
             </Typography>

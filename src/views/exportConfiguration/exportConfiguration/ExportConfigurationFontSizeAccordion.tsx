@@ -22,8 +22,8 @@ export default function ExportConfigurationFontSizeAccordion({
     return <>
     <Accordion className="mb-3">
         
-        <AccordionSummary expandIcon={ <MdExpandMore className='text-2xl' /> }>
-            <Typography className='text-xl font-light'>
+        <AccordionSummary expandIcon={ <MdExpandMore className='text-xl' /> }>
+            <Typography className='text-lg font-light'>
                 <MdOutlineTextFields className='inline-block mr-3' />
                 Font Size
             </Typography>
