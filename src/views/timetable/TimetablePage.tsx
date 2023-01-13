@@ -3,7 +3,7 @@ import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Container, Tabs, Tab,  Paper, Box, Button } from "@mui/material";
 import TimetableInfoPanel from "../timetableInfo/TimetableInfoPanel";
-import ExportPanel from "../exportConfiguration/ExportPanel";
+import ExportPanel from "../export/ExportPanel";
 import EditableCourseListPanel from "../editableCourseList/EditableCourseListPanel";
 import { NotFoundStatusView } from "../../components/statuses";
 

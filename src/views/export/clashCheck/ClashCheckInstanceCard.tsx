@@ -3,7 +3,7 @@ import ActionAreaCard from "../../../components/card/ActionAreaCard";
 
 import type { IClashInstance } from "../../../model/types/clashCheck/IClashReport"
 
-import { MdOutlineAccessTime, MdBook } from "react-icons/md";
+import { MdBook } from "react-icons/md";
 
 import { convert24HourTo12Hour, convertDayOfWeekToString } from "../../../util/timeUtils";
 

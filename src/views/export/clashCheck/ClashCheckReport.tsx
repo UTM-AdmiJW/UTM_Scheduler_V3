@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Alert, Box, Paper, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 
 import type { IClashReport } from "../../../model/types/clashCheck/IClashReport"
 
