@@ -50,7 +50,7 @@ export default function ExportConfiguration({ timetable }: { timetable: ITimetab
     return <>
         <Typography className='font-light text-2xl my-3'>
             <RiSettings3Line className='inline-block mr-2' />
-            Export Configuration
+            Export Settings
         </Typography>
 
         <Alert severity='warning' className={`transition-all ${isDirty? 'mb-5 scale-100': 'p-0 h-0 scale-0'}`}>
