@@ -1,10 +1,12 @@
 
 
-import { Stage } from "react-konva";
+import { Layer, Stage } from "react-konva";
 import BackgroundLayer from "./BackgroundLayer";
 import LabelGridLayer from "./LabelGridLayer";
 import SlotGridLayer from "./SlotGridLayer";
 import LabelLayer from "./LabelLayer";
+import ClassesGridLayer from "./ClassesGridLayer";
+import ClassesLabelLayer from "./ClassesLabelLayer";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
 
@@ -12,6 +14,7 @@ import { getTimetableDimensionReport } from "../../logic/render/timetableDimensi
 import { getTimetableGrid } from "../../logic/render/timetableGridReducer";
 import { getTimetableTheme } from "../../logic/render/timetableThemeMapper";
 import { getTimetableTextSizingReport } from "../../logic/render/timetableTextSizingAnalyzer";
+import { getTimetableCourseSlotDimensionReport } from "../../logic/render/timetableCourseSlotDimensionAnalyzer";
 
 
 
@@ -36,6 +39,9 @@ export default function RenderTimetable({
     const timetableThemeReport = getTimetableTheme(timetable);
     // Step 4: Get text sizing report
     const timetableTextSizingReport = getTimetableTextSizingReport(timetable);
+    // Step 5: Get dimension for each added courses
+    const timetableCourseDimensionReport = getTimetableCourseSlotDimensionReport({ timetable, timetableDimensionReport });
+
 
 
 
@@ -45,6 +51,7 @@ export default function RenderTimetable({
             width={timetableDimensionReport.width} 
             height={timetableDimensionReport.height}
         >
+        <Layer>
             <BackgroundLayer 
                 timetableDimensionReport={timetableDimensionReport}
                 timetableThemeReport={timetableThemeReport}
@@ -66,6 +73,18 @@ export default function RenderTimetable({
                 timetableThemeReport={timetableThemeReport}
                 timetableTextSizingReport={timetableTextSizingReport}
             />
+
+            <ClassesGridLayer
+                timetableThemeReport={timetableThemeReport}
+                timetableCourseDimensionReport={timetableCourseDimensionReport}
+            />
+
+            <ClassesLabelLayer
+                timetableThemeReport={timetableThemeReport}
+                timetableCourseDimensionReport={timetableCourseDimensionReport}
+                timetableTextSizingReport={timetableTextSizingReport}
+            />
+        </Layer>
         </Stage>
     </>
 }

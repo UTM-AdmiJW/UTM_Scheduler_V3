@@ -12,10 +12,11 @@ import type { IJadualSubjek_Combine } from "../model/DTO/JadualSubjek/IJadualSub
 import type { ITime } from "../model/domain/ITime";
 import type { IEditableCourse } from "../model/domain/IEditableCourse";
 import type { ICourseCatalogState } from "../model/domain/ICourseCatalogState";
+import type { IRegisteredCoursesState } from "../model/domain/IRegisteredCoursesState";
+import type { ISubjekSeksyen_SeksyenDTO } from "../model/DTO/SubjekSeksyen/ISubjekSeksyen_SeksyenDTO";
+import type { IEditableCourseTimeComposite } from "../model/types/domainDerived/IEditableCourseTimeComposite";
 
 import { DayOfWeek } from "../enums";
-import { IRegisteredCoursesState } from "../model/domain/IRegisteredCoursesState";
-import { ISubjekSeksyen_SeksyenDTO } from "../model/DTO/SubjekSeksyen/ISubjekSeksyen_SeksyenDTO";
 
 
 //============================
@@ -124,32 +125,32 @@ export function combineIJadualDTO(jadual: IJadualSubjekDTO[]): IJadualSubjek_Com
 
 
 
-// Convert ICombinedJadualDTO to ITime
+// Convert ICombinedJadualDTO to ITime. An adapter from DTO to domain model
 export function convertICombinedJadualDTOToITime(jadual: IJadualSubjek_Combine): ITime {
     return {
         id: jadual.id_jws,
         dayOfWeek: convertDayCodeToDayOfWeek(jadual.hari),
         beginTime: convertTimeCodeTo24Hour(jadual.masa_mula),
         endTime: convertTimeCodeTo24Hour(jadual.masa_tamat),
-        venue: jadual.ruang.nama_ruang_singkatan
+        venue: jadual.ruang.nama_ruang_singkatan || '',
     }
 }
 
 
-// Convert ICourseCatalogState to IEditableCourse
+// Convert ICourseCatalogState to IEditableCourse. Used when adding a new course from Course Catalog
 export function convertICourseCatalogStateToIEditableCourse(catalog: ICourseCatalogState): IEditableCourse {
     return {
         id: uuidv4(),
-        courseCode: catalog.subjekSeksyen?.kod_subjek || 'N/A',
-        courseName: catalog.subjekSeksyen?.nama_subjek || 'N/A',
+        courseCode: catalog.subjekSeksyen?.kod_subjek || '',
+        courseName: catalog.subjekSeksyen?.nama_subjek || '',
         sectionNo: catalog.seksyen?.seksyen || 0,
-        lecturer: catalog.seksyen?.pensyarah || 'N/A',
+        lecturer: catalog.seksyen?.pensyarah || '',
         timeList: catalog.jadualSubjek?.map(convertICombinedJadualDTOToITime) || [],
     }
 }
 
 
-// Convert IRegisteredCourseState to IEditableCourse
+// Convert IRegisteredCourseState to IEditableCourse. Used when adding a new course from My Registered Courses
 export function convertIRegisteredCourseStateToIEditableCourse(
     course: IRegisteredCoursesState,
     seksyen: ISubjekSeksyen_SeksyenDTO,
@@ -157,10 +158,21 @@ export function convertIRegisteredCourseStateToIEditableCourse(
 ): IEditableCourse {
     return {
         id: uuidv4(),
-        courseCode: course.pelajarSubjek?.kod_subjek || 'N/A',
-        courseName: course.pelajarSubjek?.nama_subjek || 'N/A',
+        courseCode: course.pelajarSubjek?.kod_subjek || '',
+        courseName: course.pelajarSubjek?.nama_subjek || '',
         sectionNo: course.pelajarSubjek?.seksyen || 0,
-        lecturer: seksyen?.pensyarah || 'N/A',
+        lecturer: seksyen?.pensyarah || '',
         timeList: jadual.map(convertICombinedJadualDTOToITime) || [],
     }
+}
+
+
+
+// Flat map IEditableCourse to IEditableCourseTimeComposite for easy iteration over timeList.
+// Primarily used in clash checking between times
+export function flatMapIEditableCourseToIEditableCourseTimeComposite(
+    course: IEditableCourse
+): IEditableCourseTimeComposite[] {
+    
+    return course.timeList.map(time => ({ time, course }));
 }

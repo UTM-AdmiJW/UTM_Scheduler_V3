@@ -1,18 +1,17 @@
 
+
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
-import { ITime } from "../../model/domain/ITime";
 import type { IClashReport, IClashInstance } from "../../model/types/clashCheck/IClashReport";
+import type { IEditableCourseTimeComposite } from "../../model/types/domainDerived/IEditableCourseTimeComposite";
+
+import { flatMapIEditableCourseToIEditableCourseTimeComposite } from "../../util/timeUtils";
 
 
 export function clashChecker(courses: IEditableCourse[]): IClashReport {
-    type TimeCourseComposite = { time: ITime, course: IEditableCourse };
-
     const clashes: IClashInstance[] = [];
 
-    // Step 1: Flat map each editableCourses into TimeCourseComposite
-    const timeCourseComposites: TimeCourseComposite[] = courses.flatMap(course => {
-        return course.timeList.map(time => ({ time, course }));
-    });
+    // Step 1: Flat map each editableCourses into IEditableCourseTimeComposite
+    const timeCourseComposites: IEditableCourseTimeComposite[] = courses.flatMap(flatMapIEditableCourseToIEditableCourseTimeComposite);
 
     // Step 2: Sort by day of week, then by beginTime
     timeCourseComposites.sort((a, b)=> {

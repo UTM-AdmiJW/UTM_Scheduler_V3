@@ -1,4 +1,4 @@
-import { Layer } from "react-konva";
+import { Group } from "react-konva";
 import ThemedText from "../../components/render/ThemedText";
 
 import type { ITimetableGridReport } from "../../model/types/render/ITimetableGridReport";
@@ -45,60 +45,57 @@ export default function LabelLayer({
 
 
     
-    return <>
-        <Layer>
-            { pre }
+    return <Group>
+        { pre }
 
-            {/* Day of week label indicator */}
-            <ThemedText
-                gridDimension={ labelIndicator.dayOfWeek }
-                style={ labelIndicatorDayOfWeek }
-                textPadding={ textPadding }
-                fontSize={ fontSizeDayOfWeekLabelIndiciator }
-                text="Day of Week"
-            />
+        {/* Day of week label indicator */}
+        <ThemedText
+            gridDimension={ labelIndicator.dayOfWeek }
+            style={ labelIndicatorDayOfWeek }
+            textPadding={ textPadding }
+            fontSize={ fontSizeDayOfWeekLabelIndiciator }
+            text="Day of Week"
+        />
 
-            {/* Time label indicator */}
-            <ThemedText
-                gridDimension={ labelIndicator.time }
-                style={ labelIndicatorTime }
-                textPadding={ textPadding }
-                fontSize={ fontSizeTimeLabelIndiciator }
-                text="Time"
-            />
+        {/* Time label indicator */}
+        <ThemedText
+            gridDimension={ labelIndicator.time }
+            style={ labelIndicatorTime }
+            textPadding={ textPadding }
+            fontSize={ fontSizeTimeLabelIndiciator }
+            text="Time"
+        />
 
-            {/* Day of Week labels */}
-            {
-                Object.entries(dayOfWeekLabel).map(([dayOfWeek, gridDimension]) => {
-                    return <ThemedText
-                        key={ dayOfWeek }
-                        gridDimension={ gridDimension }
-                        style={ labelDayOfWeek }
-                        textPadding={ textPadding }
-                        fontSize={ fontSizeDayOfWeekLabel }
-                        text={ convertDayOfWeekToString( parseInt(dayOfWeek) ) }
-                    />
-                })
-            }
+        {/* Day of Week labels */}
+        {
+            Object.entries(dayOfWeekLabel).map(([dayOfWeek, gridDimension]) => {
+                return <ThemedText
+                    key={ dayOfWeek }
+                    gridDimension={ gridDimension }
+                    style={ labelDayOfWeek }
+                    textPadding={ textPadding }
+                    fontSize={ fontSizeDayOfWeekLabel }
+                    text={ convertDayOfWeekToString( parseInt(dayOfWeek) ) }
+                />
+            })
+        }
 
-            {/* Time labels */}
-            {
-                Object.entries(timeLabel).map(([time, gridDimension]) => {
-                    const t = parseInt(time);
+        {/* Time labels */}
+        {
+            Object.entries(timeLabel).map(([time, gridDimension]) => {
+                const t = parseInt(time);
 
-                    return <ThemedText
-                        key={ t }
-                        gridDimension={ gridDimension }
-                        style={ labelTime }
-                        textPadding={ textPadding }
-                        fontSize={ fontSizeTimeLabel }
-                        text={`${convert24HourTo12Hour(t)}\n~\n${convert24HourTo12Hour(t+1)}`}
-                    />
-                })
-            }
+                return <ThemedText
+                    key={ t }
+                    gridDimension={ gridDimension }
+                    style={ labelTime }
+                    textPadding={ textPadding }
+                    fontSize={ fontSizeTimeLabel }
+                    text={`${convert24HourTo12Hour(t)}\n~\n${convert24HourTo12Hour(t+1)}`}
+                />
+            })
+        }
 
-            { post }
-        </Layer>
-    </>
-
+        { post }
+    </Group>
 }

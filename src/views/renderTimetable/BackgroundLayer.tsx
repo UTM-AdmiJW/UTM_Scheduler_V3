@@ -1,4 +1,5 @@
-import { Layer, Rect } from "react-konva";
+
+import { Group, Rect } from "react-konva";
 
 import type { ITimetableDimensionReport } from "../../model/types/render/ITimetableDimensionReport";
 import type { ITimetableThemeReport } from "../../model/types/render/theme/ITimetableThemeReport";
@@ -19,20 +20,17 @@ export default function BackgroundLayer({
     const { backgroundColor, injection } = timetableThemeReport.backgroundLayerTheme;
     const { pre = null, post = null } = injection ?? {};
 
-    return <>
-        <Layer>
-            { pre }
+    return <Group>
+        { pre }
 
-            <Rect
-                fill={backgroundColor}
-                width={width}
-                height={height}
-                x={0} y={0}
-                preventDefault={false}
-            />
+        <Rect
+            fill={backgroundColor}
+            width={width}
+            height={height}
+            x={0} y={0}
+            preventDefault={false}
+        />
 
-            { post }
-        </Layer>
-    </>
-
+        { post }
+    </Group>;
 }

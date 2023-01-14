@@ -4,7 +4,7 @@ import type { ITimetable } from "../../model/domain/ITimetable";
 import type { ITimetableThemeReport } from "../../model/types/render/theme/ITimetableThemeReport";
 
 
-import { utmTheme } from "./themes/UTM";
+import { utmTheme } from "../../timetableTheme/UTM";
 
 
 
