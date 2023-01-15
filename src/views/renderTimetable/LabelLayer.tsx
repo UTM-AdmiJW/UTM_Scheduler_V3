@@ -1,5 +1,5 @@
 import { Group } from "react-konva";
-import ThemedText from "../../components/render/ThemedText";
+import ThemedText from "../../components/konva/ThemedText";
 
 import type { ITimetableGridReport } from "../../model/types/render/ITimetableGridReport";
 import type { ITimetableTextSizingReport } from "../../model/types/render/ITimetableTextSizingReport";

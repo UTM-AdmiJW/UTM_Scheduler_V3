@@ -3,25 +3,27 @@ import EditableCourseInfoEdit from "./EditableCourseInfoEdit";
 import EditableCourseTimeEdit from "./EditableCourseTimeEdit";
 
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 import { useForm } from "react-hook-form";
 import { useAlert } from "../../hooks/useAlert";
+import { useUnsavedStateContext } from "../../hooks/context/useUnsavedStateContext";
 
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
 
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdArrowBack } from "react-icons/md";
+import NavigateButton from "../../components/button/NavigateButton";
 
 
 
 export default function EditableCoursePage() {
-    const navigate = useNavigate();
     const { timetableId, courseId } = useParams();
     const { alertSuccess, alertInfo, alertError } = useAlert();
 
     const { timetableState, timetableActions } = useTimetableRedux();
     const course = timetableState.timetables[timetableId!].editableCourses[courseId!];
+    const { setIsDirty } = useUnsavedStateContext();
 
     const { control, handleSubmit, formState: { isDirty }, reset, getValues } = useForm<IEditableCourse>({
         defaultValues: course
@@ -33,6 +35,10 @@ export default function EditableCoursePage() {
     useEffect(() => {
         reset(course);
     }, [course, reset]);
+
+    useEffect(()=> {
+        setIsDirty(isDirty);
+    }, [isDirty, setIsDirty]);
 
 
 
@@ -58,10 +64,11 @@ export default function EditableCoursePage() {
 
             {/* Back to timetable */}
             <Box className='flex mb-6'>
-                <Button variant='contained' className='mt-5' onClick={()=> navigate(`/timetable/${timetableId}?tab=1`)} >
-                    <MdArrowBack className='mr-2' />
-                    Back to timetable
-                </Button>
+                <NavigateButton
+                    label='Back to Courses'
+                    icon={<MdArrowBack className='mr-2' />}
+                    navigateTo={`/timetable/${timetableId}?tab=1`}
+                />
             </Box>
 
             <Paper elevation={2} className='p-5 bg-gray-50'>

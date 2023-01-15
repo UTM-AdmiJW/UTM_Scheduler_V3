@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
-import { Container, Tabs, Tab,  Paper, Box, Button } from "@mui/material";
+import { Container, Tabs, Tab,  Paper, Box } from "@mui/material";
 import TimetableInfoPanel from "../timetableInfo/TimetableInfoPanel";
 import ExportPanel from "../export/ExportPanel";
 import EditableCourseListPanel from "../editableCourseList/EditableCourseListPanel";
+import NavigateButton from "../../components/button/NavigateButton";
 import { NotFoundStatusView } from "../../components/statuses";
 
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
@@ -23,7 +24,6 @@ enum TimetablePageTabs {
 
 
 export default function TimetablePage() {
-    const navigate = useNavigate();
     const { id } = useParams();
 
     // Using ?tab=0 in the url will set the tab to first tab, and so on
@@ -50,10 +50,11 @@ export default function TimetablePage() {
         <Container className='pb-7'>
 
             <Box className='flex mb-6'>
-                <Button variant='contained' className='mt-5' onClick={()=> navigate('/')} >
-                    <MdArrowBack className='mr-2' />
-                    Back to timetables
-                </Button>
+                <NavigateButton
+                    label="Back to my timetables"
+                    icon={<MdArrowBack className='mr-2' />}
+                    navigateTo='/'
+                />
             </Box>
 
             <Paper elevation={2}>

@@ -3,10 +3,10 @@ import { useMediaQuery, useTheme, Dialog } from "@mui/material";
 import { createContext } from "react";
 import { useState } from "react";
 
-
-// A Dialog Context to allow you to show 'pop-up' windows anywhere in the application
-// See Dialog documentation here: https://mui.com/components/dialogs/
-
+/**
+ * This Dialog Context to allow you to show 'pop-up' windows anywhere in the application
+ * See Dialog documentation here: https://mui.com/components/dialogs/
+ */
 
 
 export interface IDialogContextType {
