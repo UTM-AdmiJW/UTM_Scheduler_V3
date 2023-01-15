@@ -28,8 +28,8 @@ const backgroundLayer: IThemeBackgroundLayer = {
 
 
 const labelGridLayer: IThemeLabelGridLayer = {
-    labelIndicatorDayOfWeekBgColor: BLUE,
-    labelIndicatorTimeBgColor: BLUE,
+    labelIndicatorDayOfWeekBgColor: GOLD,
+    labelIndicatorTimeBgColor: GOLD,
     dayOfWeekLabelColor: MAROON,
     timeLabelColor: MAROON,
 };
@@ -42,12 +42,14 @@ const slotGridLayer: IThemeSlotGridLayer = {
 
 const labelLayer: IThemeLabelLayer = {
     labelIndicatorDayOfWeek: {
-        color: WHITE,
+        color: MAROON,
         fontFamily: POPPINS,
+        fontStyle: 'bold',
     },
     labelIndicatorTime: {
-        color: WHITE,
+        color: MAROON,
         fontFamily: POPPINS,
+        fontStyle: 'bold',
     },
     labelDayOfWeek: {
         color: WHITE,
@@ -62,7 +64,7 @@ const labelLayer: IThemeLabelLayer = {
 
 
 const classesGridLayer: IThemeClassesGridLayer = {
-    classesBgColor: [ GOLD, ]
+    classesBgColor: [ BLUE, ]
 };
 
 

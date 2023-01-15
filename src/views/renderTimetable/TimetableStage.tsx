@@ -9,6 +9,8 @@ import ClassesGridLayer from "./ClassesGridLayer";
 import ClassesLabelLayer from "./ClassesLabelLayer";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
+import type { LegacyRef } from "react";
+import type { Stage as StageType } from "konva/lib/Stage";
 
 import { getTimetableDimensionReport } from "../../logic/render/timetableDimensionAnalyzer";
 import { getTimetableGrid } from "../../logic/render/timetableGridReducer";
@@ -20,14 +22,16 @@ import { getTimetableCourseSlotDimensionReport } from "../../logic/render/timeta
 
 
 
-interface IRenderTimetableProps {
+interface ITimetableStageProps {
     timetable: ITimetable;
+    stageRef: LegacyRef<StageType>;
 }
 
 
-export default function RenderTimetable({
-    timetable
-}: IRenderTimetableProps) {
+export default function TimetableStage({
+    timetable,
+    stageRef: ref,
+}: ITimetableStageProps) {
 
     // To generate the timetable, the ITimetable model has to went through a series of steps.
     // ----------------------------------
@@ -50,6 +54,7 @@ export default function RenderTimetable({
         <Stage 
             width={timetableDimensionReport.width} 
             height={timetableDimensionReport.height}
+            ref={ref}
         >
         <Layer>
             <BackgroundLayer 

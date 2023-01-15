@@ -1,11 +1,11 @@
 
-import { Button, Tooltip, Typography } from "@mui/material";
+import { Box, Button, Tooltip, Typography } from "@mui/material";
 import RenderTimetableDialog from "../../renderTimetable/RenderTimetableDialog";
 
 import { useDialog } from "../../../hooks/useDialog";
 import { useAlert } from "../../../hooks/useAlert";
 
-import { TbTableExport } from "react-icons/tb";
+import { TbTableExport, TbEye } from "react-icons/tb";
 
 import type { ITimetable } from "../../../model/domain/ITimetable";
 
@@ -39,14 +39,16 @@ export default function ExportTimetable({
             Export Timetable
         </Typography>
 
-        <Tooltip title='Export timetable as image'>
-        <Button 
-            variant='contained' 
-            onClick={handleExportTimetable}
-        >
-            Export Timetable
-        </Button>
-        </Tooltip>
-    
+        <Box className='my-6 flex justify-center'>
+            <Tooltip title='Preview timetable and export as image'>
+            <Button 
+                variant='contained' 
+                onClick={handleExportTimetable}
+            >
+                <TbEye className='mr-2' />
+                Export Timetable
+            </Button>
+            </Tooltip>
+        </Box>
     </>
 }
