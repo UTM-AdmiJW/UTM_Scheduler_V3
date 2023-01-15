@@ -1,7 +1,7 @@
 import { Button, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import TimetableStage from "./TimetableStage";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useDialog } from "../../hooks/useDialog";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
@@ -22,8 +22,15 @@ export default function RenderTimetableDialog({
     timetable,
 }: IRenderTimetableDialog) {
 
+    const [stageSize, setStageSize] = useState<[number, number]>([0, 0]);
     const stageRef = useRef<Stage>(null);
     const { closeDialog } = useDialog();
+
+
+    useEffect(()=> {
+        if (stageRef.current === null) return;
+        setStageSize([stageRef.current.width(), stageRef.current.height()]);
+    }, [stageRef.current])
 
 
     const handleDownloadAsPng = () => {
@@ -50,10 +57,14 @@ export default function RenderTimetableDialog({
 
     return <>
         <DialogTitle>
-        <Typography className='text-2xl font-light flex items-center'>
-            <MdDraw className='mr-2 inline' fontSize='x-large' /> 
-            Render Timetable
-        </Typography>
+            <Typography className='text-2xl font-light flex items-center'>
+                <MdDraw className='mr-2 inline' fontSize='x-large' /> 
+                Render Timetable
+            </Typography>
+        
+            <Typography className='text-xs font-light text-gray-400 text-center my-1'>
+                Timetable size: {stageSize[0]} x {stageSize[1]}          
+            </Typography>
         </DialogTitle>
 
         <DialogContent className='m-2 p-0'>
