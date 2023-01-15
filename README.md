@@ -38,6 +38,8 @@ UTM Scheduler V3, a sequel to the previous [UTM Timetable Generator V2](https://
 10. [Redux-Persist](https://www.npmjs.com/package/redux-persist)
 11. [UUID](https://www.npmjs.com/package/uuid)
 12. [KonvaJS](https://konvajs.org/)
+13. [FontSource](https://fontsource.org/)
+14. [FontFaceObserver](https://fontfaceobserver.com/)
 
 ## Project Structure:
 

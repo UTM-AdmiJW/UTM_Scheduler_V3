@@ -14,7 +14,13 @@ import { DialogContextProvider } from './context/DialogContext';
 
 import { LoadingStatusView } from './components/statuses';
 
+
+// CSS Styles
 import './style/index.css';
+
+// Import fonts using FontSource
+import './style/fonts';
+
 
 
 

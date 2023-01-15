@@ -1332,6 +1332,31 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/cantora-one@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/cantora-one/-/cantora-one-4.5.11.tgz#28e79f86ef159eae52fb13bae6049e82ff33ba26"
+  integrity sha512-qOE0rhh7GuAtsTFAR9W7tWvW14irpn/SUmSg8wiSDN7OVJQgL/ndi/DFKDZJxTVzlVAOpEKVfYtzbSlPCovVAA==
+
+"@fontsource/grandstander@^4.5.9":
+  version "4.5.9"
+  resolved "https://registry.yarnpkg.com/@fontsource/grandstander/-/grandstander-4.5.9.tgz#bb4285941b2437b3432dc99cb7e9f76e47aa1d58"
+  integrity sha512-yFLzXXJ2q+fYS510FvC1NLO3xSSDBIFkr4eh6jxZV97jZ0lCCoGaL6quQ59Lw1FR+/iwb5AiClGEQN46JWTIQA==
+
+"@fontsource/marvel@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/marvel/-/marvel-4.5.8.tgz#13bb7ed57499a5ba59e52935af07bf21eb48134c"
+  integrity sha512-T7Vz/TDjJiyzWyV/2gTwxj0FrkJ2eT5l/r8yTVUBsK5RiG9/EfskCnDYDfDIyLWiLw5QKmk+lO5jAdJ2dKT1Qw==
+
+"@fontsource/poppins@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.5.10.tgz#44dbfeacb5d89efca5ad7ad6cc941b2ac1ee424b"
+  integrity sha512-oYZVHsnlwV3VWM1SE/m6SUxVh0QLk5+2wB+lBiXcI7N/0KVQWmV9YykaPqfJHBLvmdya+MAOnv+BQHeLU1vOOw==
+
+"@fontsource/rajdhani@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/rajdhani/-/rajdhani-4.5.10.tgz#f87389032dcb626ee606115161eea66f41b0f4ae"
+  integrity sha512-4qsQsC4BELF8FC6UEBs5QBkek4v+/t0PYmQYtw1WDlNlq0V5mjUldMxjXzZano9/5HBihL7ztfQRPOf8WYexIQ==
+
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.7"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.7.tgz"
@@ -2222,6 +2247,11 @@
     "@types/express-serve-static-core" "^4.17.18"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/fontfaceobserver@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/fontfaceobserver/-/fontfaceobserver-2.1.0.tgz#9ec2eabadfcaaf8c68c5e1254d19f5a293d132b4"
+  integrity sha512-Vqf183RAiFdIjUi4asKqogf2HIfLDnxn+dQo9GCpnsU5QrrsLMA2bkJU1dHRudQlizLybWD61Csd1zAgUQ3JKQ==
 
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
@@ -4832,6 +4862,11 @@ follow-redirects@^1.0.0:
   version "1.15.2"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.2.tgz"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
+
+fontfaceobserver@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/fontfaceobserver/-/fontfaceobserver-2.3.0.tgz#5fb392116e75d5024b7ec8e4f2ce92106d1488c8"
+  integrity sha512-6FPvD/IVyT4ZlNe7Wcn5Fb/4ChigpucKYSvD6a+0iMoLn2inpo711eyIcKjmDtE5XNcgAkSH9uN/nfAeZzHEfg==
 
 for-each@^0.3.3:
   version "0.3.3"
