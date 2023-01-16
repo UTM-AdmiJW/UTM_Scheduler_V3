@@ -46,7 +46,7 @@ export default function ConfirmDialog({ title, message, onConfirm, onCancel }: I
             <Button variant="contained" type='submit' onClick={ handleConfirm }>
                 Confirm
             </Button>
-            <Button variant="outlined" color='warning' onClick={ handleCancel }>
+            <Button variant="outlined" onClick={ handleCancel }>
                 Cancel
             </Button>
         </DialogActions>
