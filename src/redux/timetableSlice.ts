@@ -69,6 +69,12 @@ export const timetableSlice = createSlice({
 
             state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
         },
+        clearCourses(state, action: PayloadAction<{ timetableId: string }>) {
+            const { timetableId } = action.payload;
+            state.timetables[timetableId].editableCourses = {};
+
+            state.timetables[timetableId].lastModifiedDate = new Date().toLocaleString();
+        },
         addCourse(state, action: PayloadAction<{ timetableId: string, course: IEditableCourse }>) {
             const { timetableId, course } = action.payload;
             state.timetables[timetableId].editableCourses[course.id] = course;

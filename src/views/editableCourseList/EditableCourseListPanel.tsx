@@ -13,7 +13,7 @@ import type { ITimetable } from "../../model/domain/ITimetable";
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
 
 import { AiOutlinePlus, AiOutlineSearch } from 'react-icons/ai';
-import { MdPersonSearch } from 'react-icons/md';
+import { MdPersonSearch, MdDelete } from 'react-icons/md';
 
 import { stringEnumToIMenuItems } from "../../util/menuItemUtils";
 
@@ -32,9 +32,9 @@ enum EditableCourseListSortOrder {
 
 export default function EditableCourseListPanel({ timetable }: { timetable: ITimetable }) {
 
-    const { alertSuccess } = useAlert();
-    const { openDialog } = useDialog();
-    const { timetableActions: { addBlankCourse } } = useTimetableRedux();
+    const { alertSuccess, alertInfo } = useAlert();
+    const { openDialog, openConfirmDialog } = useDialog();
+    const { timetableActions: { addBlankCourse, clearCourses } } = useTimetableRedux();
 
 
     const searchFn = (course: IEditableCourse, search: string)=> {
@@ -65,6 +65,20 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
 
     const onOpenAddRegisteredCoursesDialog = ()=> {
         openDialog(<RegisteredCoursesDialog timetable={timetable} />);
+    }
+
+    const onClearAll = ()=> {
+        if ( Object.keys(timetable.editableCourses).length === 0 ) 
+            return alertInfo('No courses to clear');
+
+        openConfirmDialog({
+            title: 'Clear all courses',
+            message: 'Are you sure you want to clear all courses from this timetable? The action is irreversible.',
+            onConfirm: ()=> {
+                clearCourses({ timetableId: timetable.id });
+                alertSuccess('All courses cleared');
+            }
+        });
     }
 
 
@@ -103,6 +117,12 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
         <Tooltip title='Download registered courses based on your matric number'>
         <Button size='small' variant='outlined' onClick={ onOpenAddRegisteredCoursesDialog }>
             <MdPersonSearch className='mr-2' /> My Registered Courses
+        </Button>
+        </Tooltip>
+
+        <Tooltip title='Clear all the added courses'>
+        <Button size='small' variant='outlined' color='error' onClick={ onClearAll }>
+            <MdDelete className='mr-2' /> Clear
         </Button>
         </Tooltip>
     </>;
