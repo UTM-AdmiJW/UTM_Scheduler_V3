@@ -20,8 +20,8 @@ export default function RegisteredCoursesStepper() {
                 <StepLabel>Login</StepLabel>
             </Step>
 
-            <Step key={RegisteredCoursesProgress.SELECT_REGISTERED_SUBJECT} >
-                <StepLabel>Select Subject</StepLabel>
+            <Step key={RegisteredCoursesProgress.SELECT_SESSIONSEMESTER} >
+                <StepLabel>Select Session/Semester</StepLabel>
             </Step>
 
             <Step key={RegisteredCoursesProgress.CONFIRMATION} >

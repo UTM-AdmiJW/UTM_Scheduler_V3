@@ -51,7 +51,7 @@ export default function TimetableStage({
 
     // Finally: Pass the data to the layer renderers component
     return <>
-        <Stage 
+        <Stage
             width={timetableDimensionReport.width} 
             height={timetableDimensionReport.height}
             ref={ref}

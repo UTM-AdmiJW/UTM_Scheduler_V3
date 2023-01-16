@@ -12,7 +12,7 @@ import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 import type { ITimetable } from "../../model/domain/ITimetable";
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
 
-import { AiOutlineCloudServer, AiOutlinePlus, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineSearch } from 'react-icons/ai';
 import { MdPersonSearch } from 'react-icons/md';
 
 import { stringEnumToIMenuItems } from "../../util/menuItemUtils";
@@ -77,7 +77,11 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
                 </Button>
                 <br/>
                 <Button variant='outlined' size='small' onClick={ onOpenCourseCatalog } className='mt-3'>
-                    <AiOutlineCloudServer className='mr-2' /> Browse course catalog
+                    <AiOutlineSearch className='mr-2' /> Browse course catalog
+                </Button>
+                <br/>
+                <Button variant='outlined' size='small' onClick={ onOpenAddRegisteredCoursesDialog } className='mt-3'>
+                    <MdPersonSearch className='mr-2' /> Add registered courses
                 </Button>
             </Box>
         </EmptyStatusView>

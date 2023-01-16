@@ -1,7 +1,7 @@
 import { Button, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import TimetableStage from "./TimetableStage";
 
-import { useRef, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { useDialog } from "../../hooks/useDialog";
 
 import type { ITimetable } from "../../model/domain/ITimetable";
@@ -22,33 +22,32 @@ export default function RenderTimetableDialog({
     timetable,
 }: IRenderTimetableDialog) {
 
-    const [stageSize, setStageSize] = useState<[number, number]>([0, 0]);
-    const stageRef = useRef<Stage>(null);
+    const [stage, setStage] = useState<Stage | null>(null);
     const { closeDialog } = useDialog();
 
-
-    useEffect(()=> {
-        if (stageRef.current === null) return;
-        setStageSize([stageRef.current.width(), stageRef.current.height()]);
-    }, [stageRef.current])
+    // Since I want to update timetable dimension everytime the ref chanegs, the approach is to useCallback
+    const stageRef = useCallback((node: Stage | null) => {
+        if (!node) return;
+        setStage(node);
+    }, []);
 
 
     const handleDownloadAsPng = () => {
-        if (stageRef.current === null) return;
+        if (stage === null) return;
 
         const link = document.createElement('a');
         link.download = `${timetable.timetableName}.png`;
-        link.href = stageRef.current.toDataURL();
+        link.href = stage.toDataURL();
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     }
 
     const handleOpenInNewTab = () => {
-        if (stageRef.current === null) return;
+        if (stage === null) return;
 
         const image = new Image();
-        image.src = stageRef.current.toDataURL();
+        image.src = stage.toDataURL();
         const w = window.open("");
         w?.document.write(image.outerHTML);
         w?.document.close();
@@ -63,7 +62,7 @@ export default function RenderTimetableDialog({
             </Typography>
         
             <Typography className='text-xs font-light text-gray-400 text-center my-1'>
-                Timetable size: {stageSize[0]} x {stageSize[1]}          
+                Timetable size: {stage?.width()} x {stage?.height()}
             </Typography>
         </DialogTitle>
 

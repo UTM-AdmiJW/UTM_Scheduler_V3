@@ -8,7 +8,7 @@ import { useDialog } from "../../hooks/useDialog";
 import { useAlert } from "../../hooks/useAlert";
 import { useStudentRedux } from "../../hooks/redux/useStudentRedux";
 
-import LoginDialog from "../../views/login/LoginDialog";
+import EnterProfileDialog from "../../views/profile/EnterProfileDialog";
 
 
 export default function Profile() {
@@ -19,7 +19,7 @@ export default function Profile() {
 
 
     const onLoginButtonClick = () => {
-        openDialog(<LoginDialog />);
+        openDialog(<EnterProfileDialog />);
     }
 
     const onLogoutButtonClick = () => {
@@ -46,7 +46,7 @@ export default function Profile() {
                 </div>
                 :
                 <p className='font-bold'>
-                    Not logged in
+                    Guest User
                 </p>
             }
         </div>
@@ -74,7 +74,7 @@ export default function Profile() {
                 onClick={ onLoginButtonClick }
             >
                 <AiOutlineLogin className='mr-2' fontSize='large' />
-                Login
+                Enter Profile
             </Button>
         }
     </div>

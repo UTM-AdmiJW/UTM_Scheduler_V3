@@ -1,7 +1,9 @@
+import axios from "axios";
+
 import { useQueries, useQuery, UseQueryOptions } from "react-query";
+import { useAlert } from "../useAlert";
 
 import type { IJadualSubjekDTO } from "../../model/DTO/JadualSubjek/IJadualSubjekDTO";
-import { useAlert } from "../useAlert";
 
 
 interface IFetchJadualSubjekParams {
@@ -21,7 +23,9 @@ export function fetchJadualSubjek({ sesi, semester, kod_subjek, seksyen }: IFetc
                     `kod_subjek=${ kod_subjek }&` + 
                     `seksyen=${ seksyen }`;
 
-        return fetch(url).then(res => res.json());
+        return axios
+            .get<IJadualSubjekDTO[]>(url)
+            .then((res)=> res.data);
     };
 }
 

@@ -12,9 +12,9 @@ import type { IJadualSubjek_Combine } from "../model/DTO/JadualSubjek/IJadualSub
 import type { ITime } from "../model/domain/ITime";
 import type { IEditableCourse } from "../model/domain/IEditableCourse";
 import type { ICourseCatalogState } from "../model/domain/ICourseCatalogState";
-import type { IRegisteredCoursesState } from "../model/domain/IRegisteredCoursesState";
 import type { ISubjekSeksyen_SeksyenDTO } from "../model/DTO/SubjekSeksyen/ISubjekSeksyen_SeksyenDTO";
-import type { IEditableCourseTimeComposite } from "../model/types/domainDerived/IEditableCourseTimeComposite";
+import type { IEditableCourseTimeComposite } from "../model/types/composite/IEditableCourseTimeComposite";
+import type { IPelajarSubjekDTO } from "../model/DTO/PelajarSubjek/IPelajarSubjekDTO";
 
 import { DayOfWeek } from "../enums";
 
@@ -151,18 +151,23 @@ export function convertICourseCatalogStateToIEditableCourse(catalog: ICourseCata
 
 
 // Convert IRegisteredCourseState to IEditableCourse. Used when adding a new course from My Registered Courses
-export function convertIRegisteredCourseStateToIEditableCourse(
-    course: IRegisteredCoursesState,
-    seksyen: ISubjekSeksyen_SeksyenDTO,
-    jadual: IJadualSubjek_Combine[],
+//
+// seksyens is a map of (sesi + semester + course_id) => ISubjekSeksyen_SeksyenDTO
+// jaduals is a map of (sesi + semester + course_id) => IJadualSubjek_Combine[]
+export function convertIPelajarSubjekToIEditableCourse(
+    pelajarSubjek: IPelajarSubjekDTO,
+    seksyens: Record<string, ISubjekSeksyen_SeksyenDTO>,
+    jadual: Record<string, IJadualSubjek_Combine[]>,
 ): IEditableCourse {
+    const key = `${pelajarSubjek.sesi}${pelajarSubjek.semester}${pelajarSubjek.kod_subjek}`;
+
     return {
         id: uuidv4(),
-        courseCode: course.pelajarSubjek?.kod_subjek || '',
-        courseName: course.pelajarSubjek?.nama_subjek || '',
-        sectionNo: course.pelajarSubjek?.seksyen || 0,
-        lecturer: seksyen?.pensyarah || '',
-        timeList: jadual.map(convertICombinedJadualDTOToITime) || [],
+        courseCode: pelajarSubjek.kod_subjek || '',
+        courseName: pelajarSubjek.nama_subjek || '',
+        sectionNo: pelajarSubjek.seksyen || 0,
+        lecturer: seksyens[key]?.pensyarah || '',
+        timeList: jadual[key]?.map(convertICombinedJadualDTOToITime) || [],
     }
 }
 

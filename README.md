@@ -40,6 +40,8 @@ UTM Scheduler V3, a sequel to the previous [UTM Timetable Generator V2](https://
 12. [KonvaJS](https://konvajs.org/)
 13. [FontSource](https://fontsource.org/)
 14. [FontFaceObserver](https://fontfaceobserver.com/)
+15. [Axios](https://axios-http.com/)
+16. [Lodash](https://lodash.com/)
 
 ## Project Structure:
 

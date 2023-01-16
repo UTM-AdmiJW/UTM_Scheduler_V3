@@ -3,7 +3,7 @@ import { DialogTitle, Typography } from "@mui/material";
 import { RegisteredCoursesContextProvider } from "../../context/RegisteredCoursesContext";
 import RegisteredCoursesStepper from "./RegisteredCoursesStepper";
 import RegisteredCoursesLoginView from "./login/RegisteredCoursesLoginView";
-import RegisteredCourseSelectSubjectView from "./selectsubject/RegisteredCourseSelectSubjectView";
+import RegisteredCourseSelectSessionSemesterView from "./selectSessionSemester/RegisteredCourseSelectSessionSemesterView";
 import RegisteredCoursesConfirmView from "./confirmation/RegisteredCoursesConfirmView";
 
 import { BsBookshelf } from "react-icons/bs";
@@ -47,8 +47,8 @@ function RegisteredCoursesProgressView({ timetable }: { timetable: ITimetable })
             registeredCoursesState.progress === RegisteredCoursesProgress.LOGIN?
             <RegisteredCoursesLoginView />
             :
-            registeredCoursesState.progress === RegisteredCoursesProgress.SELECT_REGISTERED_SUBJECT?
-            <RegisteredCourseSelectSubjectView />
+            registeredCoursesState.progress === RegisteredCoursesProgress.SELECT_SESSIONSEMESTER?
+            <RegisteredCourseSelectSessionSemesterView />
             :
             <RegisteredCoursesConfirmView timetable={timetable} />
         }

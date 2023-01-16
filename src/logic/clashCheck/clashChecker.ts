@@ -2,7 +2,7 @@
 
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
 import type { IClashReport, IClashInstance } from "../../model/types/clashCheck/IClashReport";
-import type { IEditableCourseTimeComposite } from "../../model/types/domainDerived/IEditableCourseTimeComposite";
+import type { IEditableCourseTimeComposite } from "../../model/types/composite/IEditableCourseTimeComposite";
 
 import { flatMapIEditableCourseToIEditableCourseTimeComposite } from "../../util/timeUtils";
 

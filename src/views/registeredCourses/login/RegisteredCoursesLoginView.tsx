@@ -1,5 +1,5 @@
 import { Button, DialogActions, DialogContent, Typography } from '@mui/material';
-import LoginDialog from '../../login/LoginDialog';
+import EnterProfileDialog from '../../profile/EnterProfileDialog';
 
 import { useEffect } from 'react';
 import { useDialog } from '../../../hooks/useDialog';
@@ -19,14 +19,14 @@ export default function RegisteredCoursesLoginView() {
 
 
     const handleLoginButton = ()=> {
-        openDialog(<LoginDialog />);
+        openDialog(<EnterProfileDialog />);
     }
 
     useEffect(()=> {
         if (!isLoggedIn) return;
 
         setRegisteredCoursesState(prev => {
-            return { ...prev, progress: RegisteredCoursesProgress.SELECT_REGISTERED_SUBJECT };
+            return { ...prev, progress: RegisteredCoursesProgress.SELECT_SESSIONSEMESTER };
         });
     }, [isLoggedIn, setRegisteredCoursesState]);
 
@@ -37,11 +37,11 @@ export default function RegisteredCoursesLoginView() {
             <BsPersonXFill className='text-5xl text-gray-400' />
 
             <Typography className='text-center text-gray-400 mt-2 mb-4 font-extralight'>
-                You must be logged in. We need your matric number<br/> to retrieve your registered courses.
+                We need your matric number<br/> to retrieve your registered courses.
             </Typography>
 
             <Button variant='contained' color='primary' onClick={handleLoginButton}>
-                Login Now
+                Enter your profile
             </Button>
         </DialogContent>
 

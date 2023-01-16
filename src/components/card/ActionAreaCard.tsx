@@ -32,13 +32,13 @@ export default function ActionAreaCard({
             <CardContent>
                 { preDataContent }
 
-                <table className="table-auto font-light text-xs">
+                <table className="table-auto text-xs">
                 <tbody>
                     {
                         tableData.map((item, i) => (
                             <tr key={i}>
-                                <td className='pr-3 align-top'>{ item.label }: </td>
-                                <td>{ item.value }</td>
+                                <td className='pr-3 pb-1 align-top font-medium'>{ item.label }: </td>
+                                <td className='font-light'>{ item.value }</td>
                             </tr>
                         ))
                     }

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { useQuery } from "react-query";
 import { useAlert } from "../useAlert";
 
@@ -14,13 +16,14 @@ interface IFetchSubjekSeksyenParams {
 // Fetch function with currying
 export function fetchSubjekSeksyen({ sesi, semester }: IFetchSubjekSeksyenParams) {
     return async (): Promise<ISubjekSeksyenDTO[]> => {
-        return fetch(
-            `http://web.fc.utm.my/ttms/web_man_webservice_json.cgi?` +
-            `entity=subjek_seksyen&` + 
-            `sesi=${sesi}&` +
-            `semester=${semester}`
-        )
-        .then(res => res.json());
+        const url = `http://web.fc.utm.my/ttms/web_man_webservice_json.cgi?` +
+                    `entity=subjek_seksyen&` + 
+                    `sesi=${sesi}&` +
+                    `semester=${semester}`;
+
+        return axios
+            .get(url)
+            .then((res) => res.data);
     };
 }
 

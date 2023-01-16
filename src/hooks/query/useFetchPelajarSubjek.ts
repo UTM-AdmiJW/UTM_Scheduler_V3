@@ -1,3 +1,5 @@
+import axios from "axios";
+
 
 import { useQuery } from "react-query";
 import { useAlert } from "../useAlert";
@@ -8,12 +10,13 @@ import type { IPelajarSubjekDTO } from "../../model/DTO/PelajarSubjek/IPelajarSu
 // Fetch function with currying
 export function fetchPelajarSubjek(no_matrik: string) {
     return async (): Promise<IPelajarSubjekDTO[]> => {
-        return fetch(
-            `http://web.fc.utm.my/ttms/web_man_webservice_json.cgi` +
-            `?entity=pelajar_subjek&` +
-            `no_matrik=${no_matrik}`
-        )
-        .then(res => res.json());
+        const url = `http://web.fc.utm.my/ttms/web_man_webservice_json.cgi` +
+                    `?entity=pelajar_subjek&` +
+                    `no_matrik=${no_matrik}`;
+
+        return axios
+            .get<IPelajarSubjekDTO[]>(url)
+            .then((res) => res.data);
     };
 }
 

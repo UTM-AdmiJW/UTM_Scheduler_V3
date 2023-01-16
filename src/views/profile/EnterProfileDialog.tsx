@@ -16,7 +16,7 @@ import type { IStudent } from "../../model/domain/IStudent";
 
 
 
-export default function LoginDialog() {
+export default function EnterProfileDialog() {
     const { studentActions: { login } } = useStudentRedux();
     const { control, handleSubmit } = useForm<IStudent>();
     
@@ -26,7 +26,7 @@ export default function LoginDialog() {
 
     const onSubmit: SubmitHandler<IStudent> = (data) => {
         login(data);
-        alertSuccess('Login successful. Welcome, ' + data.name);
+        alertSuccess('Profile updated successfully. Welcome, ' + data.name);
         closeDialog();
     };
 
@@ -38,7 +38,7 @@ export default function LoginDialog() {
         <DialogTitle>
         <Typography className='text-2xl font-light flex items-center'>
             <AiOutlineLogin className='mr-2 inline' fontSize='x-large' /> 
-            Login
+            Enter Your Profile
         </Typography>
         </DialogTitle>
     
@@ -87,7 +87,7 @@ export default function LoginDialog() {
 
         <DialogActions>
             <Button variant="contained" color='primary' type='submit'>
-                Login
+                Submit
             </Button>
             <Button variant="outlined" color='primary' onClick={closeDialog}>
                 Close

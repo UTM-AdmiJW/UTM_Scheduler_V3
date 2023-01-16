@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { useQueries, useQuery, UseQueryOptions } from "react-query";
 
 import type { IJadualSubjekDTO } from "../../model/DTO/JadualSubjek/IJadualSubjekDTO";
@@ -26,9 +28,10 @@ export function fetchJadualSubjekWithSeksyen({ sesi, semester, kod_subjek, seksy
                     `kod_subjek=${ kod_subjek }&` + 
                     `seksyen=${ seksyen.seksyen }`;
 
-        return fetch(url)
-            .then(res => res.json())
-            .then( (jadual: IJadualSubjekDTO[]) => ({ jadual, seksyen }) );
+        return axios
+            .get<IJadualSubjekDTO[]>(url)
+            .then((res)=> res.data)
+            .then((jadual) => ({ jadual, seksyen }) );
     };
 }
 

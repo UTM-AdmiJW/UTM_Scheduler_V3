@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { useQuery } from "react-query";
 import { useAlert } from "../useAlert";
 
@@ -7,8 +9,9 @@ import type { ISesiSemesterDTO } from "../../model/DTO/SesiSemester/ISesiSemeste
 
 // Fetch function
 export async function fetchSesiSemester(): Promise<ISesiSemesterDTO[]> {
-    return fetch('http://web.fc.utm.my/ttms/web_man_webservice_json.cgi?entity=sesisemester')
-        .then(res => res.json());
+    return axios
+        .get<ISesiSemesterDTO[]>('http://web.fc.utm.my/ttms/web_man_webservice_json.cgi?entity=sesisemester')
+        .then((res) => res.data);
 }
 
 
