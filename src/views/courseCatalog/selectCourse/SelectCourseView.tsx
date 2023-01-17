@@ -28,35 +28,38 @@ enum SelectCourseSortOrder {
 
 
 
+const prefilterFn = (data: ISubjekSeksyenDTO)=> {
+    return Boolean(data && data.kod_subjek);
+}
+
+const searchFn = (data: ISubjekSeksyenDTO, search: string)=> {
+    return (
+        data.nama_subjek.toLowerCase().includes(search.toLowerCase()) ||
+        data.kod_subjek.toLowerCase().includes(search.toLowerCase())
+    );
+}
+
+const sortFn = (a: ISubjekSeksyenDTO, b: ISubjekSeksyenDTO, sortOrder: SelectCourseSortOrder)=> {
+    if (sortOrder === SelectCourseSortOrder.NAME_ASCENDING)
+        return a.nama_subjek.localeCompare(b.nama_subjek);
+    if (sortOrder === SelectCourseSortOrder.NAME_DESCENDING)
+        return b.nama_subjek.localeCompare(a.nama_subjek);
+    if (sortOrder === SelectCourseSortOrder.CODE_ASCENDING)
+        return a.kod_subjek.localeCompare(b.kod_subjek);
+    return b.kod_subjek.localeCompare(a.kod_subjek);
+}
+
+
+
+
+
+
 export default function SelectSessionSemesterView() {
 
     const { closeDialog } = useDialog();
     const { alertWarning } = useAlert();
     const { courseCatalog, setCourseCatalog } = useCourseCatalogContext();
     let { isLoading, error, data } = useFetchSubjekSeksyen(courseCatalog.sesiSemester!);
-
-
-    const prefilterFn = (data: ISubjekSeksyenDTO)=> {
-        return Boolean(data && data.kod_subjek);
-    }
-
-    const searchFn = (data: ISubjekSeksyenDTO, search: string)=> {
-        return (
-            data.nama_subjek.toLowerCase().includes(search.toLowerCase()) ||
-            data.kod_subjek.toLowerCase().includes(search.toLowerCase())
-        );
-    }
-
-    const sortFn = (a: ISubjekSeksyenDTO, b: ISubjekSeksyenDTO, sortOrder: SelectCourseSortOrder)=> {
-        if (sortOrder === SelectCourseSortOrder.NAME_ASCENDING)
-            return a.nama_subjek.localeCompare(b.nama_subjek);
-        if (sortOrder === SelectCourseSortOrder.NAME_DESCENDING)
-            return b.nama_subjek.localeCompare(a.nama_subjek);
-        if (sortOrder === SelectCourseSortOrder.CODE_ASCENDING)
-            return a.kod_subjek.localeCompare(b.kod_subjek);
-        return b.kod_subjek.localeCompare(a.kod_subjek);
-    }
-
 
 
 

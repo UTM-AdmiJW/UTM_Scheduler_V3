@@ -15,6 +15,7 @@ import type { IJadualSubjek_SeksyenJadual } from "../../../model/DTO/JadualSubje
 
 import { combineIJadualDTO } from "../../../util/timeUtils";
 import { stringEnumToIMenuItems } from "../../../util/menuItemUtils";
+import { useState } from "react";
 
 
 
@@ -25,8 +26,25 @@ enum SelectSectionSortOrder {
 
 
 
+const searchFn = (data: IJadualSubjek_SeksyenJadual, search: string)=> {
+    return (
+        data.seksyen.seksyen.toString().includes(search) ||
+        data.seksyen.pensyarah?.toLowerCase().includes(search.toLowerCase())
+    );
+}
+
+
+const sortFn = (a: IJadualSubjek_SeksyenJadual, b: IJadualSubjek_SeksyenJadual, sortOrder: SelectSectionSortOrder)=> {
+    if (sortOrder === SelectSectionSortOrder.SECTION_ASCENDING)
+        return a.seksyen.seksyen - b.seksyen.seksyen;
+    return b.seksyen.seksyen - a.seksyen.seksyen;
+}
+
+
+
 export default function SelectSectionView() {
 
+    const [ isAlreadyError, setIsAlreadyError ] = useState(false);
     const { courseCatalog: { sesiSemester, subjekSeksyen }, setCourseCatalog } = useCourseCatalogContext();
     const { alertError } = useAlert();
     const { closeDialog } = useDialog();
@@ -42,24 +60,9 @@ export default function SelectSectionView() {
 
 
 
-    const searchFn = (data: IJadualSubjek_SeksyenJadual, search: string)=> {
-        return (
-            data.seksyen.seksyen.toString().includes(search) ||
-            data.seksyen.pensyarah?.toLowerCase().includes(search.toLowerCase())
-        );
-    }
-
-
-    const sortFn = (a: IJadualSubjek_SeksyenJadual, b: IJadualSubjek_SeksyenJadual, sortOrder: SelectSectionSortOrder)=> {
-        if (sortOrder === SelectSectionSortOrder.SECTION_ASCENDING)
-            return a.seksyen.seksyen - b.seksyen.seksyen;
-        return b.seksyen.seksyen - a.seksyen.seksyen;
-    }
-
-
     const cardRenderFn = (data: IJadualSubjek_SeksyenJadual)=> {
         const d = { seksyen: data.seksyen, jadual: combineIJadualDTO(data.jadual) };
-
+    
         return (
             <ActionAreaCard
                 key={d.seksyen.seksyen + (d.seksyen.pensyarah || 'NA') }
@@ -94,13 +97,15 @@ export default function SelectSectionView() {
             />
         )
     }
-
-
+    
+    
+    
 
     // Error handling if one of the queries failed
-    if (isError) {
+    if (isError && !isAlreadyError) {
         alertError("Failed to retrieve sections. See console for more details.");
         console.error(error);
+        setIsAlreadyError(true);
     }
 
 

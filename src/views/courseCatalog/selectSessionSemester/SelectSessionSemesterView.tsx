@@ -23,26 +23,29 @@ enum SelectSessionSemesteSortOrder {
 }
 
 
+const searchFn = (data: ISesiSemesterDTO, search: string)=> {
+    return data.sesi.includes(search);
+}
+
+const sortFn = (a: ISesiSemesterDTO, b: ISesiSemesterDTO, sortOrder: SelectSessionSemesteSortOrder)=> {
+    const dateA = new Date(a.tarikh_mula);
+    const dateB = new Date(b.tarikh_mula);
+    
+    if (sortOrder === SelectSessionSemesteSortOrder.DATE_START_ASCENDING)
+        return dateA.getTime() - dateB.getTime();
+    else
+        return dateB.getTime() - dateA.getTime();
+}
+
+
+
+
 export default function SelectSessionSemesterView() {
 
     const { closeDialog } = useDialog();
     let { isLoading, error, data } = useFetchSesiSemester();
     const { setCourseCatalog } = useCourseCatalogContext();
 
-
-    const searchFn = (data: ISesiSemesterDTO, search: string)=> {
-        return data.sesi.includes(search);
-    }
-
-    const sortFn = (a: ISesiSemesterDTO, b: ISesiSemesterDTO, sortOrder: SelectSessionSemesteSortOrder)=> {
-        const dateA = new Date(a.tarikh_mula);
-        const dateB = new Date(b.tarikh_mula);
-        
-        if (sortOrder === SelectSessionSemesteSortOrder.DATE_START_ASCENDING)
-            return dateA.getTime() - dateB.getTime();
-        else
-            return dateB.getTime() - dateA.getTime();
-    }
     
     
     return <>

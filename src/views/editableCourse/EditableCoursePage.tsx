@@ -93,9 +93,9 @@ export default function EditableCoursePage() {
 
 
                 {/* Buttons */}
-                <Box className='flex justify-end mt-5'>
-                    <Button variant='outlined' className='mr-2' disabled={!isDirty} onClick={onReset}>Reset</Button>
+                <Box className='flex justify-end mt-5 gap-2'>
                     <Button variant='contained' color='primary' disabled={!isDirty} type='submit'>Save</Button>
+                    <Button variant='outlined' disabled={!isDirty} onClick={onReset}>Reset</Button>
                 </Box>
             </Paper>
 

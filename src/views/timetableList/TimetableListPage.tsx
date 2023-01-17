@@ -4,8 +4,7 @@ import CardContainer from "../../components/card/CardContainer";
 import TimetableListCard from "./TimetableListCard";
 import { EmptyStatusView } from "../../components/statuses";
 
-import { AiOutlinePlus } from 'react-icons/ai';
-import { MdTableView } from 'react-icons/md';
+import { AiOutlinePlus, AiOutlineTable } from 'react-icons/ai';
 
 import { useAlert } from "../../hooks/useAlert";
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
@@ -26,6 +25,26 @@ enum TimetableListSortOrder {
     MODIFIED_DESC = 'Modified (Newest)'
 }
 
+
+
+const searchFn = (timetable: ITimetable, search: string)=> {
+    return timetable.timetableName.toLowerCase().includes(search.toLowerCase());
+}
+
+
+const sortFn = (a: ITimetable, b: ITimetable, sortOrder: TimetableListSortOrder)=> {
+    if (sortOrder === TimetableListSortOrder.NAME_ASC)
+        return a.timetableName.localeCompare(b.timetableName);
+    if (sortOrder === TimetableListSortOrder.NAME_DESC)
+        return b.timetableName.localeCompare(a.timetableName);
+    if (sortOrder === TimetableListSortOrder.CREATED_ASC)
+        return new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime();
+    if (sortOrder === TimetableListSortOrder.CREATED_DESC)
+        return new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime();
+    if (sortOrder === TimetableListSortOrder.MODIFIED_ASC)
+        return new Date(a.lastModifiedDate).getTime() - new Date(b.lastModifiedDate).getTime();
+    return new Date(b.lastModifiedDate).getTime() - new Date(a.lastModifiedDate).getTime();
+}
 
 
 
@@ -62,24 +81,6 @@ export default function TimetableListPage() {
         </EmptyStatusView>
     </>;
 
-    const searchFn = (timetable: ITimetable, search: string)=> {
-        return timetable.timetableName.toLowerCase().includes(search.toLowerCase());
-    }
-
-
-    const sortFn = (a: ITimetable, b: ITimetable, sortOrder: TimetableListSortOrder)=> {
-        if (sortOrder === TimetableListSortOrder.NAME_ASC)
-            return a.timetableName.localeCompare(b.timetableName);
-        if (sortOrder === TimetableListSortOrder.NAME_DESC)
-            return b.timetableName.localeCompare(a.timetableName);
-        if (sortOrder === TimetableListSortOrder.CREATED_ASC)
-            return new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime();
-        if (sortOrder === TimetableListSortOrder.CREATED_DESC)
-            return new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime();
-        if (sortOrder === TimetableListSortOrder.MODIFIED_ASC)
-            return new Date(a.lastModifiedDate).getTime() - new Date(b.lastModifiedDate).getTime();
-        return new Date(b.lastModifiedDate).getTime() - new Date(a.lastModifiedDate).getTime();
-    }
     
     
     return <>
@@ -87,7 +88,7 @@ export default function TimetableListPage() {
 
             {/* Title */}
             <Typography className='mb-5 flex items-center text-2xl sm:text-3xl font-light'>
-                <MdTableView className='mr-2 inline' />
+                <AiOutlineTable className='mr-2 inline' />
                 My Timetables
             </Typography>
 

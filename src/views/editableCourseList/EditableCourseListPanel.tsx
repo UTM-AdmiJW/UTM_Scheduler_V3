@@ -29,6 +29,23 @@ enum EditableCourseListSortOrder {
 }
 
 
+const searchFn = (course: IEditableCourse, search: string)=> {
+    return course.courseName.toLowerCase().includes( search.toLowerCase() ) ||
+            course.courseCode.toLowerCase().includes( search.toLowerCase() );
+}
+
+const sortFn = (a: IEditableCourse, b: IEditableCourse, sortOrder: EditableCourseListSortOrder)=> {
+    if (sortOrder === EditableCourseListSortOrder.NAME_ASC)
+        return a.courseName.localeCompare(b.courseName);
+    if (sortOrder === EditableCourseListSortOrder.NAME_DESC)
+        return b.courseName.localeCompare(a.courseName);
+    if (sortOrder === EditableCourseListSortOrder.CODE_ASC)
+        return a.courseCode.localeCompare(b.courseCode);
+    return b.courseCode.localeCompare(a.courseCode);
+}
+
+
+
 
 export default function EditableCourseListPanel({ timetable }: { timetable: ITimetable }) {
 
@@ -36,22 +53,6 @@ export default function EditableCourseListPanel({ timetable }: { timetable: ITim
     const { openDialog, openConfirmDialog } = useDialog();
     const { timetableActions: { addBlankCourse, clearCourses } } = useTimetableRedux();
 
-
-    const searchFn = (course: IEditableCourse, search: string)=> {
-        return course.courseName.toLowerCase().includes( search.toLowerCase() ) ||
-                course.courseCode.toLowerCase().includes( search.toLowerCase() );
-    }
-
-    const sortFn = (a: IEditableCourse, b: IEditableCourse, sortOrder: EditableCourseListSortOrder)=> {
-        if (sortOrder === EditableCourseListSortOrder.NAME_ASC)
-            return a.courseName.localeCompare(b.courseName);
-        if (sortOrder === EditableCourseListSortOrder.NAME_DESC)
-            return b.courseName.localeCompare(a.courseName);
-        if (sortOrder === EditableCourseListSortOrder.CODE_ASC)
-            return a.courseCode.localeCompare(b.courseCode);
-        return b.courseCode.localeCompare(a.courseCode);
-    }
-    
 
 
     const onAddBlankCourse = ()=> {

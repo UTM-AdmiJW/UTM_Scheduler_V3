@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { IconButton, Tooltip, Menu } from "@mui/material";
 
-
-import { AiFillNotification } from 'react-icons/ai';
-import { MdHelpCenter } from 'react-icons/md';
-import { FaUserCircle } from 'react-icons/fa';
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { AiFillNotification, AiOutlineTable } from 'react-icons/ai';
+import { MdHelpCenter } from 'react-icons/md';
+import { FaUserCircle, FaSearchLocation } from 'react-icons/fa';
 
 
 import Profile from "./Profile";
@@ -13,17 +13,17 @@ import Profile from "./Profile";
 
 export default function NavbarMenu() {
     const [profileAnchorElem, setProfileAnchorElem] = useState<null | HTMLElement>(null);
+    const navigate = useNavigate();
 
 
-    const onOpenProfile = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleOpenProfile = (event: React.MouseEvent<HTMLButtonElement>) => {
         setProfileAnchorElem(event.currentTarget);
     }
 
-    const onCloseProfile = () => {
+    const handleCloseProfile = () => {
         setProfileAnchorElem(null);
     }
 
-    const navigate = useNavigate();
 
 
 
@@ -36,9 +36,21 @@ export default function NavbarMenu() {
                     size="large"
                     color="inherit"
                     aria-label="tutorial"
-
+                    onClick={ () => navigate('/tutorial') }
                 >
                     <MdHelpCenter fontSize='x-large' />
+                </IconButton>
+            </Tooltip>
+
+            {/* My Timetables */}
+            <Tooltip title='My Timetables' arrow>
+                <IconButton
+                    size="large"
+                    color="inherit"
+                    aria-label="my timetables"
+                    onClick={ () => navigate('/timetable') }
+                >
+                    <AiOutlineTable fontSize='x-large' />
                 </IconButton>
             </Tooltip>
 
@@ -54,13 +66,25 @@ export default function NavbarMenu() {
                 </IconButton>
             </Tooltip>
 
+            {/* Venue Searcher */}
+            <Tooltip title='Venue Searcher' arrow>
+                <IconButton
+                    size="large"
+                    color="inherit"
+                    aria-label="venue-searcher"
+                    onClick={ () => navigate('/venue') }
+                >
+                    <FaSearchLocation fontSize='x-large' />
+                </IconButton>
+            </Tooltip>
+
             {/* Profile */}
             <Tooltip title='Profile' arrow>
                 <IconButton
                     size="large"
                     color="inherit"
                     aria-label="profile"
-                    onClick={ onOpenProfile }
+                    onClick={ handleOpenProfile }
                 >
                     <FaUserCircle fontSize='x-large' />
                 </IconButton>
@@ -69,7 +93,7 @@ export default function NavbarMenu() {
             {/* Profile Menu */}
             <Menu 
                 open={ profileAnchorElem !== null }
-                onClose={ onCloseProfile }
+                onClose={ handleCloseProfile }
                 anchorEl={ profileAnchorElem }
             >
                 <Profile />

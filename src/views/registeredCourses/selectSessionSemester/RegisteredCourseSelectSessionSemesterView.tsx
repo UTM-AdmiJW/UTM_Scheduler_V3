@@ -25,6 +25,27 @@ enum RegisteredCoursesSelectSessionSemesterSortOrder {
 }
 
 
+// Filter out empty session semester
+const preFilterFn = (data: ISesiSemesterPelajarSubjekComposite)=> Boolean(data.pelajarSubjeks.length);
+
+// Sort by session semester
+const sortFn = (
+    a: ISesiSemesterPelajarSubjekComposite,
+    b: ISesiSemesterPelajarSubjekComposite,
+    sortOrder: RegisteredCoursesSelectSessionSemesterSortOrder
+)=> {
+    if (sortOrder === RegisteredCoursesSelectSessionSemesterSortOrder.SESSIONSEMESTER_ASCENDING)
+        return a.sesiSemester.sesi_semester_id.localeCompare(b.sesiSemester.sesi_semester_id);
+    return b.sesiSemester.sesi_semester_id.localeCompare(a.sesiSemester.sesi_semester_id);
+}
+
+
+
+
+
+
+
+
 export default function RegisteredCourseSelectSessionSemesterView() {
 
     const { closeDialog } = useDialog();
@@ -43,7 +64,6 @@ export default function RegisteredCourseSelectSessionSemesterView() {
         alertError("Error loading course info. Please see console for more details.");
         console.error(error);
     }
-
 
 
 
@@ -66,21 +86,6 @@ export default function RegisteredCourseSelectSessionSemesterView() {
         acc[key].pelajarSubjeks.push(d);
         return acc;
     }, {} as Record<string, ISesiSemesterPelajarSubjekComposite>);
-
-
-    // Filter out empty session semester
-    const preFilterFn = (data: ISesiSemesterPelajarSubjekComposite)=> Boolean(data.pelajarSubjeks.length);
-
-    // Sort by session semester
-    const sortFn = (
-        a: ISesiSemesterPelajarSubjekComposite,
-        b: ISesiSemesterPelajarSubjekComposite,
-        sortOrder: RegisteredCoursesSelectSessionSemesterSortOrder
-    )=> {
-        if (sortOrder === RegisteredCoursesSelectSessionSemesterSortOrder.SESSIONSEMESTER_ASCENDING)
-            return a.sesiSemester.sesi_semester_id.localeCompare(b.sesiSemester.sesi_semester_id);
-        return b.sesiSemester.sesi_semester_id.localeCompare(a.sesiSemester.sesi_semester_id);
-    }
 
 
 
