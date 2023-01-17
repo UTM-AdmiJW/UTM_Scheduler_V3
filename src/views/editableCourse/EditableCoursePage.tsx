@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useTimetableRedux } from "../../hooks/redux/useTimetableRedux";
 import { useForm } from "react-hook-form";
 import { useAlert } from "../../hooks/useAlert";
-import { useUnsavedStateContext } from "../../hooks/context/useUnsavedStateContext";
+import { useApplicationRedux } from "../../hooks/redux/useApplicationRedux";
 
 import type { IEditableCourse } from "../../model/domain/IEditableCourse";
 
@@ -23,7 +23,7 @@ export default function EditableCoursePage() {
 
     const { timetableState, timetableActions } = useTimetableRedux();
     const course = timetableState.timetables[timetableId!].editableCourses[courseId!];
-    const { setIsDirty } = useUnsavedStateContext();
+    const { applicationActions: { setHasUnsavedData } } = useApplicationRedux();
 
     const { control, handleSubmit, formState: { isDirty }, reset, getValues } = useForm<IEditableCourse>({
         defaultValues: course
@@ -37,8 +37,8 @@ export default function EditableCoursePage() {
     }, [course, reset]);
 
     useEffect(()=> {
-        setIsDirty(isDirty);
-    }, [isDirty, setIsDirty]);
+        setHasUnsavedData(isDirty);
+    }, [isDirty, setHasUnsavedData]);
 
 
 

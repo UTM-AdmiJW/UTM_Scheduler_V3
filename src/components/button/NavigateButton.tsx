@@ -7,7 +7,7 @@
 
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useUnsavedStateContext } from "../../hooks/context/useUnsavedStateContext";
+import { useApplicationRedux } from "../../hooks/redux/useApplicationRedux";
 import { useDialog } from "../../hooks/useDialog";
 
 interface INavigateButtonProps {
@@ -26,17 +26,18 @@ export default function NavigateButton({
 
     const navigate = useNavigate();
     const { openConfirmDialog } = useDialog();
-    const { isDirty, setIsDirty } = useUnsavedStateContext();
+    const { applicationState: { hasUnsavedData }, applicationActions: { setHasUnsavedData } } = useApplicationRedux();
 
 
     const handleClick = ()=> {
-        if (!isDirty) navigate(navigateTo);
-        else openConfirmDialog({
+        if (!hasUnsavedData) return navigate(navigateTo);
+        
+        openConfirmDialog({
             title: "Unsaved changes",
             message: "You have unsaved changes. Are you sure you want to leave this page?",
             onConfirm: ()=> {
                 navigate(navigateTo);
-                setIsDirty(false);
+                setHasUnsavedData(false);
             },
         });
     }

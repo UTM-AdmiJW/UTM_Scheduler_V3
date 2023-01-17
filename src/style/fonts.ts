@@ -20,7 +20,7 @@ import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900.css";
 
 // Rajdhani (Purple Galaxy)
-import "@fontsource/rajdhani/500.css";
+import "@fontsource/rajdhani/600.css";
 
 // Grandstander (Cute)
 import "@fontsource/grandstander/300.css";

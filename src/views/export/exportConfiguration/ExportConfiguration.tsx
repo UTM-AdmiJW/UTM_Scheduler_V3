@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAlert } from "../../../hooks/useAlert";
 import { useTimetableRedux } from "../../../hooks/redux/useTimetableRedux";
-import { useUnsavedStateContext } from "../../../hooks/context/useUnsavedStateContext";
+import { useApplicationRedux } from "../../../hooks/redux/useApplicationRedux";
 
 import { RiSettings3Line } from "react-icons/ri";
 
@@ -20,7 +20,7 @@ import type { ITimetableExportConfig } from "../../../model/domain/ITimetableExp
 export default function ExportConfiguration({ timetable }: { timetable: ITimetable}) {
 
     const { timetableActions: { updateTimetableExportConfig } } = useTimetableRedux();
-    const { setIsDirty } = useUnsavedStateContext();
+    const { applicationActions: { setHasUnsavedData } } = useApplicationRedux();
     const { alertSuccess, alertInfo, alertError } = useAlert();
 
     const { control, handleSubmit, formState: { isDirty }, reset, getValues } = useForm<ITimetableExportConfig>({
@@ -33,8 +33,8 @@ export default function ExportConfiguration({ timetable }: { timetable: ITimetab
     }, [timetable.exportConfig, reset]);
 
     useEffect(()=> {
-        setIsDirty(isDirty);
-    }, [isDirty, setIsDirty]);
+        setHasUnsavedData(isDirty);
+    }, [isDirty, setHasUnsavedData]);
 
 
 
